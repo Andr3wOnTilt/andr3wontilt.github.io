@@ -10,7 +10,3 @@
   ![Static Badge](https://img.shields.io/badge/1.3-a?style=for-the-badge&label=Versione&color=%2363ad02)
 
 </h1>
-
-<h2 align="center">Il sito è Online!</h2>
-<h4 align="center">Se vuoi visitare il mio sito clicca <a href="https://pack.ultrasmp.org/download">qui</a>.</h4>
-
