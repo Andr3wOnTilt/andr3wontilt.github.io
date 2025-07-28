@@ -11,6 +11,6 @@
 
 </h1>
 
-<h1 align="center">Il sito è Online!</h1>
-<h3 align="center">Se vuoi visitare il mio sito clicca <a href="https://pack.ultrasmp.org/download">qui</a>.</h3>
+<h2 align="center">Il sito è Online!</h2>
+<h4 align="center">Se vuoi visitare il mio sito clicca <a href="https://pack.ultrasmp.org/download">qui</a>.</h4>
 
