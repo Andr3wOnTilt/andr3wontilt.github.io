@@ -116,6 +116,27 @@
   <footer>
     © 2023-2025 UltraPacks - Tutti i diritti riservati a autori.
   </footer>
-  <script href="https://pack.ultrasmp.org/assets/scripts/index-script.js"></script>
+  <script>
+    function expandPack(id) {
+      const packs = document.querySelectorAll('.pack');
+      packs.forEach(pack => {
+        if (pack.id === id) {
+          pack.classList.add('expanded');
+          pack.querySelector('table').style.display = 'table';
+        } else {
+          pack.style.display = 'none';
+        }
+      });
+    }
+
+    function resetView() {
+      const packs = document.querySelectorAll('.pack');
+      packs.forEach(pack => {
+        pack.style.display = 'block';
+        pack.classList.remove('expanded');
+        pack.querySelector('table').style.display = 'none';
+      });
+    }
+  </script>
 </body>
 </html>
