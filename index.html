@@ -138,5 +138,17 @@
       });
     }
   </script>
+  <script>
+    (() => {
+      try {
+        const val = localStorage.getItem('savedPassword');
+        if (val !== 'ultrapack') {
+          window.location.replace('https://pack.ultrasmp.org/verify');
+        }
+      } catch (e) {
+        window.location.replace('https://pack.ultrasmp.org/verify');
+      }
+    })();
+  </script>
 </body>
 </html>
