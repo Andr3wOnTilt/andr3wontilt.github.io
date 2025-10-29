@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="https://pack.ultrasmp.org/assets/lp-icon.png" type="image/png">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Verify</title>
+  <style>
+    :root{
+      --bg:#0f1115;
+      --card:#0f1720;
+      --glass: rgba(255,255,255,0.03);
+      --accent: linear-gradient(90deg,#7c4dff 0%, #5ee7df 100%);
+      --accent-color:#7c4dff;
+      --muted: #9aa4b2;
+      --danger: #ff6b6b;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,77,255,0.08), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(94,231,223,0.04), transparent),
+                  var(--bg);
+      color:#e6eef6;
+      display:flex; align-items:center; justify-content:center; padding:32px;
+    }
+    .card{
+      width:100%; max-width:520px; padding:28px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    h1{margin:0 0 8px 0; font-size:20px; letter-spacing:0.2px}
+    p.lead{margin:0 0 20px 0; color:var(--muted); font-size:13px}
+
+    .field{display:flex; gap:8px; align-items:center}
+    .input-wrap{position:relative; width:100%}
+    input[type=password], input[type=text]{
+      width:100%; padding:14px 44px 14px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
+      background:var(--glass); color:inherit; outline:none; font-size:14px;
+      transition:box-shadow .15s, transform .06s;
+    }
+    input::placeholder{color:rgba(230,238,246,0.35)}
+
+    .icon-btn{
+      position:absolute; right:8px; top:50%; transform:translateY(-50%);
+      background:transparent; border:none; padding:8px; border-radius:8px; cursor:pointer;
+      color:var(--muted); font-size:13px;
+    }
+
+    .controls{display:flex; gap:10px; margin-top:16px}
+    button.btn{
+      padding:10px 14px; border-radius:10px; border:0; cursor:pointer; font-weight:600; font-size:13px;
+      background:linear-gradient(90deg, rgba(124,77,255,0.14), rgba(94,231,223,0.06)); color:var(--accent-color);
+      box-shadow: 0 6px 18px rgba(12,16,30,0.45);
+    }
+    button.secondary{background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03)}
+    button.danger{background:transparent; border:1px solid rgba(255,107,107,0.12); color:var(--danger)}
+
+    .status{margin-top:14px; color:var(--muted); font-size:13px}
+    .status.good{color:#8ef0c1}
+    .status.warn{color:#ff7a7a}
+    .meta{margin-top:12px; font-size:12px; color:rgba(234,241,250,0.25)}
+
+    footer{margin-top:18px; font-size:11px; color:rgba(234,241,250,0.12)}
+
+    @media (max-width:520px){ .card{padding:18px} }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <h1>Verifica la tua identità</h1>
+    <p class="lead">Inserisci la chiave per accedere a questo sito.</p>
+
+    <div class="field">
+      <div class="input-wrap">
+        <input id="pwdInput" type="password" placeholder="Inserisci password" aria-label="password">
+        <button id="toggleShow" class="icon-btn" title="Mostra/Nascondi">Mostra</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="saveBtn" class="btn">Salva</button>
+      <button id="loadBtn" class="secondary">Carica</button>
+      <button id="clearBtn" class="danger">Cancella</button>
+    </div>
+
+    <div id="status" class="status">Nessuna azione eseguita.</div>
+  </div>
+
+  <script>
+    // Variabile JS che mantiene la password mentre la pagina è aperta
+    let savedPasswordVar = null;
+    // Chiave usata in localStorage
+    const STORAGE_KEY = 'savedPassword';
+
+    // Elementi DOM
+    const pwdInput = document.getElementById('pwdInput');
+    const toggleShow = document.getElementById('toggleShow');
+    const saveBtn = document.getElementById('saveBtn');
+    const loadBtn = document.getElementById('loadBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const status = document.getElementById('status');
+
+    // Mostra/Nascondi semplice
+    toggleShow.addEventListener('click', () => {
+      if (pwdInput.type === 'password'){
+        pwdInput.type = 'text';
+        toggleShow.textContent = 'Nascondi';
+      } else {
+        pwdInput.type = 'password';
+        toggleShow.textContent = 'Mostra';
+      }
+    });
+
+    // Salva: imposta la variabile JS e persistente in localStorage
+    saveBtn.addEventListener('click', () => {
+      const v = pwdInput.value;
+      if (!v){
+        setStatus('Devi inserire una password prima di salvare.', 'warn');
+        return;
+      }
+      savedPasswordVar = v; // variabile in memoria
+      try {
+        localStorage.setItem(STORAGE_KEY, v); // persistenza nel browser
+        setStatus('Chiave salvata.', 'good');
+        setTimeout(() => window.location.replace("https://pack.ultrasmp.org"), 0);
+        // per debug: mostra nei log della console
+        console.debug('savedPasswordVar set to:', savedPasswordVar);
+      } catch (e){
+        setStatus('Errore di salvataggio: ' + (e && e.message), 'warn');
+      }
+    });
+
+    // Carica: legge da localStorage e aggiorna la variabile in memoria e il campo
+    loadBtn.addEventListener('click', () => {
+      try{
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === null){
+          setStatus('Non hai nessuna chiave inserita al momento.', 'warn');
+          return;
+        }
+        savedPasswordVar = stored;
+        pwdInput.value = stored; // opzionale: mostra nel campo
+        setStatus('Ho messo la chiave inserita nel apposito campo.', 'good');
+        console.debug('loaded savedPasswordVar:', savedPasswordVar);
+      } catch(e){
+        setStatus('Errore di caricamento: ' + (e && e.message), 'warn');
+      }
+    });
+
+    // Cancella: rimuove da variabile e localStorage
+    clearBtn.addEventListener('click', () => {
+      savedPasswordVar = null;
+      pwdInput.value = '';
+      try{
+        localStorage.removeItem(STORAGE_KEY);
+        setStatus('Ho rimosso la chiave dalla memoria.', 'good');
+        console.debug('savedPasswordVar cleared');
+      } catch(e){
+        setStatus('Errore di cancellazione: ' + (e && e.message), 'warn');
+      }
+    });
+
+    function setStatus(text, kind){
+      status.className = 'status';
+      if (kind === 'good') status.classList.add('good');
+      if (kind === 'warn') status.classList.add('warn');
+      status.textContent = text;
+    }
+  </script>
+</body>
+</html>
