@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a><img src="https://pack.ultrasmp.org/assets/ultrasmp/sprites/lp-icon.png" alt="UltraSMPico" width="100"></a>
+  <a><img src="https://pack.ultrasmp.org/assets/omega-icon.png" alt="OmegaICO" width="100"></a>
   <br>
   Project: Andr3wOnTilt's Site
   <br>
