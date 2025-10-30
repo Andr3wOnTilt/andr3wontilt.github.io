@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <script>(() => {try {const val = localStorage.getItem('savedPassword');if (val !== 'ultrapack') {window.location.replace('https://pack.ultrasmp.org');}} catch (e) {window.location.replace('https://pack.ultrasmp.org/verify');}})();</script>
+  <title>Ultra Packs</title>
+  <link rel="icon" href="https://pack.ultrasmp.org/assets/omega-iconSmall.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(160deg, #0a0a0a, #1a1a1a 50%, #0f0f0f);
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 60px 20px;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(20, 20, 20, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      color: #ffffff;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, #a0e8ff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* INTRO */
+    main {
+      margin-top: 120px;
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .subtitle {
+      color: #bcbcbc;
+      font-size: 1.1rem;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    /* PACKS GRID */
+    .packs-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 35px;
+      padding: 20px;
+    }
+
+    /* PACK CARD */
+    .pack {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px) saturate(160%);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      text-align: center;
+      transition: all 0.4s ease;
+      transform: translateY(0);
+    }
+
+    .pack:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .pack img {
+      width: 100px;
+      height: 100px;
+      border-radius: 18px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+    }
+
+    .pack h2 {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .pack p {
+      color: #b0b0b0;
+      margin-bottom: 20px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: linear-gradient(145deg, #00c6ff, #0072ff);
+      color: white;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 20px rgba(0, 118, 255, 0.2);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 118, 255, 0.35);
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ddd;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .pack.expanded .btn {
+    display: none; /* sparisce quando espanso */
+    }
+
+    .pack.expanded .close-btn {
+        display: inline-block; /* appare quando espanso */
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      color: #9ddfff;
+      font-weight: 600;
+    }
+
+    td {
+      color: #ddd;
+    }
+
+    td a {
+      color: #00c6ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    td a:hover {
+      text-decoration: underline;
+    }
+
+    .pack.expanded {
+      grid-column: 1 / -1;
+      background: rgba(255, 255, 255, 0.08);
+      transform: scale(1.02);
+      transition: all 0.5s ease;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 70px;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+      padding-bottom: 20px;
+    }
+
+    footer span {
+      color: #a0e8ff;
+    }
+
+    /* ANIMAZIONI */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ultra Packs</h1>
+  </header>
+
+  <main>
+    <h2 class="subtitle">Le migliori Texture Pack per ogni situazione.</h2>
+
+    <div class="packs-container" id="packs">
+      <!-- PACK 1 -->
+      <div class="pack" id="pack1">
+        <img src="https://pack.ultrasmp.org/assets/sprites/ultrasmp/smp.png" alt="UltraSMP">
+        <h2>UltraSMP Pack</h2>
+        <p>Autore: <span style="color:#9ddfff;">Andr3wOnTilt</span></p>
+        <button class="btn" onclick="expandPack('pack1')">Apri archivio</button>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Versione</th>
+              <th>Data</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td style="color: yellow;"><strong>UltraSMP Pack</strong></td>
+                <td style="color: yellow;">0.8</td>
+                <td style="color: yellow;">1 Giugno 2025</td>
+                <td><a href="https://www.mediafire.com/file/4d6q82sd3ezwtga/UltraSMP-Texture-Pack.zip/file" style="color: lime;"><strong>Scarica</strong></a></td>
+            </tr>
+            <tr>
+                <td><strong>UltraSMP Pack</strong></td>
+                <td>0.7.2</td>
+                <td>21 Gennaio 2025</td>
+                <td><a href="https://www.mediafire.com/file/v1fkqnrw4990gye/UltraSMP-Texture-Pack.zip/file" style="color: lime;"><strong>Scarica</strong></a></td>
+            </tr>
+            <tr>
+                <td ><strong>UltraSMP Pack</strong></td>
+                <td >0.7.1</td>
+                <td >21 ottobre 2024</td>
+                <td><a href="https://www.mediafire.com/file/yw5ihzeoac1lryb/UltraSMP-Texture-Pack.zip/file" style="color: lime;"><strong>Scarica</strong></a></td>
+            </tr>
+            <tr>
+                <td><strong>UltraSMP Pack</strong></td>
+                <td>0.7</td>
+                <td>12 ottobre 2024</td>
+                <td><a href="https://www.mediafire.com/file/9hldo1o0bnhms5j/UltraSMP-Texture-Pack.zip/file" style="color: lime;"><strong>Scarica</strong></a></td>
+            </tr>
+            <tr>
+                <td><strong>UltraSMP Pack</strong></td>
+                <td>0.6.3</td>
+                <td>28 settembre 2024</td>
+                <td><a href="https://www.mediafire.com/file/aeglb471rorcqgh/UltraSMP-Texture-Pack.zip/file" style="color: lime;"><strong>Scarica</strong></a></td>
+            </tr>
+            <tr>
+                <td><strong>UltraSMP Pack</strong></td>
+                <td>0.6.2</td>
+                <td>8 settembre 2024</td>
+                <td><a href="https://www.mediafire.com/file/ieg4dvi81x3b28w/UltraSMP-Texture-pack.zip/file" style="color: lime;"><strong>Scarica</strong></a></td>
+            </tr>
+        </tbody>
+        </table>
+
+        <button class="btn close-btn" onclick="resetView()">Chiudi</button>
+      </div>
+
+      <!-- PACK 2 -->
+      <div class="pack" id="pack2">
+        <img src="https://pack.ultrasmp.org/assets/sprites/ultrapvp/pvp.png" alt="UltraPvP">
+        <h2>UltraPvP Pack</h2>
+        <p>Autore: <span style="color:#9ddfff;">_Xedo_</span></p>
+        <button class="btn" onclick="expandPack('pack2')">Apri archivio</button>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Versione</th>
+              <th>Data</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td style="color: rgb(36, 181, 218);"><strong>UltraPvP Pack</strong></td>
+                <td style="color: rgb(36, 181, 218);">1.2</td>
+                <td style="color: rgb(36, 181, 218);">In arrivo...</td>
+                <td><a style="color: red;"><strong>Non disponibile</strong></a></td>
+            </tr>
+            <tr>
+                <td><strong>Disagio Pack</strong></td>
+                <td>1.1.1</td>
+                <td>7 maggio 2022</td>
+                <td><a href="https://www.mediafire.com/file/vpm8txakta4twwu/Disagio_Pack_%2528v1.1.1%2529.zip/file" style="color: limegreen;"><strong>Scarica</strong></a></td>
+            </tr>
+            <tr>
+                <td><strong>Disagio Pack</strong></td>
+                <td>1.1</td>
+                <td>25 aprile 2022</td>
+                <td><a href="https://www.mediafire.com/file/iem37npkwotm96m/Disagio_Pack_%2528v1.1%2529.zip/file" style="color: limegreen;"><strong>Scarica</strong></a></td>
+            </tr>
+            <tr>
+                <td><strong>Disagio Pack</strong></td>
+                <td>1.0</td>
+                <td>21 dicembre 2021</td>
+                <td><a href="https://www.mediafire.com/file/t93n53chr4npug3/Disagio_Pack_%2528v1.0%2529.zip/file" style="color: limegreen;"><strong>Scarica</strong></a></td>
+            </tr>
+        </tbody>
+        </table>
+
+        <button class="btn close-btn" onclick="resetView()">Chiudi</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2023–2025 <span>UltraPacks</span> — Tutti i diritti riservati.
+  </footer>
+
+  <script>
+    function expandPack(id) {
+      const packs = document.querySelectorAll('.pack');
+      packs.forEach(pack => {
+        if (pack.id === id) {
+          pack.classList.add('expanded');
+          pack.querySelector('table').style.display = 'table';
+        } else {
+          pack.style.display = 'none';
+        }
+      });
+    }
+
+    function resetView() {
+      const packs = document.querySelectorAll('.pack');
+      packs.forEach(pack => {
+        pack.style.display = 'block';
+        pack.classList.remove('expanded');
+        pack.querySelector('table').style.display = 'none';
+      });
+    }
+  </script>
+</body>
+</html>
