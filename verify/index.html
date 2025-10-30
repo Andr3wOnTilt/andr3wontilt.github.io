@@ -181,6 +181,23 @@
       text-align: center;
     }
 
+    .omega {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      width: 140px;
+      height: 140px;
+      transform: translateX(-50%);
+      animation: float 6s ease-in-out infinite, rotate 20s linear infinite;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 12px rgba(124,77,255,0.3));
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -5px); }
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
@@ -194,6 +211,9 @@
 <body>
 
   <div class="card">
+    <br>
+    <br>
+    <img src="https://pack.ultrasmp.org/assets/omega-icon.png" alt="Omega Icon" class="omega">
     <h1>Verifica la tua identità</h1>
     <p class="lead">Inserisci la chiave per accedere a questo sito.</p>
 
