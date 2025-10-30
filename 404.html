@@ -1,51 +1,78 @@
-<html>
-    <head>
-        <link rel="icon" href="https://pack.ultrasmp.org/assets/lp-icon.png" type="image/png">
-    </head>
-    <body>
-        <style>
-            *{
-                transition: all 0.6s;
-            }
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="https://pack.ultrasmp.org/assets/lp-icon.png" type="image/png">
+  <title>404 - Pagina non trovata</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --glass: rgba(255,255,255,0.03);
+      --accent: linear-gradient(90deg,#7c4dff 0%, #5ee7df 100%);
+      --muted: #9aa4b2;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto; }
+    body {
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,77,255,0.08), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(94,231,223,0.04), transparent),
+                  var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      color: #e6eef6;
+      overflow: hidden;
+    }
+    .card {
+      text-align: center;
+      padding: 60px 40px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.03);
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+    }
+    h1 {
+      font-size: 80px;
+      margin: 0;
+      background: var(--accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      letter-spacing: 1px;
+    }
+    p {
+      font-size: 15px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color: var(--muted);
+      margin: 8px 0 0 0;
+    }
 
-            html {
-                height: 100%;
-            }
+    .omega {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      width: 140px;
+      height: 140px;
+      transform: translateX(-50%);
+      animation: float 6s ease-in-out infinite, rotate 20s linear infinite;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 12px rgba(124,77,255,0.3));
+    }
 
-            body{
-                font-family: 'Lato', sans-serif;
-                color: #888;
-                margin: 0;
-            }
-
-            #main{
-                display: table;
-                width: 100%;
-                height: 100vh;
-                text-align: center;
-            }
-
-            .fof{
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .fof h1{
-                font-size: 50px;
-                display: inline-block;
-                padding-right: 12px;
-                animation: type .5s alternate infinite;
-            }
-
-            @keyframes type{
-                from{box-shadow: inset -3px 0px 0px #888;}
-                to{box-shadow: inset -3px 0px 0px transparent;}
-            }
-        </style>
-        <div id="main">
-    	<div class="fof">
-        		<h1>Error 404</h1>
-    	</div>
-</div>
-    </body>
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -5px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://pack.ultrasmp.org/assets/omega-icon.png" alt="Omega Icon" class="omega">
+    <h1>404</h1>
+    <p>Pagina non trovata.</p>
+  </div>
+</body>
 </html>
