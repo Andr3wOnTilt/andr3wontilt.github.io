@@ -3,15 +3,16 @@
   "nome_umano": "Mylariel",
 
   "abilità_speciali": {
-    "Manifestazione degli Spiriti": "Evoca gli spiriti di chi è stato ucciso. Possono agire come spie o proteggere temporaneamente chi è in pericolo prima di svanire.",
-    "Luce del Passaggio Spirituale": "Apre portali verso la posizione della propria creatrice.",
-    "Tear Of Hope": "Evoca lacrime di energia spirituale che curano chiunque venga bagnato.",
-    "Occhio del Giudizio": "Permette di vedere i veri intenti di chi è stato ucciso.",
-    "Eclisse delle Anime": "Evoca un'oscurità temporanea che riduce la visibilità dei nemici per 7 secondi."
+    "Manifestazione degli Spiriti": "Evoca gli spiriti dei nemici uccisi per spionaggio o protezione temporanea.",
+    "Luce del Passaggio Spirituale": "Apre portali verso la posizione della creatrice.",
+    "Tear Of Hope": "Evoca lacrime di energia spirituale che curano chi le riceve.",
+    "Occhio del Giudizio": "Rivela i veri intenti dei nemici uccisi.",
+    "Eclisse delle Anime": "Oscurità temporanea che riduce la visibilità nemica per 7 secondi."
   },
 
   "attacchi_base_e_stats": {
     "Vita": 170000,
+
     "Livello di Invisibilità": 4,
 
     "Esecuzione": {
@@ -30,5 +31,5 @@
     }
   },
 
-  "immagine": "https://pack.ultrasmp.online/myentities/sorcererofshadows/"
+  "immagine": "../images/unknown.png"
 }
