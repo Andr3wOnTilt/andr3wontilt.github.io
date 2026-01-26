@@ -13,7 +13,7 @@
 
 body {
     margin: 0;
-    background: radial-gradient(circle at top, #0e1324, var(--bg-main));
+    background: radial-gradient(circle at top, #241c0e, var(--bg-main));
     color: var(--text-main);
     font-family: system-ui, -apple-system, "Inter", sans-serif;
 }
@@ -26,7 +26,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 16px 32px;
-    background: rgba(7,9,15,0.8);
+    background: rgba(15, 12, 7, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-soft);
 }

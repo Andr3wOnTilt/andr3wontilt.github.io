@@ -1,0 +1,115 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #121212, #050505);
+    color: #e6e6e6;
+    font-family: system-ui, -apple-system, "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   HEADER
+========================= */
+.home-header {
+    text-align: center;
+    padding: 60px 20px 30px;
+}
+
+.home-header h1 {
+    font-size: 2.6rem;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+.home-header span {
+    display: block;
+    margin-top: 8px;
+    color: #9a9a9a;
+    font-size: 0.95rem;
+}
+
+/* =========================
+   GRID CENTRALE
+========================= */
+.home-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 36px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+    align-items: center;
+}
+
+/* =========================
+   ENTITY CARD (LOCANDINA)
+========================= */
+.entity-card {
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(180deg, #121212, #0c0c0c);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #1f1f1f;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.75);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.entity-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 40px 90px rgba(0,0,0,0.9);
+}
+
+/* Immagine */
+.entity-card img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.05);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.entity-card:hover img {
+    transform: scale(1.04);
+    filter: grayscale(85%);
+}
+
+/* Testo */
+.entity-card-content {
+    padding: 22px;
+    background: #0e0e0e;
+}
+
+.entity-card-content h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+}
+
+.entity-card-content span {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #9a9a9a;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    text-align: center;
+    padding: 22px;
+    border-top: 1px solid #1a1a1a;
+    color: #8a8a8a;
+    font-size: 0.85rem;
+}
