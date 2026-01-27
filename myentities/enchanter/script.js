@@ -39,16 +39,16 @@ function renderCharacter(c) {
             </div>
             <div class="accordion-content">
                 <div class="subsection">
-                    <h4>Statistiche Base</h4>
+                    <h4>Statistiche Principali</h4>
                     ${stats}
                 </div>
                 <div class="subsection">
-                    <h4>Abilità Speciali</h4>
-                    ${abilities}
+                    <h4>Attacchi Base e DMG</h4>
+                    ${attacks}
                 </div>
                 <div class="subsection">
-                    <h4>Capacità Offensiva</h4>
-                    ${attacks}
+                    <h4>Abilità Uniche</h4>
+                    ${abilities}
                 </div>
             </div>
         </div>
