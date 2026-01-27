@@ -10,7 +10,7 @@ fetch("readme.json")
 function renderCharacter(c) {
     const stats = `
         <div class="stat-row"><span>Vita</span><b>${c.attacchi_base_e_stats.Vita}</b></div>
-        <div class="stat-row"><span>Energia Massima</span><b>${c.attacchi_base_e_stats.EnergyMax}</b></div>
+        <div class="stat-row"><span>Energie</span><b>${c.attacchi_base_e_stats.EnergyMax}</b></div>
         <div class="stat-row"><span>Livello di Invisibilità</span><b>${c.attacchi_base_e_stats["Livello di Invisibilità"]}</b></div>
     `;
 
