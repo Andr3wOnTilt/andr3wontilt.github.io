@@ -19,7 +19,7 @@
 
   "attacchi_base_e_stats": {
     "Vita": 250000,
-    "EnergtMax": 250,
+    "EnergyMax": 250,
     "Livello di Invisibilità": 7,
 
     "Esecuzione": {
@@ -39,3 +39,4 @@
 
   "immagine": "../images/unknown.png"
 }
+
