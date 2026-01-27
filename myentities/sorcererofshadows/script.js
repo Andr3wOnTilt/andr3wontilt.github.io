@@ -10,7 +10,7 @@ fetch("readme.json")
 function renderCharacter(c) {
     const stats = `
         <div class="stat-row"><span>Vita</span><b>${c.attacchi_base_e_stats.Vita}</b></div>
-        <div class="stat-row"><span>Energia Massima</span><b>${c.attacchi_base_e_stats.EnergtMax}</b></div>
+        <div class="stat-row"><span>Energia Massima</span><b>${c.attacchi_base_e_stats.EnergyMax}</b></div>
         <div class="stat-row"><span>Livello di Invisibilità</span><b>${c.attacchi_base_e_stats["Livello di Invisibilità"]}</b></div>
     `;
 
@@ -39,16 +39,16 @@ function renderCharacter(c) {
             </div>
             <div class="accordion-content">
                 <div class="subsection">
-                    <h4>Statistiche Base</h4>
+                    <h4>Statistiche Principali</h4>
                     ${stats}
                 </div>
                 <div class="subsection">
-                    <h4>Abilità Speciali</h4>
-                    ${abilities}
+                    <h4>Attacchi Base e DMG</h4>
+                    ${attacks}
                 </div>
                 <div class="subsection">
-                    <h4>Capacità Offensiva</h4>
-                    ${attacks}
+                    <h4>Abilità Uniche</h4>
+                    ${abilities}
                 </div>
             </div>
         </div>
