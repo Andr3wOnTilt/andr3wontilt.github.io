@@ -1,39 +1,39 @@
 {
-  "nome": "Sorcerer of Shadows",
-  "nome_umano": "Rudeus",
+  "nome": "Enchanter",
+  "nome_umano": "???",
 
   "abilità_speciali": {
-    "Nightfall Healing": "Abilità di cura.",
-    "Shadows Dissolution": "Abilità di invisibilità.",
-    "Shadow Rage": "Incrementa forza e resistenza in stato di rabbia.",
-    "Shadow Shield": "Barriera che riflette un singolo colpo.",
-    "Shadow Puppet": "Evoca una copia identica. Solo attacchi base."
+    "???": "???",
+    "???": "???",
+    "???": "???",
+    "???": "???",
+    "???": "???"
   },
 
   "gradi": {
-    "0": "Initiate Of Shadows",
-    "1": "Shadowborn Adept",
-    "2": "Umbral Ascendant",
-    "3": "Shadow Incarnate"
+    "0": "???",
+    "1": "???",
+    "2": "???",
+    "3": "???"
   },
 
   "attacchi_base_e_stats": {
-    "Vita": 250000,
-    "EnergtMax": 250,
-    "Livello di Invisibilità": 7,
+    "Vita": 0,
+    "EnergtMax": 0,
+    "Livello di Invisibilità": 0,
 
     "Esecuzione": {
-        "name":"Extinction",
-        "damage": 60000
+        "name":"???",
+        "damage": 0
     },
 
     "Eliminazione": {
-        "name":"Final Judgement",
-        "damage": 120000
+        "name":"???",
+        "damage": 0
     },
     "Slash":{
-        "name":"Shadow Fang",
-        "damage": 85000
+        "name":"???",
+        "damage": 0
     } 
   },
 
