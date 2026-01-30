@@ -3,11 +3,26 @@
   "nome_umano": "Rudeus",
 
   "abilità_speciali": {
-    "Nightfall Healing": "Abilità di cura.",
-    "Shadows Dissolution": "Abilità di invisibilità.",
-    "Shadow Rage": "Incrementa forza e resistenza in stato di rabbia.",
-    "Shadow Shield": "Barriera che riflette un singolo colpo.",
-    "Shadow Puppet": "Evoca una copia identica. Solo attacchi base."
+    "Nightfall Healing": {
+      "desctiption":"Abilità di cura.",
+      "damage": null
+    },
+    "Shadows Dissolution": {
+      "desctiption":"Abilità di invisibilità.",
+      "damage": null
+    },
+    "Shadow Rage": {
+      "desctiption":"Incrementa forza e resistenza in stato di rabbia.",
+      "damage": null
+    },
+    "Shadow Shield": {
+      "desctiption":"Barriera che riflette un singolo colpo.",
+      "damage": null
+    },
+    "Shadow Puppet": {
+      "desctiption":"Evoca una copia identica. Solo attacchi base.",
+      "damage": null
+    }
   },
 
   "gradi": {

@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Sorcerer Of Shadows</title>
-    <script>(() => {try {const val = localStorage.getItem('savedPassword');if (val !== 'RP') {window.location.replace('https://pack.ultrasmp.online');}} catch (e) {window.location.replace('https://pack.ultrasmp.online/verify');}})();</script>
+
+    <script>
+        (() => {
+            try {
+                const val = localStorage.getItem('savedPassword');
+                if (val !== 'RP') {
+                    window.location.replace('https://pack.ultrasmp.online');
+                }
+            } catch (e) {
+                window.location.replace('https://pack.ultrasmp.online/verify');
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
