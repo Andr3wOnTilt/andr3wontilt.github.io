@@ -1,36 +1,6 @@
 {
-  "nome": "Sorcerer of Shadows",
+  "nome": "Sorcerer Of Shadows",
   "nome_umano": "Rudeus",
-
-  "abilità_speciali": {
-    "Nightfall Healing": {
-      "desctiption":"Abilità di cura.",
-      "damage": null
-    },
-    "Shadows Dissolution": {
-      "desctiption":"Abilità di invisibilità.",
-      "damage": null
-    },
-    "Shadow Rage": {
-      "desctiption":"Incrementa forza e resistenza in stato di rabbia.",
-      "damage": null
-    },
-    "Shadow Shield": {
-      "desctiption":"Barriera che riflette un singolo colpo.",
-      "damage": null
-    },
-    "Shadow Puppet": {
-      "desctiption":"Evoca una copia identica. Solo attacchi base.",
-      "damage": null
-    }
-  },
-
-  "gradi": {
-    "0": "Initiate Of Shadows",
-    "1": "Shadowborn Adept",
-    "2": "Umbral Ascendant",
-    "3": "Shadow Incarnate"
-  },
 
   "attacchi_base_e_stats": {
     "Vita": 250000,
@@ -50,6 +20,36 @@
         "name":"Shadow Fang",
         "damage": 85000
     } 
+  },
+  
+  "abilità_speciali": {
+    "Nightfall Healing": {
+      "desctiption":"Abilità di cura.",
+      "damage": null
+    },
+    "Shadows Dissolution": {
+      "desctiption":"Abilità di invisibilità.",
+      "damage": null
+    },
+    "Shadow Rage": {
+      "desctiption":"Incremento di forza e resistenza in stato di rabbia.",
+      "damage": null
+    },
+    "Shadow Shield": {
+      "desctiption":"Barriera che riflette un singolo colpo.",
+      "damage": null
+    },
+    "Shadow Puppet": {
+      "desctiption":"Evoca una marionetta identica a Sorcerer Of Shadows, controllabile da remoto. ",
+      "damage": null
+    }
+  },
+
+  "gradi": {
+    "0": "Initiate Of Shadows",
+    "1": "Shadowborn Adept",
+    "2": "Umbral Ascendant",
+    "3": "Shadow Incarnate"
   },
 
   "immagine": "../images/unknown.png"
