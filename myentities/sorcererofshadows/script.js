@@ -1,34 +1,61 @@
 let characterData = null;
 
+// CARICAMENTO JSON
 fetch("readme.json")
-    .then(r => r.json())
+    .then(res => res.json())
     .then(data => {
         characterData = data;
-        render(data);
+        renderCharacter(data);
     });
 
-function render(c) {
-    // IDENTITÀ
+// FUNZIONE PRINCIPALE DI RENDER
+function renderCharacter(c) {
+    renderIdentity(c);
+    renderMainStats(c);
+    renderCombatStats(c);
+    renderBaseAttacks(c);
+    renderSpecialAbilities(c);
+}
+
+// --- IDENTITÀ ---
+function renderIdentity(c) {
     document.getElementById("identity").innerHTML = `
         <h2>Identità</h2>
         <div class="identity-box">
             <img src="${c.immagine}" alt="${c.nome}">
             <div class="identity-data">
                 <div class="stat"><span>Nome</span><b>${c.nome}</b></div>
-                <div class="stat"><span>Identità umana</span><b>${c.nome_umano}</b></div>
+                <div class="stat"><span>Identità Umana</span><b>${c.nome_umano}</b></div>
             </div>
         </div>
     `;
+}
 
-    // STATISTICHE PRINCIPALI
+// --- STATISTICHE PRINCIPALI ---
+function renderMainStats(c) {
+    const stats = Object.entries(c.attacchi_base_e_stats)
+        .filter(([k,v]) => typeof v === "number")
+        .map(([k,v]) => `<div class="stat"><span>${k}</span><b>${v}</b></div>`).join('');
+
     document.getElementById("main-stats").innerHTML = `
         <h2>Statistiche Primarie</h2>
-        ${Object.entries(c.attacchi_base_e_stats)
-            .filter(([k,v]) => typeof v === "number")
-            .map(([k,v]) => `<div class="stat"><span>${k}</span><b>${v}</b></div>`).join('')}
+        ${stats}
     `;
+}
 
-    // ATTACCHI BASE
+// --- STATISTICHE COMBATTIMENTO ---
+function renderCombatStats(c) {
+    const stats = Object.entries(c.gradi)
+        .map(([k,v]) => `<div class="stat"><span>Grado ${k}</span><b>${v}</b></div>`).join('');
+
+    document.getElementById("combat-stats").innerHTML = `
+        <h2>Progressione Gradi</h2>
+        ${stats}
+    `;
+}
+
+// --- ATTACCHI BASE ---
+function renderBaseAttacks(c) {
     const baseAttacks = Object.values(c.attacchi_base_e_stats)
         .filter(a => typeof a === "object" && a.name)
         .map(a => {
@@ -37,7 +64,6 @@ function render(c) {
             if(a.energy_cost!==null) lines.push(`Costo: ${a.energy_cost}`);
             if(a.protection_percent!==null) lines.push(`Prot: ${a.protection_percent}%`);
             if(a.damage_per_energy!==null) lines.push(`DPE: ${a.damage_per_energy}`);
-
             return `
                 <div class="row">
                     <b>${a.name}</b>
@@ -50,8 +76,10 @@ function render(c) {
         <h2>Attacchi Base</h2>
         <div class="table">${baseAttacks}</div>
     `;
+}
 
-    // ABILITÀ SPECIALI
+// --- ABILITÀ SPECIALI ---
+function renderSpecialAbilities(c) {
     const abilities = Object.entries(c.abilità_speciali)
         .map(([name,a]) => {
             const lines = [];
@@ -59,7 +87,6 @@ function render(c) {
             if(a.energy_cost!==null) lines.push(`Costo: ${a.energy_cost}`);
             if(a.protection_percent!==null) lines.push(`Prot: ${a.protection_percent}%`);
             if(a.damage_per_energy!==null) lines.push(`DPE: ${a.damage_per_energy}`);
-
             return `
                 <div class="row">
                     <b>${name}</b>
@@ -75,9 +102,10 @@ function render(c) {
     `;
 }
 
-// DOWNLOAD JSON
+// --- DOWNLOAD JSON ---
 function downloadJSON() {
-    const blob = new Blob([JSON.stringify(characterData, null, 2)], {type:"application/json"});
+    if(!characterData) return;
+    const blob = new Blob([JSON.stringify(characterData,null,2)], {type:"application/json"});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = `${characterData.nome}.json`;
