@@ -61,7 +61,7 @@
       "desctiption": "Barriera che riflette un singolo colpo.",
       "damage": null,
       "energy_cost": 50,
-      "protection_percent":"100%",
+      "protection_percent": 100,
       "damage_per_energy": null
     },
 

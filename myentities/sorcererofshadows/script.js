@@ -12,14 +12,6 @@ fetch("readme.json")
     .catch(err => console.error("Errore caricamento JSON:", err));
 
 /* =========================
-   UTILS
-========================= */
-function calcDamagePerEnergy(damage, energy) {
-    if (damage === null || energy === null || energy === 0) return null;
-    return Math.round((damage / energy) * 100) / 100;
-}
-
-/* =========================
    RENDER
 ========================= */
 function renderCharacter(c) {
@@ -46,20 +38,19 @@ function renderCharacter(c) {
             const extras = [];
 
             if (a.energy_cost !== null)
-                extras.push(`Energie: ${a.energy_cost}`);
+                extras.push(`Energie necessarie: ${a.energy_cost}`);
 
             if (a.protection_percent !== null)
                 extras.push(`Protezione: ${a.protection_percent}%`);
 
-            const dpe = calcDamagePerEnergy(a.damage, a.energy_cost);
-            if (dpe !== null)
-                extras.push(`DMG/Energia: ${dpe}`);
+            if (a.damage_per_energy !== null)
+                extras.push(`DMG/Energia: ${a.damage_per_energy}`);
 
             return `
                 <div class="stat-row">
                     <span><strong>${a.name}</strong></span>
                     <span style="text-align:right">
-                        <b>${a.damage}</b>
+                        <b>DMG: ${a.damage}</b>
                         ${extras.length ? `<br><small>${extras.join("<br>")}</small>` : ""}
                     </span>
                 </div>
@@ -76,16 +67,15 @@ function renderCharacter(c) {
             const extras = [];
 
             if (data.energy_cost !== null)
-                extras.push(`Energie: ${data.energy_cost}`);
+                extras.push(`Energie necessarie: ${data.energy_cost}`);
 
             if (data.protection_percent !== null)
                 extras.push(`Protezione: ${data.protection_percent}%`);
 
-            const dpe = calcDamagePerEnergy(data.damage, data.energy_cost);
-            if (dpe !== null)
-                extras.push(`DMG/Energia: ${dpe}`);
+            if (data.damage_per_energy !== null)
+                extras.push(`DMG/Energia: ${data.damage_per_energy}`);
 
-            const dmg = data.damage !== null ? data.damage : "—";
+            const dmg = data.damage !== null ? data.damage : "DMG: No";
 
             return `
                 <div class="stat-row">
@@ -94,7 +84,7 @@ function renderCharacter(c) {
                         <small>${data.desctiption}</small>
                     </span>
                     <span style="text-align:right">
-                        <b>${dmg}</b>
+                        <b>DMG: ${dmg}</b>
                         ${extras.length ? `<br><small>${extras.join("<br>")}</small>` : ""}
                     </span>
                 </div>
