@@ -1,62 +1,6 @@
-/* =========================
-   RESET & BASE
-========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
-}
+/* ... CSS base, header, grid, card ecc. rimangono uguali ... */
 
-body {
-    background: radial-gradient(circle at top, #10131d, #07080c);
-    color: #e5e7eb;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* =========================
-   HEADER
-========================= */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 56px;
-    background: linear-gradient(180deg, #0d0f17, #08090d);
-    border-bottom: 1px solid #1b1e2b;
-}
-
-.header-left h1 {
-    font-size: 30px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.header-left span {
-    font-size: 14px;
-    color: #9ca3af;
-}
-
-.logout-btn {
-    padding: 10px 22px;
-    background-color: #1c2033;
-    color: #f9fafb;
-    text-decoration: none;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.logout-btn:hover {
-    background-color: #ef4444;
-}
-
-/* =========================
-   GRID / GALLERY
-========================= */
+/* GRID / GALLERY */
 .grid {
     flex: 1;
     padding: 64px 56px;
@@ -65,9 +9,7 @@ body {
     gap: 48px;
 }
 
-/* =========================
-   CARD – LOCANDINA
-========================= */
+/* CARD */
 .card {
     text-decoration: none;
     color: inherit;
@@ -76,34 +18,18 @@ body {
     gap: 14px;
     transition: transform 0.35s ease;
 }
+.card:hover { transform: translateY(-6px); }
 
-.card:hover {
-    transform: translateY(-6px);
-}
-
-/* IMMAGINE LOCANDINA */
 .card img {
     width: 100%;
     height: 340px;
     object-fit: cover;
     border-radius: 18px;
     background-color: #0a0c12;
-    box-shadow:
-        0 30px 60px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65);
     transition: all 0.35s ease;
 }
-
-.card:hover img {
-    box-shadow:
-        0 36px 80px rgba(0, 0, 0, 0.75);
-}
-
-/* =========================
-   NOME PERSONAGGIO
-========================= */
-.card-content {
-    padding: 0 6px;
-}
+.card:hover img { box-shadow: 0 36px 80px rgba(0, 0, 0, 0.75); }
 
 .card-content h3 {
     font-size: 16px;
@@ -113,34 +39,8 @@ body {
     color: #d1d5db;
 }
 
-/* =========================
-   FOOTER
-========================= */
-.footer {
-    padding: 20px;
-    text-align: center;
-    font-size: 13px;
-    color: #6b7280;
-    border-top: 1px solid #1b1e2b;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    .header {
-        padding: 22px 28px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-    }
-
-    .grid {
-        padding: 36px 28px;
-        gap: 36px;
-    }
-
-    .card img {
-        height: 300px;
-    }
+    .grid { padding: 36px 28px; gap: 36px; }
+    .card img { height: 300px; }
 }

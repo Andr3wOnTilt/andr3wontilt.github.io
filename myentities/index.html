@@ -3,10 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Protezione accesso (opzionale, puoi adattarla) -->
-  
-
     <title>My Entities Archive</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,38 +14,14 @@
             <h1>My Entities Archive</h1>
             <span>L'archivio delle entità create da Andr3wOnTilt</span>
         </div>
-
         <div class="header-right">
-            <a onclick="localStorage.removeItem(savedPassword)" href="/verify" class="logout-btn">Logout</a>
+            <a onclick="localStorage.removeItem('savedPassword')" href="/verify" class="logout-btn">Logout</a>
         </div>
     </header>
 
-    <!-- CONTENUTO PRINCIPALE -->
-    <main class="grid">
-
-        <a href="/myentities/sorcererofshadows/" class="card">
-            <img src="images/unknown.png" alt="Sorcerer of Shadows">
-            <div class="card-content">
-                <h3>Sorcerer of Shadows</h3>
-            </div>
-        </a>
-
-        <a href="/myentities/enchanter/" class="card">
-            <img src="images/unknown.png" alt="Enchanter">
-            <div class="card-content">
-                <h3>Enchanter</h3>
-            </div>
-        </a>
-
-        <a href="/myentities/sovereignoftheforgottenorder/" class="card">
-            <img src="images/unknown.png" alt="Sovereign">
-            <div class="card-content">
-                <h3>Sovereign of the Forgotten Order</h3>
-            </div>
-        </a>
-
-        <!-- Duplica una card per ogni nuova pagina -->
-
+    <!-- GRID CARDS -->
+    <main class="grid" id="entities-grid">
+        <!-- Le schede saranno generate dinamicamente via JS -->
     </main>
 
     <!-- FOOTER -->
@@ -57,5 +29,6 @@
         © 2026 — Creato da Andr3wOnTilt. Tutti i diritti riservati.
     </footer>
 
+    <script src="entities.js"></script>
 </body>
 </html>
