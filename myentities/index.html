@@ -3,15 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Archivio Personaggi</title>
-=======
-
-    <!-- Protezione accesso (opzionale, puoi adattarla) -->
-  
-
-    <title>My Entities Archive</title>
->>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,44 +14,44 @@
             <h1>Archivio Personaggi</h1>
             <span>Tutte le entità create da Andr3wOnTilt</span>
         </div>
-
         <div class="header-right">
-            <a onclick="localStorage.removeItem(savedPassword)" href="/verify" class="logout-btn">Logout</a>
+            <a onclick="localStorage.removeItem('savedPassword')" href="/verify" class="logout-btn">Logout</a>
         </div>
     </header>
 
-<<<<<<< HEAD
     <!-- GRIGLIA PERSONAGGI -->
-    <main class="grid" id="characters-grid">
-        <!-- Le schede saranno generate dinamicamente via JS -->
-=======
-    <!-- CONTENUTO PRINCIPALE -->
     <main class="grid">
-
-        <a href="/myentities/sorcererofshadows/" class="card">
-            <img src="images/unknown.png" alt="Sorcerer of Shadows">
+        <!-- Card Sorcerer Of Shadows -->
+        <a href="myentities/sorcererofshadows/" class="card">
+            <div class="card-image">
+                <img src="images/unknown.png" alt="Sorcerer Of Shadows">
+            </div>
             <div class="card-content">
-                <h3>Sorcerer of Shadows</h3>
+                <h3>Sorcerer Of Shadows</h3>
             </div>
         </a>
 
-        <a href="/myentities/enchanter/" class="card">
-            <img src="images/unknown.png" alt="Enchanter">
+        <!-- Card Enchanter -->
+        <a href="myentities/enchanter/" class="card">
+            <div class="card-image">
+                <img src="images/unknown.png" alt="Enchanter">
+            </div>
             <div class="card-content">
                 <h3>Enchanter</h3>
             </div>
         </a>
 
-        <a href="/myentities/sovereignoftheforgottenorder/" class="card">
-            <img src="images/unknown.png" alt="Sovereign">
+        <!-- Card Sovereign of the Forgotten Order -->
+        <a href="myentities/sovereignoftheforgottenorder/" class="card">
+            <div class="card-image">
+                <img src="images/unknown.png" alt="Sovereign of the Forgotten Order">
+            </div>
             <div class="card-content">
                 <h3>Sovereign of the Forgotten Order</h3>
             </div>
         </a>
 
-        <!-- Duplica una card per ogni nuova pagina -->
-
->>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
+        <!-- Aggiungi nuove card duplicando questa struttura -->
     </main>
 
     <!-- FOOTER -->
@@ -67,9 +59,5 @@
         © 2026 — Creato da Andr3wOnTilt. Tutti i diritti riservati.
     </footer>
 
-<<<<<<< HEAD
-    <script src="characters.js"></script>
-=======
->>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
 </body>
 </html>
