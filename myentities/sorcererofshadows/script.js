@@ -42,7 +42,7 @@ function render(c) {
             return `
                 <div class="row">
                     <b>${a.name}</b>
-                    <div><small>${details.join(" | ")}</small></div>
+                    ${details.length ? `<div><small>${details.join(" | ")}</small></div>` : ""}
                 </div>
             `;
         }).join("");
