@@ -1,5 +1,9 @@
 /* =========================
+<<<<<<< HEAD
    RESET BASE
+=======
+   RESET & BASE
+>>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
 ========================= */
 * {
     margin: 0;
@@ -11,9 +15,15 @@
 body {
     background: radial-gradient(circle at top, #10131d, #07080c);
     color: #e5e7eb;
+<<<<<<< HEAD
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+=======
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+>>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
 }
 
 /* =========================
@@ -52,11 +62,18 @@ body {
 
 .logout-btn:hover {
     background-color: #ef4444;
+<<<<<<< HEAD
     color: #fff;
 }
 
 /* =========================
    GRIGLIA PERSONAGGI
+=======
+}
+
+/* =========================
+   GRID / GALLERY
+>>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
 ========================= */
 .grid {
     flex: 1;
@@ -67,7 +84,11 @@ body {
 }
 
 /* =========================
+<<<<<<< HEAD
    CARD
+=======
+   CARD – LOCANDINA
+>>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
 ========================= */
 .card {
     text-decoration: none;
@@ -83,6 +104,7 @@ body {
 
 .card:hover {
     transform: translateY(-6px);
+<<<<<<< HEAD
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
 }
 
@@ -91,10 +113,24 @@ body {
     height: 340px;
     object-fit: cover;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+=======
+}
+
+/* IMMAGINE LOCANDINA */
+.card img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 18px;
+    background-color: #0a0c12;
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.65);
+>>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
     transition: all 0.35s ease;
 }
 
 .card:hover img {
+<<<<<<< HEAD
     filter: brightness(1.1);
 }
 
@@ -103,6 +139,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+=======
+    box-shadow:
+        0 36px 80px rgba(0, 0, 0, 0.75);
+}
+
+/* =========================
+   NOME PERSONAGGIO
+========================= */
+.card-content {
+    padding: 0 6px;
+>>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
 }
 
 .card-content h3 {
@@ -114,10 +161,13 @@ body {
     transition: color 0.3s ease;
 }
 
+<<<<<<< HEAD
 .card:hover .card-content h3 {
     color: #7b7cff;
 }
 
+=======
+>>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
 /* =========================
    FOOTER
 ========================= */
@@ -132,6 +182,7 @@ body {
 /* =========================
    RESPONSIVE
 ========================= */
+<<<<<<< HEAD
 @media (max-width: 1024px) {
     .grid { padding: 48px 36px; gap: 36px; }
     .card-image img { height: 300px; }
@@ -149,4 +200,22 @@ body {
     .header-left h1 { font-size: 24px; }
     .header-left span { font-size: 12px; }
     .logout-btn { padding: 8px 16px; font-size: 12px; }
+=======
+@media (max-width: 768px) {
+    .header {
+        padding: 22px 28px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .grid {
+        padding: 36px 28px;
+        gap: 36px;
+    }
+
+    .card img {
+        height: 300px;
+    }
+>>>>>>> parent of 3ff2e57 (Aggiornamento HomePage archive)
 }
