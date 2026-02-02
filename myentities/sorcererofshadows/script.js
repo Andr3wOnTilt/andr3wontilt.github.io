@@ -51,7 +51,7 @@ function renderCharacter(c) {
                     <span><strong>${a.name}</strong></span>
                     <span style="text-align:right">
                         <b>DMG: ${a.damage}</b>
-                        ${extras.length ? `<br><small>${extras.join("<br>")}</small>` : ""}
+                        ${extras.length ? `<br><small>${extras.join("<br>")}</small>` : "No"}
                     </span>
                 </div>
             `;
@@ -75,7 +75,7 @@ function renderCharacter(c) {
             if (data.damage_per_energy !== null)
                 extras.push(`DMG/Energia: ${data.damage_per_energy}`);
 
-            const dmg = data.damage !== null ? data.damage : "DMG: No";
+            const dmg = data.damage !== null ? data.damage : "No";
 
             return `
                 <div class="stat-row">
