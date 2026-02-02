@@ -1,4 +1,3 @@
-/* JS */
 let characterData = null;
 
 fetch("readme.json")
@@ -40,9 +39,9 @@ function render(c) {
             if (a.protection_percent !== null) details.push(`Prot: ${a.protection_percent}%`);
             if (a.damage_per_energy !== null) details.push(`DPE: ${a.damage_per_energy}`);
             return `
-                <div class="row">
-                    <b>${a.name}</b>
-                    ${details.length ? `<div class="detail"><small>${details.join(" | ")}</small></div>` : ""}
+                <div class="ability-block">
+                    <div class="ability-name">${a.name}</div>
+                    ${details.length ? `<div class="ability-details">${details.join(" | ")}</div>` : ""}
                 </div>
             `;
         }).join("");
@@ -60,12 +59,11 @@ function render(c) {
             if (a.energy_cost !== null) details.push(`Costo: ${a.energy_cost}`);
             if (a.protection_percent !== null) details.push(`Prot: ${a.protection_percent}%`);
             if (a.damage_per_energy !== null) details.push(`DPE: ${a.damage_per_energy}`);
-
             return `
-                <div class="row ability-row">
-                    <b class="ability-name">${name}</b>
-                    <div class="ability-description"><small>${a.desctiption || ""}</small></div>
-                    ${details.length ? `<div class="detail"><small>${details.join(" | ")}</small></div>` : ""}
+                <div class="ability-block">
+                    <div class="ability-name">${name}</div>
+                    <div class="ability-description">${a.desctiption || ""}</div>
+                    ${details.length ? `<div class="ability-details">${details.join(" | ")}</div>` : ""}
                 </div>
             `;
         }).join("");

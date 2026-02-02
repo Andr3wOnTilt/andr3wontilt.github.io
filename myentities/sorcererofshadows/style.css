@@ -7,13 +7,17 @@
     --border: rgba(255,255,255,0.06);
 }
 
-* { box-sizing: border-box; }
+/* Reset base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
     font-family: system-ui, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
 /* Header */
@@ -38,7 +42,7 @@ body {
     color: var(--accent);
 }
 
-/* Layout */
+/* Container principale */
 .container {
     max-width: 1100px;
     margin: auto;
@@ -48,12 +52,7 @@ body {
     gap: 28px;
 }
 
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-}
-
+/* Schede */
 .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -61,18 +60,35 @@ body {
     padding: 24px;
 }
 
-/* Typography */
+/* Titoli */
 h2 {
-    margin-top: 0;
     color: var(--accent);
-    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+/* Identità */
+.identity-box {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.identity-box img {
+    width: 220px;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.identity-data {
+    flex: 1;
 }
 
 .stat {
     display: flex;
     justify-content: space-between;
     padding: 6px 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .stat:last-child {
@@ -83,51 +99,23 @@ h2 {
     color: var(--muted);
 }
 
+/* Tabelle per attacchi e abilità */
 .table {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
 }
 
-.row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 16px;
-}
-
-.row small {
-    color: var(--muted);
-}
-
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 20px;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-}
-.identity-box {
+/* Blocco singola abilità/attacco */
+.ability-block {
     display: flex;
-    gap: 24px;
-    align-items: center;
+    flex-direction: column;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.identity-box img {
-    width: 220px;
-    height: auto;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    box-shadow: 0 0 30px rgba(123,124,255,0.25);
-}
-
-.identity-data {
-    flex: 1;
-}
-/* CSS da aggiungere o aggiornare */
-.ability-row {
-    display: flex;
-    flex-direction: column; /* nome sopra descrizione */
-    gap: 4px; /* piccolo spazio tra nome e descrizione */
+.ability-block:last-child {
+    border-bottom: none;
 }
 
 .ability-name {
@@ -138,11 +126,19 @@ h2 {
 .ability-description {
     font-style: italic;
     color: var(--muted);
-    margin-left: 4px; /* leggero indent per evidenziare */
+    margin: 2px 0 4px 0; /* piccolo spazio tra nome e descrizione */
 }
 
-.detail {
-    margin-left: 8px; /* sotto la descrizione, dati separati */
+.ability-details {
+    text-align: right;
     color: var(--text);
+    font-size: 0.9rem;
 }
 
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+}
