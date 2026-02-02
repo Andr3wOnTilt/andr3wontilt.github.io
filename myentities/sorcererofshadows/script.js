@@ -8,23 +8,14 @@ fetch("readme.json")
     });
 
 function render(c) {
-
+    /* IDENTITÀ */
     document.getElementById("identity").innerHTML = `
         <h2>Identità</h2>
-
         <div class="identity-box">
             <img src="${c.immagine}" alt="${c.nome}">
-
             <div class="identity-data">
-                <div class="stat">
-                    <span>Nome</span>
-                    <b>${c.nome}</b>
-                </div>
-
-                <div class="stat">
-                    <span>Identità umana</span>
-                    <b>${c.nome_umano}</b>
-                </div>
+                <div class="stat"><span>Nome</span><b>${c.nome}</b></div>
+                <div class="stat"><span>Identità umana</span><b>${c.nome_umano}</b></div>
             </div>
         </div>
     `;
@@ -32,12 +23,11 @@ function render(c) {
     /* STATISTICHE PRINCIPALI */
     document.getElementById("main-stats").innerHTML = `
         <h2>Statistiche Primarie</h2>
-        <div class="stat"><span>Vita</span><b>${c.attacchi_base_e_stats.Vita}</b></div>
-        <div class="stat"><span>Energie Max</span><b>${c.attacchi_base_e_stats.EnergyMax}</b></div>
-        <div class="stat">
-            <span>Livello Invisibilità</span>
-            <b>${c.attacchi_base_e_stats["Livello di Invisibilità"]}</b>
-        </div>
+        ${Object.entries(c.attacchi_base_e_stats)
+            .filter(([k, v]) => typeof v === "number")
+            .map(([k, v]) => `
+                <div class="stat"><span>${k}</span><b>${v}</b></div>
+            `).join("")}
     `;
 
     /* ATTACCHI BASE */
@@ -46,10 +36,11 @@ function render(c) {
         .map(a => `
             <div class="row">
                 <b>${a.name}</b>
-                <span>DMG: ${a.damage}</span>
+                <span>${a.damage !== null ? "DMG: " + a.damage : ""}</span>
                 <small>
-                    ${a.energy_cost ? `Costo: ${a.energy_cost}` : ""}
-                    ${a.protection_percent ? ` | Prot: ${a.protection_percent}%` : ""}
+                    ${a.energy_cost !== null ? `Costo: ${a.energy_cost}` : ""}
+                    ${a.protection_percent !== null ? ` | Prot: ${a.protection_percent}%` : ""}
+                    ${a.damage_per_energy !== null ? ` | DPE: ${a.damage_per_energy}` : ""}
                 </small>
             </div>
         `).join("");
@@ -64,11 +55,9 @@ function render(c) {
         .map(([name, a]) => `
             <div class="row">
                 <b>${name}</b>
-                <span>DMG: ${a.damage ?? "—"}</span>
-                <small>
-                    ${a.desctiption}<br>
-                    ${a.energy_cost ? `Costo: ${a.energy_cost}` : ""}
-                </small>
+                <div><small>${a.desctiption || ""}</small></div>
+                <span>${a.damage !== null ? "DMG: " + a.damage : ""}</span>
+                <small>${a.energy_cost !== null ? `Costo: ${a.energy_cost}` : ""}</small>
             </div>
         `).join("");
 
@@ -78,7 +67,7 @@ function render(c) {
     `;
 }
 
-/* DOWNLOAD */
+/* DOWNLOAD JSON */
 function downloadJSON() {
     const blob = new Blob(
         [JSON.stringify(characterData, null, 2)],
