@@ -25,25 +25,27 @@ function render(c) {
         <h2>Statistiche Primarie</h2>
         ${Object.entries(c.attacchi_base_e_stats)
             .filter(([k, v]) => typeof v === "number")
-            .map(([k, v]) => `
-                <div class="stat"><span>${k}</span><b>${v}</b></div>
-            `).join("")}
+            .map(([k, v]) => `<div class="stat"><span>${k}</span><b>${v}</b></div>`)
+            .join("")}
     `;
 
     /* ATTACCHI BASE */
     const baseAttacks = Object.values(c.attacchi_base_e_stats)
-        .filter(v => typeof v === "object" && v.name)
-        .map(a => `
-            <div class="row">
-                <b>${a.name}</b>
-                <span>${a.damage !== null ? "DMG: " + a.damage : ""}</span>
-                <small>
-                    ${a.energy_cost !== null ? `Costo: ${a.energy_cost}` : ""}
-                    ${a.protection_percent !== null ? ` | Prot: ${a.protection_percent}%` : ""}
-                    ${a.damage_per_energy !== null ? ` | DPE: ${a.damage_per_energy}` : ""}
-                </small>
-            </div>
-        `).join("");
+        .filter(a => typeof a === "object" && a.name)
+        .map(a => {
+            let details = [];
+            if (a.damage !== null) details.push(`DMG: ${a.damage}`);
+            if (a.energy_cost !== null) details.push(`Costo: ${a.energy_cost}`);
+            if (a.protection_percent !== null) details.push(`Prot: ${a.protection_percent}%`);
+            if (a.damage_per_energy !== null) details.push(`DPE: ${a.damage_per_energy}`);
+
+            return `
+                <div class="row">
+                    <b>${a.name}</b>
+                    <div><small>${details.join(" | ")}</small></div>
+                </div>
+            `;
+        }).join("");
 
     document.getElementById("base-attacks").innerHTML = `
         <h2>Attacchi Base</h2>
@@ -52,14 +54,21 @@ function render(c) {
 
     /* ABILITÀ SPECIALI */
     const abilities = Object.entries(c.abilità_speciali)
-        .map(([name, a]) => `
-            <div class="row">
-                <b>${name}</b>
-                <div><small>${a.desctiption || ""}</small></div>
-                <span>${a.damage !== null ? "DMG: " + a.damage : ""}</span>
-                <small>${a.energy_cost !== null ? `Costo: ${a.energy_cost}` : ""}</small>
-            </div>
-        `).join("");
+        .map(([name, a]) => {
+            let details = [];
+            if (a.damage !== null) details.push(`DMG: ${a.damage}`);
+            if (a.energy_cost !== null) details.push(`Costo: ${a.energy_cost}`);
+            if (a.protection_percent !== null) details.push(`Prot: ${a.protection_percent}%`);
+            if (a.damage_per_energy !== null) details.push(`DPE: ${a.damage_per_energy}`);
+
+            return `
+                <div class="row">
+                    <b>${name}</b>
+                    <div><small>${a.desctiption || ""}</small></div>
+                    ${details.length ? `<div><small>${details.join(" | ")}</small></div>` : ""}
+                </div>
+            `;
+        }).join("");
 
     document.getElementById("special-abilities").innerHTML = `
         <h2>Abilità Speciali</h2>
