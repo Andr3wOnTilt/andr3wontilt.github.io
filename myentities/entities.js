@@ -1,32 +1,36 @@
-const entities = [
+// Definizione dei personaggi
+const characters = [
     {
         name: "Sorcerer Of Shadows",
         img: "images/unknown.png",
-        link: "/myentities/sorcererofshadows/"
+        link: "myentities/sorcererofshadows/"
     },
     {
         name: "Enchanter",
         img: "images/unknown.png",
-        link: "/myentities/enchanter/"
+        link: "myentities/enchanter/"
     },
     {
         name: "Sovereign of the Forgotten Order",
         img: "images/unknown.png",
-        link: "/myentities/sovereignoftheforgottenorder/"
+        link: "myentities/sovereignoftheforgottenorder/"
     }
-    // Basta aggiungere qui nuove entità
+    // Aggiungi qui nuovi personaggi
 ];
 
-const grid = document.getElementById('entities-grid');
+// Generazione dinamica delle schede
+const grid = document.getElementById('characters-grid');
 
-entities.forEach(e => {
+characters.forEach(character => {
     const card = document.createElement('a');
-    card.href = e.link;
+    card.href = character.link;
     card.className = 'card';
     card.innerHTML = `
-        <img src="${e.img}" alt="${e.name}">
+        <div class="card-image">
+            <img src="${character.img}" alt="${character.name}">
+        </div>
         <div class="card-content">
-            <h3>${e.name}</h3>
+            <h3>${character.name}</h3>
         </div>
     `;
     grid.appendChild(card);
