@@ -35,7 +35,7 @@ function renderIdentity(c) {
 function renderMainStats(c) {
     const stats = Object.entries(c.attacchi_base_e_stats)
         .filter(([k,v]) => typeof v === "number")
-        .map(([k,v]) => `<div class="stat"><span>${k}</span><b>${v}</b></div>`).join('');
+        .map(([k,v]) => `<div class="stat"><span>Energy</span><b>${v}</b></div>`).join('');
 
     document.getElementById("main-stats").innerHTML = `
         <h2>Statistiche Primarie</h2>
@@ -61,8 +61,8 @@ function renderBaseAttacks(c) {
         .map(a => {
             const lines = [];
             if(a.damage!==null) lines.push(`DMG: ${a.damage}`);
-            if(a.energy_cost!==null) lines.push(`Costo: ${a.energy_cost}`);
-            if(a.protection_percent!==null) lines.push(`Prot: ${a.protection_percent}%`);
+            if(a.energy_cost!==null) lines.push(`Energy: ${a.energy_cost}`);
+            if(a.protection_percent!==null) lines.push(`DEF: ${a.protection_percent}%`);
             if(a.damage_per_energy!==null) lines.push(`DPE: ${a.damage_per_energy}`);
             return `
                 <div class="row">

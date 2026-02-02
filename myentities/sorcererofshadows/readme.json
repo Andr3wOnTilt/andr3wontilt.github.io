@@ -44,7 +44,7 @@
     "Shadows Dissolution": {
       "desctiption": "Abilità di invisibilità.",
       "damage": null,
-      "energy_cost": 25,
+      "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
@@ -52,7 +52,7 @@
     "Shadow Rage": {
       "desctiption": "Incremento di forza e resistenza in stato di rabbia.",
       "damage": null,
-      "energy_cost": 100,
+      "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
@@ -60,7 +60,7 @@
     "Shadow Shield": {
       "desctiption": "Barriera che riflette un singolo colpo.",
       "damage": null,
-      "energy_cost": 50,
+      "energy_cost": -1,
       "protection_percent": 100,
       "damage_per_energy": null
     },
@@ -68,7 +68,7 @@
     "Shadow Puppet": {
       "desctiption": "Evoca una marionetta identica a Rudeus, controllabile da remoto.",
       "damage": null,
-      "energy_cost": 50,
+      "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
