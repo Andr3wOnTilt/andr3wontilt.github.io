@@ -66,11 +66,19 @@
     },
 
     "Shadow Puppet": {
-      "desctiption": "Evoca una marionetta identica a Sorcerer Of Shadows, controllabile da remoto.",
+      "desctiption": "Evoca una marionetta identica a Rudeus, controllabile da remoto.",
       "damage": null,
       "energy_cost": 50,
       "protection_percent": null,
       "damage_per_energy": null
+    },
+
+    "Energy Instability": {
+      "desctiption": "Rudeus scatena un’esplosione di potere proporzionale alla sua energia oscura.",
+      "damage": null,
+      "energy_cost": 1,
+      "protection_percent": null,
+      "damage_per_energy": 50
     }
   },
 
