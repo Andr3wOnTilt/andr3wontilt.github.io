@@ -106,3 +106,20 @@ h2 {
     color: var(--muted);
     border-top: 1px solid var(--border);
 }
+.identity-box {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.identity-box img {
+    width: 220px;
+    height: auto;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 30px rgba(123,124,255,0.25);
+}
+
+.identity-data {
+    flex: 1;
+}

@@ -9,11 +9,24 @@ fetch("readme.json")
 
 function render(c) {
 
-    /* IDENTITÀ */
     document.getElementById("identity").innerHTML = `
         <h2>Identità</h2>
-        <div class="stat"><span>Nome</span><b>${c.nome}</b></div>
-        <div class="stat"><span>Identità umana</span><b>${c.nome_umano}</b></div>
+
+        <div class="identity-box">
+            <img src="${c.immagine}" alt="${c.nome}">
+
+            <div class="identity-data">
+                <div class="stat">
+                    <span>Nome</span>
+                    <b>${c.nome}</b>
+                </div>
+
+                <div class="stat">
+                    <span>Identità umana</span>
+                    <b>${c.nome_umano}</b>
+                </div>
+            </div>
+        </div>
     `;
 
     /* STATISTICHE PRINCIPALI */
