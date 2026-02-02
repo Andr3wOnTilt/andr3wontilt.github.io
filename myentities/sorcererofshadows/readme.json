@@ -8,40 +8,69 @@
     "Livello di Invisibilità": 7,
 
     "Esecuzione": {
-        "name":"Extinction",
-        "damage": 60000
+      "name": "Extinction",
+      "damage": 60000,
+      "energy_cost": 30,
+      "protection_percent": null,
+      "damage_per_energy": null
     },
 
     "Eliminazione": {
-        "name":"Final Judgement",
-        "damage": 120000
+      "name": "Final Judgement",
+      "damage": 120000,
+      "energy_cost": 70,
+      "protection_percent": null,
+      "damage_per_energy": null
     },
-    "Slash":{
-        "name":"Shadow Fang",
-        "damage": 85000
-    } 
+
+    "Slash": {
+      "name": "Shadow Fang",
+      "damage": 85000,
+      "energy_cost": 50,
+      "protection_percent": null,
+      "damage_per_energy": null
+    }
   },
-  
+
   "abilità_speciali": {
     "Nightfall Healing": {
-      "desctiption":"Abilità di cura.",
-      "damage": null
+      "desctiption": "Abilità di cura.",
+      "damage": null,
+      "energy_cost": 25,
+      "protection_percent": null,
+      "damage_per_energy": null
     },
+
     "Shadows Dissolution": {
-      "desctiption":"Abilità di invisibilità.",
-      "damage": null
+      "desctiption": "Abilità di invisibilità.",
+      "damage": null,
+      "energy_cost": 25,
+      "protection_percent": null,
+      "damage_per_energy": null
     },
+
     "Shadow Rage": {
-      "desctiption":"Incremento di forza e resistenza in stato di rabbia.",
-      "damage": null
+      "desctiption": "Incremento di forza e resistenza in stato di rabbia.",
+      "damage": null,
+      "energy_cost": 100,
+      "protection_percent": null,
+      "damage_per_energy": null
     },
+
     "Shadow Shield": {
-      "desctiption":"Barriera che riflette un singolo colpo.",
-      "damage": null
+      "desctiption": "Barriera che riflette un singolo colpo.",
+      "damage": null,
+      "energy_cost": 50,
+      "protection_percent":"100%",
+      "damage_per_energy": null
     },
+
     "Shadow Puppet": {
-      "desctiption":"Evoca una marionetta identica a Sorcerer Of Shadows, controllabile da remoto. ",
-      "damage": null
+      "desctiption": "Evoca una marionetta identica a Sorcerer Of Shadows, controllabile da remoto.",
+      "damage": null,
+      "energy_cost": 50,
+      "protection_percent": null,
+      "damage_per_energy": null
     }
   },
 
@@ -54,4 +83,3 @@
 
   "immagine": "../images/unknown.png"
 }
-

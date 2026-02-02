@@ -1,16 +1,23 @@
 let characterData = null;
 
+/* =========================
+   LOAD JSON
+========================= */
 fetch("readme.json")
     .then(r => r.json())
-    .then(c => {
-        characterData = c;
-        renderCharacter(c);
-    });
+    .then(data => {
+        characterData = data;
+        renderCharacter(data);
+    })
+    .catch(err => console.error("Errore caricamento JSON:", err));
 
+/* =========================
+   RENDER CHARACTER
+========================= */
 function renderCharacter(c) {
 
     /* =========================
-       STATISTICHE
+       STATISTICHE BASE
     ========================= */
     const stats = `
         <div class="stat-row"><span>Vita</span><b>${c.attacchi_base_e_stats.Vita}</b></div>
@@ -22,41 +29,69 @@ function renderCharacter(c) {
     `;
 
     /* =========================
-       ATTACCHI
+       ATTACCHI BASE
     ========================= */
     const attacks = Object.values(c.attacchi_base_e_stats)
         .filter(v => typeof v === "object" && v.name)
-        .map(a => `
-            <div class="stat-row">
-                <span>${a.name}</span>
-                <b>${a.damage}</b>
-            </div>
-        `)
-        .join("");
+        .map(a => {
 
-    /* =========================
-       ABILITÀ (descrizione + DMG se presente)
-    ========================= */
-    const abilities = Object.entries(c.abilità_speciali)
-        .map(([name, data]) => {
-            const dmg = data.damage !== null
-                ? `<b>${data.damage}</b>`
-                : `<b>—</b>`;
+            const extras = [];
+
+            if (a.energy_cost !== null)
+                extras.push(`Energie: ${a.energy_cost}`);
+
+            if (a.protection_percent !== null)
+                extras.push(`Protezione: ${a.protection_percent}%`);
+
+            if (a.damage_per_energy !== null)
+                extras.push(`DMG/Energia: ${a.damage_per_energy}`);
 
             return `
                 <div class="stat-row">
                     <span>
-                        <strong>${name}</strong><br>
-                        <small>${data.desctiption}</small>
+                        <strong>${a.name}</strong>
+                        ${extras.length ? `<br><small>${extras.join(" • ")}</small>` : ""}
                     </span>
-                    ${dmg}
+                    <b>${a.damage}</b>
                 </div>
             `;
         })
         .join("");
 
     /* =========================
-       RENDER
+       ABILITÀ SPECIALI
+    ========================= */
+    const abilities = Object.entries(c.abilità_speciali)
+        .map(([name, data]) => {
+
+            const extras = [];
+
+            if (data.energy_cost !== null)
+                extras.push(`Energie: ${data.energy_cost}`);
+
+            if (data.protection_percent !== null)
+                extras.push(`Protezione: ${data.protection_percent}%`);
+
+            if (data.damage_per_energy !== null)
+                extras.push(`DMG/Energia: ${data.damage_per_energy}`);
+
+            const dmg = data.damage !== null ? data.damage : "—";
+
+            return `
+                <div class="stat-row">
+                    <span>
+                        <strong>${name}</strong><br>
+                        <small>${data.desctiption}</small>
+                        ${extras.length ? `<br><small>${extras.join(" • ")}</small>` : ""}
+                    </span>
+                    <b>${dmg}</b>
+                </div>
+            `;
+        })
+        .join("");
+
+    /* =========================
+       OUTPUT HTML
     ========================= */
     document.getElementById("character").innerHTML = `
         <div class="character-header">
@@ -80,7 +115,7 @@ function renderCharacter(c) {
                 </div>
 
                 <div class="subsection">
-                    <h4>Attacchi Base e DMG</h4>
+                    <h4>Attacchi Base</h4>
                     ${attacks}
                 </div>
 
@@ -96,10 +131,11 @@ function renderCharacter(c) {
 /* =========================
    ACCORDION
 ========================= */
-function toggleAccordion(el) {
-    const content = el.nextElementSibling;
+function toggleAccordion(header) {
+    const content = header.nextElementSibling;
     content.classList.toggle("open");
-    el.querySelector("span").textContent =
+
+    header.querySelector("span").textContent =
         content.classList.contains("open") ? "Riduci" : "Espandi";
 }
 
@@ -107,6 +143,8 @@ function toggleAccordion(el) {
    DOWNLOAD JSON
 ========================= */
 function downloadJSON() {
+    if (!characterData) return;
+
     const blob = new Blob(
         [JSON.stringify(characterData, null, 2)],
         { type: "application/json" }
@@ -117,4 +155,3 @@ function downloadJSON() {
     a.download = `${characterData.nome}.json`;
     a.click();
 }
-
