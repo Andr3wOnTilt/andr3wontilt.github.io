@@ -1,156 +1,76 @@
 let characterData = null;
 
-/* =========================
-   LOAD JSON
-========================= */
 fetch("readme.json")
     .then(r => r.json())
     .then(data => {
         characterData = data;
-        renderCharacter(data);
-    })
-    .catch(err => console.error("Errore caricamento JSON:", err));
+        render(data);
+    });
 
-/* =========================
-   RENDER
-========================= */
-function renderCharacter(c) {
+function render(c) {
 
-    /* =========================
-       STATISTICHE BASE
-    ========================= */
-    const stats = `
-        <div class="stat-row"><span>Vita</span><b>${c.attacchi_base_e_stats.Vita}</b></div>
-        <div class="stat-row"><span>Energie</span><b>${c.attacchi_base_e_stats.EnergyMax}</b></div>
-        <div class="stat-row">
-            <span>Livello di Invisibilità</span>
+    /* IDENTITÀ */
+    document.getElementById("identity").innerHTML = `
+        <h2>Identità</h2>
+        <div class="stat"><span>Nome</span><b>${c.nome}</b></div>
+        <div class="stat"><span>Identità umana</span><b>${c.nome_umano}</b></div>
+    `;
+
+    /* STATISTICHE PRINCIPALI */
+    document.getElementById("main-stats").innerHTML = `
+        <h2>Statistiche Primarie</h2>
+        <div class="stat"><span>Vita</span><b>${c.attacchi_base_e_stats.Vita}</b></div>
+        <div class="stat"><span>Energie Max</span><b>${c.attacchi_base_e_stats.EnergyMax}</b></div>
+        <div class="stat">
+            <span>Livello Invisibilità</span>
             <b>${c.attacchi_base_e_stats["Livello di Invisibilità"]}</b>
         </div>
     `;
 
-    /* =========================
-       ATTACCHI BASE
-    ========================= */
-    const attacks = Object.values(c.attacchi_base_e_stats)
+    /* ATTACCHI BASE */
+    const baseAttacks = Object.values(c.attacchi_base_e_stats)
         .filter(v => typeof v === "object" && v.name)
-        .map(a => {
+        .map(a => `
+            <div class="row">
+                <b>${a.name}</b>
+                <span>DMG: ${a.damage}</span>
+                <small>
+                    ${a.energy_cost ? `Costo: ${a.energy_cost}` : ""}
+                    ${a.protection_percent ? ` | Prot: ${a.protection_percent}%` : ""}
+                </small>
+            </div>
+        `).join("");
 
-            const extras = [];
+    document.getElementById("base-attacks").innerHTML = `
+        <h2>Attacchi Base</h2>
+        <div class="table">${baseAttacks}</div>
+    `;
 
-            if (a.energy_cost !== null)
-                extras.push(`Energie necessarie: ${a.energy_cost}`);
-
-            if (a.protection_percent !== null)
-                extras.push(`Protezione: ${a.protection_percent}%`);
-
-            if (a.damage_per_energy !== null)
-                extras.push(`DMG/Energia: ${a.damage_per_energy}`);
-
-            return `
-                <div class="stat-row">
-                    <span><strong>${a.name}</strong></span>
-                    <span style="text-align:right">
-                        <b>DMG: ${a.damage}</b>
-                        ${extras.length ? `<br><small>${extras.join("<br>")}</small>` : "No"}
-                    </span>
-                </div>
-            `;
-        })
-        .join("");
-
-    /* =========================
-       ABILITÀ SPECIALI
-    ========================= */
+    /* ABILITÀ SPECIALI */
     const abilities = Object.entries(c.abilità_speciali)
-        .map(([name, data]) => {
-
-            const extras = [];
-
-            if (data.energy_cost !== null)
-                extras.push(`Energie necessarie: ${data.energy_cost}`);
-
-            if (data.protection_percent !== null)
-                extras.push(`Protezione: ${data.protection_percent}%`);
-
-            if (data.damage_per_energy !== null)
-                extras.push(`DMG/Energia: ${data.damage_per_energy}`);
-
-            const dmg = data.damage !== null ? data.damage : "No";
-
-            return `
-                <div class="stat-row">
-                    <span>
-                        <strong>${name}</strong><br>
-                        <small>${data.desctiption}</small>
-                    </span>
-                    <span style="text-align:right">
-                        <b>DMG: ${dmg}</b>
-                        ${extras.length ? `<br><small>${extras.join("<br>")}</small>` : ""}
-                    </span>
-                </div>
-            `;
-        })
-        .join("");
-
-    /* =========================
-       OUTPUT
-    ========================= */
-    document.getElementById("character").innerHTML = `
-        <div class="character-header">
-            <img src="${c.immagine}" alt="${c.nome}">
-            <div class="character-names">
-                <h1>${c.nome}</h1>
-                <span>Identità umana: ${c.nome_umano}</span>
+        .map(([name, a]) => `
+            <div class="row">
+                <b>${name}</b>
+                <span>DMG: ${a.damage ?? "—"}</span>
+                <small>
+                    ${a.desctiption}<br>
+                    ${a.energy_cost ? `Costo: ${a.energy_cost}` : ""}
+                </small>
             </div>
-        </div>
+        `).join("");
 
-        <div class="accordion">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <h3>Profilo Operativo Dettagliato</h3>
-                <span>Espandi</span>
-            </div>
-
-            <div class="accordion-content">
-                <div class="subsection">
-                    <h4>Statistiche Principali</h4>
-                    ${stats}
-                </div>
-
-                <div class="subsection">
-                    <h4>Attacchi Base</h4>
-                    ${attacks}
-                </div>
-
-                <div class="subsection">
-                    <h4>Abilità Uniche</h4>
-                    ${abilities}
-                </div>
-            </div>
-        </div>
+    document.getElementById("special-abilities").innerHTML = `
+        <h2>Abilità Speciali</h2>
+        <div class="table">${abilities}</div>
     `;
 }
 
-/* =========================
-   ACCORDION
-========================= */
-function toggleAccordion(header) {
-    const content = header.nextElementSibling;
-    content.classList.toggle("open");
-    header.querySelector("span").textContent =
-        content.classList.contains("open") ? "Riduci" : "Espandi";
-}
-
-/* =========================
-   DOWNLOAD JSON
-========================= */
+/* DOWNLOAD */
 function downloadJSON() {
-    if (!characterData) return;
-
     const blob = new Blob(
         [JSON.stringify(characterData, null, 2)],
         { type: "application/json" }
     );
-
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = `${characterData.nome}.json`;
