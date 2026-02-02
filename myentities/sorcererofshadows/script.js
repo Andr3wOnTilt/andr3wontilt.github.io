@@ -12,7 +12,15 @@ fetch("readme.json")
     .catch(err => console.error("Errore caricamento JSON:", err));
 
 /* =========================
-   RENDER CHARACTER
+   UTILS
+========================= */
+function calcDamagePerEnergy(damage, energy) {
+    if (damage === null || energy === null || energy === 0) return null;
+    return Math.round((damage / energy) * 100) / 100;
+}
+
+/* =========================
+   RENDER
 ========================= */
 function renderCharacter(c) {
 
@@ -43,16 +51,17 @@ function renderCharacter(c) {
             if (a.protection_percent !== null)
                 extras.push(`Protezione: ${a.protection_percent}%`);
 
-            if (a.damage_per_energy !== null)
-                extras.push(`DMG/Energia: ${a.damage_per_energy}`);
+            const dpe = calcDamagePerEnergy(a.damage, a.energy_cost);
+            if (dpe !== null)
+                extras.push(`DMG/Energia: ${dpe}`);
 
             return `
                 <div class="stat-row">
-                    <span>
-                        <strong>${a.name}</strong>
-                        ${extras.length ? `<br><small>${extras.join(" • ")}</small>` : ""}
+                    <span><strong>${a.name}</strong></span>
+                    <span style="text-align:right">
+                        <b>${a.damage}</b>
+                        ${extras.length ? `<br><small>${extras.join("<br>")}</small>` : ""}
                     </span>
-                    <b>${a.damage}</b>
                 </div>
             `;
         })
@@ -72,8 +81,9 @@ function renderCharacter(c) {
             if (data.protection_percent !== null)
                 extras.push(`Protezione: ${data.protection_percent}%`);
 
-            if (data.damage_per_energy !== null)
-                extras.push(`DMG/Energia: ${data.damage_per_energy}`);
+            const dpe = calcDamagePerEnergy(data.damage, data.energy_cost);
+            if (dpe !== null)
+                extras.push(`DMG/Energia: ${dpe}`);
 
             const dmg = data.damage !== null ? data.damage : "—";
 
@@ -82,16 +92,18 @@ function renderCharacter(c) {
                     <span>
                         <strong>${name}</strong><br>
                         <small>${data.desctiption}</small>
-                        ${extras.length ? `<br><small>${extras.join(" • ")}</small>` : ""}
                     </span>
-                    <b>${dmg}</b>
+                    <span style="text-align:right">
+                        <b>${dmg}</b>
+                        ${extras.length ? `<br><small>${extras.join("<br>")}</small>` : ""}
+                    </span>
                 </div>
             `;
         })
         .join("");
 
     /* =========================
-       OUTPUT HTML
+       OUTPUT
     ========================= */
     document.getElementById("character").innerHTML = `
         <div class="character-header">
@@ -134,7 +146,6 @@ function renderCharacter(c) {
 function toggleAccordion(header) {
     const content = header.nextElementSibling;
     content.classList.toggle("open");
-
     header.querySelector("span").textContent =
         content.classList.contains("open") ? "Riduci" : "Espandi";
 }
