@@ -1,3 +1,4 @@
+/* JS */
 let characterData = null;
 
 fetch("readme.json")
@@ -8,7 +9,7 @@ fetch("readme.json")
     });
 
 function render(c) {
-    /* IDENTITÀ */
+    // IDENTITÀ
     document.getElementById("identity").innerHTML = `
         <h2>Identità</h2>
         <div class="identity-box">
@@ -20,7 +21,7 @@ function render(c) {
         </div>
     `;
 
-    /* STATISTICHE PRINCIPALI */
+    // STATISTICHE PRINCIPALI
     document.getElementById("main-stats").innerHTML = `
         <h2>Statistiche Primarie</h2>
         ${Object.entries(c.attacchi_base_e_stats)
@@ -29,7 +30,7 @@ function render(c) {
             .join("")}
     `;
 
-    /* ATTACCHI BASE */
+    // ATTACCHI BASE
     const baseAttacks = Object.values(c.attacchi_base_e_stats)
         .filter(a => typeof a === "object" && a.name)
         .map(a => {
@@ -38,11 +39,10 @@ function render(c) {
             if (a.energy_cost !== null) details.push(`Costo: ${a.energy_cost}`);
             if (a.protection_percent !== null) details.push(`Prot: ${a.protection_percent}%`);
             if (a.damage_per_energy !== null) details.push(`DPE: ${a.damage_per_energy}`);
-
             return `
                 <div class="row">
                     <b>${a.name}</b>
-                    ${details.length ? `<div><small>${details.join(" | ")}</small></div>` : ""}
+                    ${details.length ? `<div class="detail"><small>${details.join(" | ")}</small></div>` : ""}
                 </div>
             `;
         }).join("");
@@ -52,7 +52,7 @@ function render(c) {
         <div class="table">${baseAttacks}</div>
     `;
 
-    /* ABILITÀ SPECIALI */
+    // ABILITÀ SPECIALI
     const abilities = Object.entries(c.abilità_speciali)
         .map(([name, a]) => {
             let details = [];
@@ -62,10 +62,10 @@ function render(c) {
             if (a.damage_per_energy !== null) details.push(`DPE: ${a.damage_per_energy}`);
 
             return `
-                <div class="row">
-                    <b>${name}</b>
-                    <div><small>${a.desctiption || ""}</small></div>
-                    ${details.length ? `<div><small>${details.join(" | ")}</small></div>` : ""}
+                <div class="row ability-row">
+                    <b class="ability-name">${name}</b>
+                    <div class="ability-description"><small>${a.desctiption || ""}</small></div>
+                    ${details.length ? `<div class="detail"><small>${details.join(" | ")}</small></div>` : ""}
                 </div>
             `;
         }).join("");

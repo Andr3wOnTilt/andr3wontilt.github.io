@@ -123,3 +123,26 @@ h2 {
 .identity-data {
     flex: 1;
 }
+/* CSS da aggiungere o aggiornare */
+.ability-row {
+    display: flex;
+    flex-direction: column; /* nome sopra descrizione */
+    gap: 4px; /* piccolo spazio tra nome e descrizione */
+}
+
+.ability-name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.ability-description {
+    font-style: italic;
+    color: var(--muted);
+    margin-left: 4px; /* leggero indent per evidenziare */
+}
+
+.detail {
+    margin-left: 8px; /* sotto la descrizione, dati separati */
+    color: var(--text);
+}
+
