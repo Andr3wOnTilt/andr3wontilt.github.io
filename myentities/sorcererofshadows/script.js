@@ -84,8 +84,8 @@ function renderSpecialAbilities(c) {
         .map(([name,a]) => {
             const lines = [];
             if(a.damage!==null) lines.push(`DMG: ${a.damage}`);
-            if(a.energy_cost!==null) lines.push(`Costo: ${a.energy_cost}`);
-            if(a.protection_percent!==null) lines.push(`Prot: ${a.protection_percent}%`);
+            if(a.energy_cost!==null) lines.push(`Energy: ${a.energy_cost}`);
+            if(a.protection_percent!==null) lines.push(`DEF: ${a.protection_percent}%`);
             if(a.damage_per_energy!==null) lines.push(`DPE: ${a.damage_per_energy}`);
             return `
                 <div class="row">
@@ -111,3 +111,4 @@ function downloadJSON() {
     a.download = `${characterData.nome}.json`;
     a.click();
 }
+
