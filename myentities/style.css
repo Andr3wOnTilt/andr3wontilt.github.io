@@ -1,152 +1,89 @@
-/* =========================
-   RESET BASE
-========================= */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
 }
 
 body {
-    background: radial-gradient(circle at top, #10131d, #07080c);
-    color: #e5e7eb;
-    display: flex;
-    flex-direction: column;
+    background: #0f1115;
+    color: #e6e6e6;
     min-height: 100vh;
 }
 
-/* =========================
-   HEADER
-========================= */
-.header {
+/* HEADER */
+.topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 56px;
-    background: linear-gradient(180deg, #0d0f17, #08090d);
-    border-bottom: 1px solid #1b1e2b;
+    padding: 24px 40px;
+    background: #151922;
+    border-bottom: 1px solid #1f2430;
 }
 
-.header-left h1 {
-    font-size: 30px;
+.topbar h1 {
+    font-size: 26px;
     font-weight: 600;
-    letter-spacing: 0.5px;
 }
 
-.header-left span {
+.topbar p {
     font-size: 14px;
-    color: #9ca3af;
+    color: #9aa4bf;
 }
 
-.logout-btn {
-    padding: 10px 22px;
-    background-color: #1c2033;
-    color: #f9fafb;
+.logout {
     text-decoration: none;
-    border-radius: 999px;
-    font-size: 14px;
+    color: #ff6b6b;
     font-weight: 500;
-    transition: all 0.3s ease;
 }
 
-.logout-btn:hover {
-    background-color: #ef4444;
-    color: #fff;
-}
-
-/* =========================
-   GRIGLIA PERSONAGGI
-========================= */
-.grid {
-    flex: 1;
+/* DASHBOARD GRID */
+.dashboard {
+    padding: 40px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 48px;
-    padding: 64px 56px;
+    gap: 24px;
 }
 
-/* =========================
-   CARD
-========================= */
-.card {
+/* CARD */
+.character-card {
+    background: linear-gradient(180deg, #1a1f2b, #141824);
+    border-radius: 14px;
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
-    display: flex;
-    flex-direction: column;
-    border-radius: 18px;
-    overflow: hidden;
-    background: rgba(20, 22, 35, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid #22283a;
 }
 
-.card:hover {
+.character-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
-.card-image img {
+.character-card img {
     width: 100%;
-    height: 340px;
+    height: 220px;
     object-fit: cover;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    transition: all 0.35s ease;
+    background: #0b0d13;
 }
 
-.card:hover img {
-    filter: brightness(1.1);
+.character-info {
+    padding: 16px;
+    text-align: center;
 }
 
-.card-content {
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.card-content h3 {
+.character-info h3 {
     font-size: 16px;
     font-weight: 500;
-    letter-spacing: 0.4px;
-    text-align: center;
-    color: #d1d5db;
-    transition: color 0.3s ease;
+    letter-spacing: 0.3px;
 }
 
-.card:hover .card-content h3 {
-    color: #7b7cff;
-}
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 .footer {
-    padding: 20px;
     text-align: center;
+    padding: 20px;
     font-size: 13px;
-    color: #6b7280;
-    border-top: 1px solid #1b1e2b;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 1024px) {
-    .grid { padding: 48px 36px; gap: 36px; }
-    .card-image img { height: 300px; }
-}
-
-@media (max-width: 768px) {
-    .header { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px 28px; }
-    .grid { padding: 36px 24px; gap: 28px; }
-    .card-image img { height: 260px; }
-}
-
-@media (max-width: 480px) {
-    .grid { gap: 20px; }
-    .card-image img { height: 220px; }
-    .header-left h1 { font-size: 24px; }
-    .header-left span { font-size: 12px; }
-    .logout-btn { padding: 8px 16px; font-size: 12px; }
+    color: #6f7890;
 }
