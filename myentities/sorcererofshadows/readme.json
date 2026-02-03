@@ -10,7 +10,7 @@
     "Esecuzione": {
       "name": "Extinction",
       "damage": 60000,
-      "energy_cost": 30,
+      "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
@@ -18,7 +18,7 @@
     "Eliminazione": {
       "name": "Final Judgement",
       "damage": 120000,
-      "energy_cost": 70,
+      "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
@@ -26,7 +26,7 @@
     "Slash": {
       "name": "Shadow Fang",
       "damage": 85000,
-      "energy_cost": 50,
+      "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     }

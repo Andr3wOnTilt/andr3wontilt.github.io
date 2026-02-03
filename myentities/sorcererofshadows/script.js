@@ -35,7 +35,7 @@ function renderIdentity(c) {
 function renderMainStats(c) {
     const stats = Object.entries(c.attacchi_base_e_stats)
         .filter(([k,v]) => typeof v === "number")
-        .map(([k,v]) => `<div class="stat"><span>Energy</span><b>${v}</b></div>`).join('');
+        .map(([k,v]) => `<div class="stat"><span>${k}</span><b>${v}</b></div>`).join('');
 
     document.getElementById("main-stats").innerHTML = `
         <h2>Statistiche Primarie</h2>
