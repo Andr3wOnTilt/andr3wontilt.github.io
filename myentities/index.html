@@ -5,59 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archivio Personaggi</title>
     <link rel="stylesheet" href="style.css">
-    <script>(() => {try {const val = localStorage.getItem('savedPassword');if (val !== 'RP') {window.location.replace('https://pack.ultrasmp.org');}} catch (e) {window.location.replace('https://pack.ultrasmp.org/verify');}})();</script>
+
+    <script>
+        (() => {
+            try {
+                const val = localStorage.getItem('savedPassword');
+                if (val !== 'RP') {
+                    window.location.replace('https://pack.ultrasmp.org');
+                }
+            } catch (e) {
+                window.location.replace('https://pack.ultrasmp.org/verify');
+            }
+        })();
+    </script>
 </head>
 <body>
 
     <!-- HEADER -->
-    <header class="header">
-        <div class="header-left">
+    <header class="topbar">
+        <div>
             <h1>Archivio Personaggi</h1>
-            <span>Tutte le entità create da Andr3wOnTilt</span>
+            <p>Database delle entità create da Andr3wOnTilt</p>
         </div>
-        <div class="header-right">
-            <a onclick="localStorage.removeItem('savedPassword')" href="/verify" class="logout-btn">Logout</a>
-        </div>
+
+        <a onclick="localStorage.removeItem('savedPassword')" href="/verify" class="logout">
+            Logout
+        </a>
     </header>
 
-    <!-- GRIGLIA PERSONAGGI -->
-    <main class="grid">
-        <!-- Card Sorcerer Of Shadows -->
-        <a href="../myentities/sorcererofshadows/" class="card">
-            <div class="card-image">
-                <img src="images/unknown.png" alt="Sorcerer Of Shadows">
-            </div>
-            <div class="card-content">
+    <!-- DASHBOARD -->
+    <main class="dashboard">
+
+        <!-- CARD PERSONAGGIO -->
+        <a href="../myentities/sorcererofshadows/" class="character-card">
+            <img src="images/unknown.png" alt="Sorcerer Of Shadows">
+            <div class="character-info">
                 <h3>Sorcerer Of Shadows</h3>
             </div>
         </a>
 
-        <!-- Card Enchanter -->
-        <a href="../myentities/enchanter/" class="card">
-            <div class="card-image">
-                <img src="images/unknown.png" alt="Enchanter">
-            </div>
-            <div class="card-content">
+        <a href="../myentities/enchanter/" class="character-card">
+            <img src="images/unknown.png" alt="Enchanter">
+            <div class="character-info">
                 <h3>Enchanter</h3>
             </div>
         </a>
 
-        <!-- Card Sovereign of the Forgotten Order -->
-        <a href="../myentities/sovereignoftheforgottenorder/" class="card">
-            <div class="card-image">
-                <img src="images/unknown.png" alt="Sovereign of the Forgotten Order">
-            </div>
-            <div class="card-content">
+        <a href="../myentities/sovereignoftheforgottenorder/" class="character-card">
+            <img src="images/unknown.png" alt="Sovereign of the Forgotten Order">
+            <div class="character-info">
                 <h3>Sovereign of the Forgotten Order</h3>
             </div>
         </a>
 
-        <!-- Aggiungi nuove card duplicando questa struttura -->
+        <!-- Duplica questa card per aggiungere personaggi -->
     </main>
 
     <!-- FOOTER -->
     <footer class="footer">
-        © 2026 — Creato da Andr3wOnTilt. Tutti i diritti riservati.
+        © 2026 — Creato da Andr3wOnTilt
     </footer>
 
 </body>
