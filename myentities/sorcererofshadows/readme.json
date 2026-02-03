@@ -4,7 +4,7 @@
 
   "attacchi_base_e_stats": {
     "Vita": 250000,
-    "EnergyMax": 250,
+    "Energy": 250,
     "Livello di Invisibilità": 7,
 
     "Esecuzione": {
@@ -36,7 +36,7 @@
     "Nightfall Healing": {
       "desctiption": "Abilità di cura.",
       "damage": null,
-      "energy_cost": 25,
+      "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
@@ -76,7 +76,7 @@
     "Energy Instability": {
       "desctiption": "Rudeus scatena un’esplosione di potere proporzionale alla sua energia oscura.",
       "damage": null,
-      "energy_cost": 1,
+      "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": 50
     }
@@ -91,3 +91,4 @@
 
   "immagine": "../images/unknown.png"
 }
+
