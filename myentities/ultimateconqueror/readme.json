@@ -1,31 +1,31 @@
 {
-  "nome": "Sorcerer Of Shadows",
-  "nome_umano": "Rudeus",
+  "nome": "Ultimate Conqueror",
+  "nome_umano": "???",
 
   "attacchi_base_e_stats": {
-    "Vita": 250000,
-    "Energy": 250,
-    "Livello di Invisibilità": 7,
+    "Vita": 1,
+    "Energy": 1,
+    "Livello di Invisibilità": 1,
 
     "Esecuzione": {
-      "name": "Extinction",
-      "damage": 60000,
+      "name": "Execution",
+      "damage": 1,
       "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
 
     "Eliminazione": {
-      "name": "Final Judgement",
-      "damage": 120000,
+      "name": "Elimination",
+      "damage": 1,
       "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
 
     "Slash": {
-      "name": "Shadow Fang",
-      "damage": 85000,
+      "name": "Slash",
+      "damage": 1,
       "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
@@ -33,7 +33,7 @@
   },
 
   "abilità_speciali": {
-    "Nightfall Healing": {
+    "Eternal Victory": {
       "desctiption": "Abilità di cura.",
       "damage": null,
       "energy_cost": -1,
@@ -41,54 +41,20 @@
       "damage_per_energy": null
     },
 
-    "Shadows Dissolution": {
+    "Shadow Walk": {
       "desctiption": "Abilità di invisibilità.",
       "damage": null,
       "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
     },
-
-    "Shadow Rage": {
-      "desctiption": "Incremento di forza e resistenza in stato di rabbia.",
-      "damage": null,
-      "energy_cost": -1,
-      "protection_percent": null,
-      "damage_per_energy": null
-    },
-
-    "Shadow Shield": {
-      "desctiption": "Barriera che riflette un singolo colpo.",
-      "damage": null,
-      "energy_cost": -1,
-      "protection_percent": 100,
-      "damage_per_energy": null
-    },
-
-    "Shadow Puppet": {
-      "desctiption": "Evoca una marionetta identica a Rudeus, controllabile da remoto.",
-      "damage": null,
-      "energy_cost": -1,
-      "protection_percent": null,
-      "damage_per_energy": null
-    },
-
-    "Energy Instability": {
-      "desctiption": "Rudeus scatena un’esplosione di potere proporzionale alla sua energia oscura.",
-      "damage": null,
-      "energy_cost": -1,
-      "protection_percent": null,
-      "damage_per_energy": 50
-    }
   },
 
   "gradi": {
-    "0": "Initiate Of Shadows",
-    "1": "Shadowborn Adept",
-    "2": "Umbral Ascendant",
-    "3": "Shadow Incarnate"
+    "0": "Ultimate Conqueror"
   },
 
   "immagine": "../images/unknown.png"
 }
+
 
