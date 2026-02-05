@@ -1,0 +1,233 @@
+:root {
+    --bg-main: #07090f;
+    --bg-glass: rgba(18, 22, 34, 0.85);
+    --bg-section: #111521;
+
+    --accent: #7b7cff;
+    --accent-soft: rgba(123,124,255,0.15);
+
+    --text-main: #e6e8ee;
+    --text-muted: #9aa1b2;
+    --border: rgba(255,255,255,0.06);
+
+    animation: pulseToRed 14s ease-in-out infinite alternate;
+}
+
+/* =========================
+   ANIMAZIONE COLORE
+========================= */
+@keyframes pulseToRed {
+    0% {
+        --bg-main: #07090f;
+        --bg-section: #111521;
+        --accent: #7b7cff;
+        --accent-soft: rgba(123,124,255,0.15);
+    }
+
+    50% {
+        --accent: #b65cff;
+        --accent-soft: rgba(182,92,255,0.2);
+    }
+
+    100% {
+        --bg-main: #0b0507;
+        --bg-section: #16090d;
+        --accent: #ff3b3b;
+        --accent-soft: rgba(255,59,59,0.25);
+    }
+}
+
+/* =========================
+   BASE
+========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    transition: background 2s ease;
+}
+
+/* =========================
+   HEADER
+========================= */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-soft),
+        transparent
+    );
+}
+
+.top-bar button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.top-bar button:hover {
+    background: var(--bg-glass);
+    box-shadow: 0 0 12px var(--accent-soft);
+}
+
+.top-bar .primary {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+    background: var(--bg-section);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow:
+        0 0 20px rgba(0,0,0,0.35),
+        0 0 25px var(--accent-soft);
+    transition: box-shadow 2s ease;
+}
+
+/* =========================
+   GRID 2 COLONNE
+========================= */
+.grid-2 {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.grid-2 .card {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* =========================
+   TITOLI
+========================= */
+h2 {
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-shadow: 0 0 10px var(--accent-soft);
+}
+
+/* =========================
+   IDENTITÀ
+========================= */
+.identity-box {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.identity-box img {
+    width: 220px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow:
+        0 0 25px var(--accent-soft),
+        0 0 40px rgba(0,0,0,0.5);
+}
+
+.identity-data {
+    flex: 1;
+    min-width: 200px;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.stat:last-child {
+    border-bottom: none;
+}
+
+.stat span {
+    color: var(--text-muted);
+}
+
+/* =========================
+   TABELLE
+========================= */
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* =========================
+   ROW ATTACCHI / ABILITÀ
+========================= */
+.row {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+}
+
+.row b {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: var(--accent);
+}
+
+.description {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.detail {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-soft),
+        transparent
+    );
+}
