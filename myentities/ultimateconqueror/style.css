@@ -1,3 +1,6 @@
+/* =========================
+   VARIABILI BASE (ORIGINALI)
+========================= */
 :root {
     --bg-main: #07090f;
     --bg-glass: rgba(18, 22, 34, 0.85);
@@ -10,26 +13,23 @@
     --text-muted: #9aa1b2;
     --border: rgba(255,255,255,0.06);
 
-    animation: shiftToRedLinear 2.5s linear forwards;
+    /* TRANSIZIONE GLOBALE */
+    transition:
+        --bg-main 0.6s linear,
+        --bg-section 0.6s linear,
+        --accent 0.6s linear,
+        --accent-soft 0.6s linear;
 }
 
 /* =========================
-   ANIMAZIONE LINEARE VELOCE
+   MODALITÀ ROSSA (FINALE)
 ========================= */
-@keyframes shiftToRedLinear {
-    0% {
-        --bg-main: #07090f;
-        --bg-section: #111521;
-        --accent: #7b7cff;
-        --accent-soft: rgba(123,124,255,0.15);
-    }
+:root.red-mode {
+    --bg-main: #0b0507;
+    --bg-section: #16090d;
 
-    100% {
-        --bg-main: #0b0507;
-        --bg-section: #16090d;
-        --accent: #ff3b3b;
-        --accent-soft: rgba(255,59,59,0.25);
-    }
+    --accent: #ff3b3b;
+    --accent-soft: rgba(255,59,59,0.25);
 }
 
 /* =========================
@@ -64,11 +64,6 @@ body {
     padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-}
-
-.top-bar button:hover {
-    background: var(--bg-glass);
 }
 
 .top-bar .primary {
@@ -100,7 +95,7 @@ body {
 }
 
 /* =========================
-   GRID 2 COLONNE
+   GRID
 ========================= */
 .grid-2 {
     display: flex;
@@ -173,29 +168,22 @@ h2 {
     display: flex;
     flex-direction: column;
     padding: 8px 12px;
-    border-bottom: 1px solid var(--border);
     border-radius: 8px;
-    background: rgba(255,255,255,0.01);
-}
-
-.row:last-child {
-    border-bottom: none;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
 }
 
 .row b {
-    font-size: 1rem;
-    margin-bottom: 4px;
     color: var(--accent);
+    margin-bottom: 4px;
 }
 
 .description {
     font-style: italic;
     color: var(--text-muted);
-    margin-bottom: 4px;
 }
 
 .detail {
-    color: var(--text-main);
     text-align: right;
     font-size: 0.9rem;
 }
