@@ -101,14 +101,3 @@ function renderSpecialAbilities(c) {
         <div class="table">${abilities}</div>
     `;
 }
-
-// --- DOWNLOAD JSON ---
-function downloadJSON() {
-    if(!characterData) return;
-    const blob = new Blob([JSON.stringify(characterData,null,2)], {type:"application/json"});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `${characterData.nome}.json`;
-    a.click();
-}
-
