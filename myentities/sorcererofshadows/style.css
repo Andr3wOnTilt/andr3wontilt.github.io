@@ -74,3 +74,4 @@ h2 { color: var(--accent); margin-bottom:16px; }
 .stat-energy { color: #ffd84d; }     /* Giallo */
 .stat-protection { color: #4db8ff; } /* Azzurro */
 .stat-dpe { color: #b37cff; }        /* Viola */
+.stat-hp { color: #7CFF4D; } /* Verde lime */

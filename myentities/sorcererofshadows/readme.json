@@ -36,6 +36,7 @@
     "Nightfall Healing": {
       "description": "Abilità di cura.",
       "damage": null,
+      "hp": 1,
       "energy_cost": null,
       "protection_percent": null,
       "damage_per_energy": null
@@ -44,6 +45,7 @@
     "Shadows Dissolution": {
       "description": "Abilità di invisibilità.",
       "damage": null,
+      "hp": null,
       "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
@@ -52,6 +54,7 @@
     "Shadow Rage": {
       "description": "Incremento di forza e resistenza in stato di rabbia.",
       "damage": null,
+      "hp": null,
       "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": null
@@ -60,6 +63,7 @@
     "Shadow Shield": {
       "description": "Barriera che riflette un singolo colpo.",
       "damage": null,
+      "hp": null,
       "energy_cost": -1,
       "protection_percent": 100,
       "damage_per_energy": null
@@ -68,6 +72,7 @@
     "Shadow Puppet": {
       "description": "Evoca una marionetta identica a Rudeus, controllabile da remoto.",
       "damage": null,
+      "hp": null,
       "energy_cost": null,
       "protection_percent": null,
       "damage_per_energy": null
@@ -76,6 +81,7 @@
     "Energy Instability": {
       "description": "Rudeus scatena un’esplosione di potere proporzionale alla sua energia oscura.",
       "damage": null,
+      "hp": null,
       "energy_cost": -1,
       "protection_percent": null,
       "damage_per_energy": 50

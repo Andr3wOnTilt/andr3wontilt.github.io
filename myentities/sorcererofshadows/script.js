@@ -9,9 +9,7 @@ fetch("readme.json")
         characterData = data;
         renderCharacter(data);
     })
-    .catch(err => {
-        console.error("Errore caricamento JSON:", err);
-    });
+    .catch(err => console.error("Errore caricamento JSON:", err));
 
 /* ===============================
    RENDER PRINCIPALE
@@ -83,7 +81,7 @@ function renderCombatStats(c) {
 function renderBaseAttacks(c) {
     const rows = Object.values(c.attacchi_base_e_stats)
         .filter(v => typeof v === "object" && v.name)
-        .map(a => buildAttackRow(a))
+        .map(a => buildRow(a.name, a))
         .join("");
 
     document.getElementById("base-attacks").innerHTML = `
@@ -97,7 +95,7 @@ function renderBaseAttacks(c) {
 ================================ */
 function renderSpecialAbilities(c) {
     const rows = Object.entries(c.abilità_speciali)
-        .map(([name, a]) => buildAbilityRow(name, a))
+        .map(([name, a]) => buildRow(name, a))
         .join("");
 
     document.getElementById("special-abilities").innerHTML = `
@@ -107,29 +105,22 @@ function renderSpecialAbilities(c) {
 }
 
 /* ===============================
-   COSTRUTTORI ROW
+   COSTRUTTORE ROW
 ================================ */
-function buildAttackRow(a) {
-    return `
-        <div class="row">
-            <b>${a.name}</b>
-            ${buildStatsLines(a)}
-        </div>
-    `;
-}
+function buildRow(title, a) {
+    const description = a.description ?? "";
 
-function buildAbilityRow(name, a) {
     return `
         <div class="row">
-            <b>${name}</b>
-            ${a.description ? `<div class="description">${a.description}</div>` : ""}
+            <b>${title}</b>
+            ${description ? `<div class="description">${description}</div>` : ""}
             ${buildStatsLines(a)}
         </div>
     `;
 }
 
 /* ===============================
-   LINEE STATISTICHE COLORATE
+   STATISTICHE COLORATE (HP INCLUSO)
 ================================ */
 function buildStatsLines(a) {
     let html = "";
@@ -145,6 +136,9 @@ function buildStatsLines(a) {
 
     if (a.damage_per_energy !== null)
         html += `<div class="detail stat-dpe">DPE: ${a.damage_per_energy}</div>`;
+
+    if (a.hp !== null)
+        html += `<div class="detail stat-hp">HP: ${a.hp}</div>`;
 
     return html;
 }
