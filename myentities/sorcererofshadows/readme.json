@@ -3,30 +3,30 @@
   "nome_umano": "Rudeus",
 
   "attacchi_base_e_stats": {
-    "Vita": 250000,
-    "Energy": 250,
-    "Livello di Invisibilità": 7,
+    "Vita": 40000,
+    "Energy": 200,
+    "Livello di Invisibilità": 20,
 
     "Esecuzione": {
       "name": "Extinction",
-      "damage": 60000,
-      "energy_cost": -1,
+      "damage": 2000,
+      "energy_cost": -7,
       "protection_percent": null,
       "damage_per_energy": null
     },
 
     "Eliminazione": {
       "name": "Final Judgement",
-      "damage": 120000,
-      "energy_cost": -1,
+      "damage": 9000,
+      "energy_cost": -4,
       "protection_percent": null,
       "damage_per_energy": null
     },
 
     "Slash": {
       "name": "Shadow Fang",
-      "damage": 85000,
-      "energy_cost": -1,
+      "damage": 3000,
+      "energy_cost": -9,
       "protection_percent": null,
       "damage_per_energy": null
     }
@@ -36,7 +36,7 @@
     "Nightfall Healing": {
       "desctiption": "Abilità di cura.",
       "damage": null,
-      "energy_cost": -1,
+      "energy_cost": null,
       "protection_percent": null,
       "damage_per_energy": null
     },
@@ -68,7 +68,7 @@
     "Shadow Puppet": {
       "desctiption": "Evoca una marionetta identica a Rudeus, controllabile da remoto.",
       "damage": null,
-      "energy_cost": -1,
+      "energy_cost": null,
       "protection_percent": null,
       "damage_per_energy": null
     },
