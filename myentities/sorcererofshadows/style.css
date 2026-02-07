@@ -68,3 +68,9 @@ h2 { color: var(--accent); margin-bottom:16px; }
 
 /* FOOTER */
 .footer { text-align:center; padding:20px; color:var(--text-muted); border-top:1px solid var(--border); }
+
+/* COLORI STATISTICHE */
+.stat-dmg { color: #ff4d4d; }        /* Rosso */
+.stat-energy { color: #ffd84d; }     /* Giallo */
+.stat-protection { color: #4db8ff; } /* Azzurro */
+.stat-dpe { color: #b37cff; }        /* Viola */
