@@ -36,8 +36,8 @@
     "Nightfall Healing": {
       "description": "Abilità di cura.",
       "damage": null,
-      "hp": 1,
-      "energy_cost": null,
+      "hp": 40000,
+      "energy_cost": 200,
       "protection_percent": null,
       "damage_per_energy": null
     },
