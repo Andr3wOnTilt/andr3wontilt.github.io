@@ -4,76 +4,401 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archivio Personaggi</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
     <script>
         (() => {
             try {
                 const val = localStorage.getItem('savedPassword');
-                if (val !== 'RP') {
-                    window.location.replace('https://pack.ultrasmp.org');
-                }
+                if (val !== 'RP') window.location.replace('https://pack.ultrasmp.org');
             } catch (e) {
                 window.location.replace('https://pack.ultrasmp.org/verify');
             }
         })();
     </script>
+    <style>
+        /* ===== VARIABILI ===== */
+        :root {
+            --bg:        #08090d;
+            --surface:   #10121a;
+            --border:    rgba(120, 100, 200, 0.18);
+            --accent:    #8b6fff;
+            --accent2:   #c08aff;
+            --text:      #d8d4e8;
+            --muted:     #6a6585;
+            --danger:    #ff6b6b;
+            --card-bg:   #0e1018;
+            --radius:    16px;
+        }
+
+        /* ===== RESET ===== */
+        *, *::before, *::after {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== BASE ===== */
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Raleway', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* texture sottile */
+            background-image:
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(100,60,200,0.12) 0%, transparent 70%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        /* ===== HEADER ===== */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: clamp(16px, 3vw, 28px) clamp(20px, 5vw, 60px);
+            background: rgba(14, 16, 28, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        /* runa decorativa */
+        .topbar-brand::before {
+            content: "⬡";
+            font-size: 28px;
+            color: var(--accent);
+            filter: drop-shadow(0 0 8px var(--accent));
+            line-height: 1;
+        }
+
+        .topbar h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(16px, 2.5vw, 22px);
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #c9bcff, var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .topbar p {
+            font-size: clamp(10px, 1.5vw, 13px);
+            color: var(--muted);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .logout {
+            text-decoration: none;
+            color: var(--danger);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 8px 18px;
+            border: 1px solid rgba(255, 107, 107, 0.25);
+            border-radius: 8px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .logout:hover {
+            background: rgba(255, 107, 107, 0.08);
+            border-color: rgba(255, 107, 107, 0.5);
+        }
+
+        /* ===== SEZIONE TITOLO ===== */
+        .section-header {
+            padding: clamp(32px, 5vw, 56px) clamp(20px, 5vw, 60px) 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(13px, 1.5vw, 15px);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+        .section-count {
+            font-size: 12px;
+            color: var(--accent);
+            background: rgba(139, 111, 255, 0.1);
+            border: 1px solid rgba(139, 111, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== GRID ===== */
+        .dashboard {
+            flex: 1;
+            padding: clamp(24px, 4vw, 40px) clamp(20px, 5vw, 60px);
+            display: grid;
+            /*
+             * COME AGGIUNGERE CARD:
+             * La grid si adatta da sola. Ogni card occupa minimo 220px,
+             * poi si espande per riempire lo spazio disponibile.
+             * Aggiungi semplicemente un nuovo blocco .character-card in HTML.
+             */
+            grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+            gap: clamp(16px, 2.5vw, 28px);
+            align-items: start;
+        }
+
+        /* ===== CARD ===== */
+        .character-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid var(--border);
+            transition: transform 0.3s cubic-bezier(.22,.68,0,1.2),
+                        box-shadow 0.3s ease,
+                        border-color 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /* animazione entrata */
+            animation: fadeUp 0.5s both;
+        }
+        .character-card:nth-child(1) { animation-delay: 0.05s }
+        .character-card:nth-child(2) { animation-delay: 0.10s }
+        .character-card:nth-child(3) { animation-delay: 0.15s }
+        .character-card:nth-child(4) { animation-delay: 0.20s }
+        .character-card:nth-child(n+5) { animation-delay: 0.25s }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .character-card:not(.disabled):hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(139,111,255,0.3);
+            border-color: rgba(139, 111, 255, 0.4);
+        }
+
+        /* riflesso magico al hover */
+        .character-card:not(.disabled)::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, rgba(139,111,255,0.06) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .character-card:not(.disabled):hover::after { opacity: 1; }
+
+        .character-card.disabled {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* immagine */
+        .character-card img {
+            width: 100%;
+            /* altezza proporzionale al contenitore per non rompersi mai */
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            display: block;
+            background: #0b0c13;
+            filter: brightness(0.92);
+            transition: filter 0.3s, transform 0.4s ease;
+        }
+        .character-card:not(.disabled):hover img {
+            filter: brightness(1.05);
+            transform: scale(1.04);
+        }
+
+        /* wrapper immagine per overflow */
+        .card-img-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* gradiente sopra immagine */
+        .card-img-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60%;
+            background: linear-gradient(transparent, rgba(8,9,13,0.85));
+            pointer-events: none;
+        }
+
+        /* info */
+        .character-info {
+            padding: 14px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .character-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(12px, 1.3vw, 15px);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* badge COMING SOON */
+        .badge {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* badge NUOVO */
+        .badge-new {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent2);
+            background: rgba(139,111,255,0.12);
+            border: 1px solid rgba(139,111,255,0.3);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            border-top: 1px solid var(--border);
+        }
+        .footer span {
+            color: var(--accent);
+        }
+
+        /* ===== RESPONSIVE FINE-TUNING ===== */
+        @media (max-width: 480px) {
+            .topbar-brand::before { font-size: 22px; }
+            .logout { padding: 6px 12px; font-size: 12px; }
+        }
+    </style>
 </head>
 <body>
 
     <!-- HEADER -->
     <header class="topbar">
-        <div>
-            <h1>Archivio Personaggi</h1>
-            <p>Database delle entità create da Andr3wOnTilt</p>
+        <div class="topbar-brand">
+            <div>
+                <h1>Archivio Personaggi</h1>
+                <p>Database delle entità — Andr3wOnTilt</p>
+            </div>
         </div>
-
-        <a onclick="localStorage.removeItem('savedPassword')" href="/verify" class="logout">
-            Logout
-        </a>
+        <a onclick="localStorage.removeItem('savedPassword')" href="/verify" class="logout">Logout</a>
     </header>
 
-    <!-- DASHBOARD -->
+    <!-- SEZIONE -->
+    <div class="section-header">
+        <h2>Entità</h2>
+        <div class="section-line"></div>
+        <span class="section-count">4 personaggi</span>
+    </div>
+
+    <!-- DASHBOARD
+         ────────────────────────────────────────
+         COME AGGIUNGERE UNA NUOVA CARD:
+
+         Copia e incolla questo blocco dentro .dashboard:
+
+         <a href="LINK" class="character-card">
+             <div class="card-img-wrap">
+                 <img src="images/IMMAGINE.png" alt="Nome Personaggio">
+             </div>
+             <div class="character-info">
+                 <h3>Nome Personaggio</h3>
+                 (opzionale: <span class="badge">COMING SOON</span>)
+                 (opzionale: <span class="badge-new">NUOVO</span>)
+             </div>
+         </a>
+
+         La griglia si adatterà automaticamente.
+         ──────────────────────────────────────── -->
     <main class="dashboard">
 
-        <!-- CARD PERSONAGGIO -->
+        <!-- Personaggio 1 — ATTIVO -->
         <a href="../myentities/sorcererofshadows/" class="character-card">
-            <img src="images/unknown.png" alt="Sorcerer Of Shadows">
+            <div class="card-img-wrap">
+                <img src="images/unknown.png" alt="Sorcerer Of Shadows">
+            </div>
             <div class="character-info">
                 <h3>Sorcerer Of Shadows</h3>
+                <span class="badge-new">DISPONIBILE</span>
             </div>
         </a>
 
-        <a href="#" class="character-card">
-            <img src="images/unknown.png" alt="Enchanter">
+        <!-- Personaggio 2 — COMING SOON -->
+        <a href="#" class="character-card disabled">
+            <div class="card-img-wrap">
+                <img src="images/unknown.png" alt="Enchanter">
+            </div>
             <div class="character-info">
                 <h3>Enchanter</h3>
-                <span>COMING SOON</span>
+                <span class="badge">COMING SOON</span>
             </div>
         </a>
 
-        <a href="#" class="character-card">
-            <img src="images/unknown.png" alt="Sovereign of the Forgotten Order">
+        <!-- Personaggio 3 — COMING SOON -->
+        <a href="#" class="character-card disabled">
+            <div class="card-img-wrap">
+                <img src="images/unknown.png" alt="Sovereign of the Forgotten Order">
+            </div>
             <div class="character-info">
                 <h3>Sovereign of the Forgotten Order</h3>
-                <span>COMING SOON</span>
+                <span class="badge">COMING SOON</span>
             </div>
         </a>
 
-        <a href="#" class="character-card">
-            <img src="images/unknown.png" alt="Sovereign of the Forgotten Order">
+        <!-- Personaggio 4 — COMING SOON -->
+        <a href="#" class="character-card disabled">
+            <div class="card-img-wrap">
+                <img src="images/unknown.png" alt="Ultimate Conqueror">
+            </div>
             <div class="character-info">
                 <h3>Ultimate Conqueror</h3>
-                <span>COMING SOON</span>
+                <span class="badge">COMING SOON</span>
             </div>
         </a>
 
-        <!-- Duplica questa card per aggiungere personaggi -->
+        <!-- ↑ AGGIUNGI NUOVE CARD QUI SOPRA ↑ -->
+
     </main>
 
     <!-- FOOTER -->
     <footer class="footer">
-        © 2026 — Creato da Andr3wOnTilt
+        © 2026 — Creato da <span>Andr3wOnTilt</span>
     </footer>
 
 </body>
