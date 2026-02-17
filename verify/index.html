@@ -5,258 +5,475 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="https://pack.ultrasmp.online/assets/omega-icon.png" type="image/png">
   <title>Verifica della identità</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0a0a0a;
-      --card-bg: rgba(255,255,255,0.06);
-      --glass-border: rgba(255,255,255,0.12);
-      --accent: #007aff;
-      --text: #f5f5f7;
-      --muted: #a0a0a5;
-      --success: #4cd964;
-      --error: #ff3b30;
-      --transition: 0.25s ease;
+      --bg: #07060f;
+      --accent: #a855f7;
+      --accent2: #7c3aed;
+      --accent3: #c084fc;
+      --glass-bg: rgba(120,60,200,0.07);
+      --glass-border: rgba(168,85,247,0.18);
+      --text: #f0eaff;
+      --muted: #7a6d99;
+      --success: #6ee7b7;
+      --error: #f87171;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      height: 100vh;
-      background: radial-gradient(1200px 800px at 20% 10%, rgba(0,122,255,0.1), transparent),
-                  radial-gradient(900px 500px at 80% 90%, rgba(255,255,255,0.05), transparent),
-                  var(--bg);
+      min-height: 100vh;
+      background: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px;
+      padding: 40px 20px;
       color: var(--text);
       -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+      font-family: 'Syne', sans-serif;
     }
 
+    /* ── Orbs ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+    }
+    .orb-1 {
+      width: 520px; height: 520px;
+      top: -120px; left: -100px;
+      background: radial-gradient(circle, rgba(124,58,237,0.45), transparent 70%);
+      animation: orbFloat 9s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 420px; height: 420px;
+      bottom: -80px; right: -60px;
+      background: radial-gradient(circle, rgba(168,85,247,0.3), transparent 70%);
+      animation: orbFloat 12s ease-in-out infinite reverse;
+    }
+    .orb-3 {
+      width: 260px; height: 260px;
+      top: 45%; left: 58%;
+      background: radial-gradient(circle, rgba(192,132,252,0.16), transparent 70%);
+      animation: orbFloat 7s ease-in-out infinite 2s;
+    }
+
+    @keyframes orbFloat {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(20px,-18px) scale(1.05); }
+      66%      { transform: translate(-12px,14px) scale(0.97); }
+    }
+
+    /* Grain */
+    .grain {
+      position: fixed;
+      inset: -50%; width: 200%; height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1;
+      animation: grainMove 0.4s steps(1) infinite;
+    }
+    @keyframes grainMove {
+      0%  { transform: translate(0,0); }
+      25% { transform: translate(-2%,-2%); }
+      50% { transform: translate(2%,1%); }
+      75% { transform: translate(-1%,2%); }
+    }
+
+    /* ── Card — liquid glass ── */
     .card {
-      width: 100%;
-      max-width: 480px;
-      background: var(--card-bg);
-      backdrop-filter: blur(25px) saturate(180%);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-      animation: fadeIn 0.6s var(--transition) forwards;
-      transform: translateY(5px);
-    }
-
-    h1 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: -0.2px;
-    }
-
-    p.lead {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 28px;
-    }
-
-    .field {
       position: relative;
-      margin-bottom: 20px;
-    }
-
-    input {
+      z-index: 2;
       width: 100%;
-      padding: 14px 44px 14px 16px;
-      font-size: 15px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      border-radius: 12px;
-      outline: none;
-      transition: all var(--transition);
+      max-width: 440px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 60%),
+        var(--glass-bg);
+      backdrop-filter: blur(40px) saturate(160%) brightness(1.1);
+      -webkit-backdrop-filter: blur(40px) saturate(160%) brightness(1.1);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 48px 44px 44px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04) inset,
+        0 1px 0 rgba(255,255,255,0.1) inset,
+        0 32px 80px rgba(0,0,0,0.65),
+        0 0 70px rgba(124,58,237,0.14);
+      animation: cardReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
     }
 
-    input:focus {
-      border-color: rgba(0,122,255,0.6);
-      box-shadow: 0 0 0 3px rgba(0,122,255,0.25);
-      background: rgba(255,255,255,0.08);
+    @keyframes cardReveal {
+      to { opacity:1; transform: translateY(0) scale(1); }
     }
 
-    input::placeholder {
-      color: rgba(255,255,255,0.35);
-    }
-
-    .icon-btn {
+    /* Shine streak top */
+    .card::before {
+      content: '';
       position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      color: var(--muted);
-      font-size: 13px;
-      cursor: pointer;
-      transition: color var(--transition);
+      top: 0; left: 12%; right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(192,132,252,0.75), transparent);
+      border-radius: 100%;
     }
 
-    .icon-btn:hover {
-      color: var(--accent);
+    /* Top internal glow */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -30px; left: -30px; right: -30px;
+      height: 180px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(168,85,247,0.1), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
     }
 
-    .controls {
+    /* ── Logo ── */
+    .logo-area {
       display: flex;
-      gap: 10px;
-      margin-top: 12px;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 38px;
     }
 
-    button {
-      flex: 1;
-      border: none;
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all var(--transition);
+    .logo-shell {
+      position: relative;
+      width: 80px; height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .btn-primary {
-      background: linear-gradient(145deg, #0a84ff, #0066cc);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(10,132,255,0.3);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(10,132,255,0.4);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.08);
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.15);
-      color: var(--text);
-    }
-
-    .btn-danger {
-      background: rgba(255,59,48,0.08);
-      color: var(--error);
-      border: 1px solid rgba(255,59,48,0.15);
-    }
-
-    .btn-danger:hover {
-      background: rgba(255,59,48,0.18);
-    }
-
-    .status {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      transition: color var(--transition);
-    }
-
-    .status.good {
-      color: var(--success);
-    }
-
-    .status.warn {
-      color: var(--error);
-    }
-
-    footer {
-      margin-top: 24px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.25);
-      text-align: center;
-    }
-
-    .omega {
+    .logo-shell::before {
+      content: '';
       position: absolute;
-      top: -80px;
-      left: 50%;
-      width: 140px;
-      height: 140px;
-      transform: translateX(-50%);
-      animation: float 6s ease-in-out infinite, rotate 20s linear infinite;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 12px rgba(124,77,255,0.3));
+      inset: -2px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        var(--accent) 30%,
+        transparent 50%,
+        var(--accent2) 75%,
+        transparent 100%
+      );
+      animation: spinRing 4s linear infinite;
+      opacity: 0.75;
+    }
+
+    @keyframes spinRing { to { transform: rotate(360deg); } }
+
+    .logo-shell::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: #120d20;
+    }
+
+    .logo-shell img {
+      position: relative;
+      z-index: 1;
+      width: 44px; height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 14px rgba(168,85,247,0.75));
+      animation: float 5s ease-in-out infinite;
     }
 
     @keyframes float {
-      0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -10px); }
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-5px); }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+    .logo-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      opacity: 0.65;
     }
 
-    @media (max-width: 520px) {
-      .card { padding: 24px; }
+    /* ── Heading ── */
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #f0eaff 30%, var(--accent3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      font-size: 0.73rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 34px;
+    }
+
+    /* ── Input field ── */
+    .field { margin-bottom: 4px; }
+
+    .field-label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+    .field:focus-within .field-label { color: var(--accent3); }
+
+    .input-wrap { position: relative; }
+
+    input {
+      width: 100%;
+      padding: 14px 56px 14px 18px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      outline: none;
+      background: rgba(120,60,200,0.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(168,85,247,0.15);
+      border-radius: 14px;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+
+    input:focus {
+      background: rgba(120,60,200,0.14);
+      border-color: rgba(168,85,247,0.5);
+      box-shadow:
+        0 0 0 3px rgba(168,85,247,0.13),
+        0 0 20px rgba(168,85,247,0.06) inset;
+    }
+
+    input::placeholder { color: rgba(255,255,255,0.14); }
+
+    .toggle-btn {
+      position: absolute;
+      top: 50%; right: 14px;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 4px 7px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .toggle-btn:hover {
+      color: var(--accent3);
+      background: rgba(168,85,247,0.1);
+    }
+
+    /* ── Status ── */
+    .status {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      color: transparent;
+      min-height: 20px;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.3s;
+    }
+    .status::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .status.good { color: var(--success); }
+    .status.good::before, .status.warn::before { opacity: 1; }
+    .status.warn { color: var(--error); }
+
+    /* ── Buttons ── */
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 14px;
+      padding: 13px 10px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.4s;
+    }
+    .btn:hover::after { left: 150%; }
+
+    .btn-primary {
+      grid-column: 1 / -1;
+      padding: 15px;
+      font-size: 0.88rem;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #fff;
+      box-shadow:
+        0 4px 24px rgba(124,58,237,0.45),
+        0 0 0 1px rgba(255,255,255,0.08) inset,
+        0 1px 0 rgba(255,255,255,0.15) inset;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 10px 36px rgba(124,58,237,0.6),
+        0 0 0 1px rgba(255,255,255,0.1) inset;
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      border: 1px solid rgba(168,85,247,0.14);
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover {
+      background: rgba(168,85,247,0.1);
+      color: var(--text);
+      border-color: rgba(168,85,247,0.3);
+    }
+
+    .btn-danger {
+      background: rgba(248,113,113,0.05);
+      color: rgba(248,113,113,0.5);
+      border: 1px solid rgba(248,113,113,0.1);
+    }
+    .btn-danger:hover {
+      background: rgba(248,113,113,0.1);
+      color: var(--error);
+      border-color: rgba(248,113,113,0.25);
+    }
+
+    /* ── Divider + footer ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168,85,247,0.14), transparent);
+      margin: 28px 0 20px;
+    }
+
+    footer {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.12);
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 36px 26px 32px; border-radius: 22px; }
+      h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grain"></div>
+
   <div class="card">
-    <br>
-    <br>
-    <img src="https://pack.ultrasmp.online/assets/omega-icon.png" alt="Omega Icon" class="omega">
-    <h1>Verifica la tua identità</h1>
-    <p class="lead">Inserisci la chiave per accedere a questo sito.</p>
+    <div class="logo-area">
+      <div class="logo-shell">
+        <img src="https://pack.ultrasmp.online/assets/omega-icon.png" alt="Omega">
+      </div>
+      <span class="logo-label">UltraSMP · Accesso</span>
+    </div>
+
+    <h1>Verifica la tua<br>identità</h1>
+    <p class="lead">Inserisci la chiave per accedere al sito.</p>
 
     <div class="field">
-      <input id="pwdInput" type="password" placeholder="Inserisci chiave">
-      <button id="toggleShow" class="icon-btn">Mostra</button>
+      <label class="field-label" for="pwdInput">Chiave di accesso</label>
+      <div class="input-wrap">
+        <input id="pwdInput" type="password" placeholder="••••••••••••">
+        <button id="toggleShow" class="toggle-btn">Mostra</button>
+      </div>
     </div>
 
     <div id="status" class="status"></div>
 
     <div class="controls">
-      <button id="saveBtn" class="btn-primary">Salva</button>
-      <button id="loadBtn" class="btn-secondary">Carica</button>
-      <button id="clearBtn" class="btn-danger">Cancella</button>
+      <button id="saveBtn" class="btn btn-primary">Accedi &amp; Salva</button>
+      <button id="loadBtn" class="btn btn-secondary">Carica</button>
+      <button id="clearBtn" class="btn btn-danger">Cancella</button>
     </div>
 
+    <div class="divider"></div>
+    <footer>Accesso riservato · UltraSMP Network</footer>
   </div>
 
   <script>
     const STORAGE_KEY = 'savedPassword';
     let savedPasswordVar = null;
 
-    const pwdInput = document.getElementById('pwdInput');
+    const pwdInput   = document.getElementById('pwdInput');
     const toggleShow = document.getElementById('toggleShow');
-    const saveBtn = document.getElementById('saveBtn');
-    const loadBtn = document.getElementById('loadBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const status = document.getElementById('status');
+    const saveBtn    = document.getElementById('saveBtn');
+    const loadBtn    = document.getElementById('loadBtn');
+    const clearBtn   = document.getElementById('clearBtn');
+    const statusEl   = document.getElementById('status');
 
     toggleShow.addEventListener('click', () => {
-      const isHidden = pwdInput.type === 'password';
-      pwdInput.type = isHidden ? 'text' : 'password';
-      toggleShow.textContent = isHidden ? 'Nascondi' : 'Mostra';
+      const hidden = pwdInput.type === 'password';
+      pwdInput.type = hidden ? 'text' : 'password';
+      toggleShow.textContent = hidden ? 'Nascondi' : 'Mostra';
     });
 
     saveBtn.addEventListener('click', () => {
       const v = pwdInput.value.trim();
-      if (!v) return setStatus('Devi inserire la chiave prima.', 'warn');
+      if (!v) return setStatus('Inserisci una chiave prima di procedere.', 'warn');
       savedPasswordVar = v;
       try {
         localStorage.setItem(STORAGE_KEY, v);
-        setStatus('Chiave salvata con successo.', 'good');
-        setTimeout(() => window.location.replace("https://pack.ultrasmp.online"), 600);
+        setStatus('Chiave salvata. Reindirizzamento in corso...', 'good');
+        setTimeout(() => window.location.replace('https://pack.ultrasmp.online'), 700);
       } catch (e) {
         setStatus('Errore durante il salvataggio.', 'warn');
       }
@@ -286,11 +503,15 @@
     });
 
     function setStatus(text, type) {
-      status.textContent = text;
-      status.className = 'status';
-      if (type === 'good') status.classList.add('good');
-      if (type === 'warn') status.classList.add('warn');
+      statusEl.textContent = text;
+      statusEl.className = 'status ' + (type || '');
     }
+
+    // Auto-load on start
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) { savedPasswordVar = stored; pwdInput.value = stored; }
+    } catch(e) {}
   </script>
 </body>
 </html>
