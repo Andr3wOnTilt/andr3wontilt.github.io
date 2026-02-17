@@ -1,42 +1,633 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Statistiche — Sorcerer of Shadows</title>
-    <link rel="stylesheet" href="style.css">
-    <script>(() => {try {const val = localStorage.getItem('savedPassword');if (val !== 'RP') {window.location.replace('https://pack.ultrasmp.online');}} catch (e) {window.location.replace('https://pack.ultrasmp.org/verify');}})();</script>
+  <meta charset="UTF-8">
+  <title>Statistiche — Sorcerer of Shadows</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #03040a;
+      --dark: #07090f;
+      --surface: #0c0f1c;
+      --surface2: #111827;
+      --border: rgba(120,80,255,0.12);
+      --border-bright: rgba(160,100,255,0.35);
+      --accent: #9b6dff;
+      --accent2: #c084fc;
+      --accent-glow: rgba(155,109,255,0.25);
+      --red: #ff4d6d;
+      --yellow: #ffd84d;
+      --blue: #60c3ff;
+      --purple: #c084fc;
+      --green: #5bffa4;
+      --text: #e2d9f3;
+      --muted: #7c7a9a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--void);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(100,50,200,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(80,30,160,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 10% 60%, rgba(140,70,255,0.07) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── HEADER ─── */
+    .top-bar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(3,4,10,0.8);
+      backdrop-filter: blur(12px);
+    }
+
+    .top-bar button {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--border-bright);
+      color: var(--muted);
+      padding: 9px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .top-bar button:hover { color: var(--text); border-color: var(--accent); background: var(--accent-glow); }
+
+    .top-bar .primary {
+      color: var(--accent2);
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(155,109,255,0.15);
+    }
+
+    .top-bar .primary:hover {
+      background: rgba(155,109,255,0.18);
+      box-shadow: 0 0 24px rgba(155,109,255,0.35);
+    }
+
+    /* ─── TITLE BANNER ─── */
+    .title-banner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 56px 24px 36px;
+    }
+
+    .title-banner .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    .title-banner h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent2) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+
+    .title-banner .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .title-banner .divider-line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent));
+    }
+
+    .title-banner .divider-line.right {
+      background: linear-gradient(to left, transparent, var(--accent));
+    }
+
+    .title-banner .divider-gem {
+      width: 8px; height: 8px;
+      background: var(--accent2);
+      transform: rotate(45deg);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(155,109,255,0.4);
+    }
+
+    /* ─── LOADING / ERROR ─── */
+    .state-msg {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 80px 24px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ─── CONTAINER ─── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+      opacity: 0.4;
+    }
+
+    .card:hover { border-color: rgba(155,109,255,0.22); }
+
+    #identity       { animation-delay: 0.05s; }
+    #main-stats     { animation-delay: 0.12s; }
+    #combat-stats   { animation-delay: 0.18s; }
+    #base-attacks   { animation-delay: 0.24s; }
+    #special-abilities { animation-delay: 0.30s; }
+
+    /* ─── SECTION TITLE ─── */
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border-bright), transparent);
+    }
+
+    /* ─── IDENTITY ─── */
+    .identity-inner {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .identity-img-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .identity-img-wrap img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      border: 1px solid var(--border-bright);
+      box-shadow:
+        0 0 0 4px rgba(155,109,255,0.06),
+        0 0 40px rgba(155,109,255,0.2),
+        0 8px 48px rgba(0,0,0,0.6);
+    }
+
+    .identity-img-wrap::before,
+    .identity-img-wrap::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border-color: var(--accent);
+      border-style: solid;
+      opacity: 0.5;
+    }
+
+    .identity-img-wrap::before {
+      top: -6px; left: -6px;
+      border-width: 2px 0 0 2px;
+      border-radius: 4px 0 0 0;
+    }
+
+    .identity-img-wrap::after {
+      bottom: -6px; right: -6px;
+      border-width: 0 2px 2px 0;
+      border-radius: 0 0 4px 0;
+    }
+
+    .identity-data { flex: 1; min-width: 220px; }
+
+    .identity-data .character-name {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .identity-data .human-name {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* ─── STAT ROWS ─── */
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-row:last-child { border-bottom: none; }
+
+    .stat-row .label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .stat-row .value {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ─── GRID 2 ─── */
+    .grid-2 { display: flex; gap: 24px; flex-wrap: wrap; }
+    .grid-2 .card { flex: 1; min-width: 280px; }
+
+    /* ─── ENTRY CARDS ─── */
+    .entries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .entry-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: border-color 0.25s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .entry-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent2), var(--accent));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .entry-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+    .entry-card:hover::before { opacity: 1; }
+
+    .entry-card .entry-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .entry-card .entry-desc {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .entry-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.05em;
+      border: 1px solid;
+    }
+
+    .badge-dmg    { color: var(--red);    border-color: rgba(255,77,109,0.3);  background: rgba(255,77,109,0.07);  }
+    .badge-energy { color: var(--yellow); border-color: rgba(255,216,77,0.3);  background: rgba(255,216,77,0.07);  }
+    .badge-def    { color: var(--blue);   border-color: rgba(96,195,255,0.3);  background: rgba(96,195,255,0.07);  }
+    .badge-dpe    { color: var(--purple); border-color: rgba(192,132,252,0.3); background: rgba(192,132,252,0.07); }
+    .badge-hp     { color: var(--green);  border-color: rgba(91,255,164,0.3);  background: rgba(91,255,164,0.07);  }
+
+    /* ─── GRADES ─── */
+    .grade-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .grade-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .grade-item:hover { border-color: var(--border-bright); }
+
+    .grade-num {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--accent);
+      opacity: 0.4;
+      min-width: 32px;
+      line-height: 1;
+    }
+
+    .grade-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .grade-dots { margin-left: auto; display: flex; gap: 5px; }
+
+    .grade-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--border-bright);
+    }
+
+    .grade-dot.filled { background: var(--accent2); box-shadow: 0 0 6px var(--accent); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    @media (max-width: 600px) {
+      .top-bar { padding: 12px 16px; }
+      .container { padding: 0 16px 40px; }
+      .card { padding: 20px; }
+      .identity-img-wrap img { width: 140px; height: 140px; }
+    }
+  </style>
 </head>
 <body>
 
 <header class="top-bar">
-    <button onclick="history.back()">← Indietro</button>
-    <button class="primary" onclick='window.location.replace("https://www.mediafire.com/file/l5g1b70nxwleuy4/Sorcerer_of_Shadows.zip/file")'>Download Assets</button>
+  <button onclick="history.back()">← Indietro</button>
+  <button class="primary" onclick='window.location.replace("https://www.mediafire.com/file/l5g1b70nxwleuy4/Sorcerer_of_Shadows.zip/file")'>⬇ Download Assets</button>
 </header>
 
-<main class="container">
+<div class="title-banner">
+  <p class="eyebrow">Scheda Personaggio</p>
+  <h1 id="banner-title">Sorcerer of Shadows</h1>
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-gem"></div>
+    <div class="divider-line right"></div>
+  </div>
+</div>
 
-    <!-- IDENTITÀ -->
-    <section id="identity" class="card"></section>
+<div id="loading" class="state-msg">Caricamento in corso…</div>
+<div id="error" class="state-msg" style="display:none; color:#ff4d6d;">Errore nel caricamento del file README.json</div>
 
-    <!-- STATISTICHE PRINCIPALI E COMBATTIMENTO -->
-    <section class="grid-2">
-        <section id="main-stats" class="card"></section>
-        <section id="combat-stats" class="card"></section>
-    </section>
-
-    <!-- ATTACCHI BASE -->
-    <section id="base-attacks" class="card"></section>
-
-    <!-- ABILITÀ SPECIALI -->
-    <section id="special-abilities" class="card"></section>
-
+<main class="container" id="main-content" style="display:none;">
+  <section id="identity" class="card"></section>
+  <section class="grid-2">
+    <section id="main-stats" class="card"></section>
+    <section id="combat-stats" class="card"></section>
+  </section>
+  <section id="base-attacks" class="card"></section>
+  <section id="special-abilities" class="card"></section>
 </main>
 
-<footer class="footer">
-    © 2026 — Character Stat Display
-</footer>
+<footer>© 2026 — Character Stat Display</footer>
 
-<script src="script.js"></script>
+<script>
+  /* ─── FETCH README.json ─── */
+  fetch("README.json")
+    .then(res => {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then(data => {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("main-content").style.display = "flex";
+      render(data);
+    })
+    .catch(err => {
+      console.error("Errore caricamento README.json:", err);
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("error").style.display = "block";
+    });
+
+  /* ─── RENDER ─── */
+  function render(c) {
+    document.getElementById("banner-title").textContent = c.nome;
+    renderIdentity(c);
+    renderMainStats(c);
+    renderCombatStats(c);
+    renderBaseAttacks(c);
+    renderSpecialAbilities(c);
+  }
+
+  function renderIdentity(c) {
+    document.getElementById("identity").innerHTML = `
+      <div class="section-title">Identità</div>
+      <div class="identity-inner">
+        <div class="identity-img-wrap">
+          <img src="${c.immagine}" alt="${c.nome}" onerror="this.style.background='#1a1535';this.removeAttribute('src')">
+        </div>
+        <div class="identity-data">
+          <div class="character-name">${c.nome}</div>
+          <div class="human-name">alias ${c.nome_umano}</div>
+          <div class="stat-row">
+            <span class="label">Nome Personaggio</span>
+            <span class="value">${c.nome}</span>
+          </div>
+          <div class="stat-row">
+            <span class="label">Identità Umana</span>
+            <span class="value">${c.nome_umano}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderMainStats(c) {
+    const rows = Object.entries(c.attacchi_base_e_stats)
+      .filter(([, v]) => typeof v === "number")
+      .map(([k, v]) => `
+        <div class="stat-row">
+          <span class="label">${k}</span>
+          <span class="value">${v.toLocaleString()}</span>
+        </div>
+      `).join("");
+
+    document.getElementById("main-stats").innerHTML = `
+      <div class="section-title">Statistiche Base</div>
+      ${rows}
+    `;
+  }
+
+  function renderCombatStats(c) {
+    const totalGrades = Object.keys(c.gradi).length - 1;
+
+    const items = Object.entries(c.gradi).map(([k, v]) => {
+      const n = parseInt(k);
+      const dots = Array.from({ length: totalGrades }, (_, i) =>
+        `<div class="grade-dot ${i < n ? 'filled' : ''}"></div>`
+      ).join("");
+
+      return `
+        <div class="grade-item">
+          <span class="grade-num">${k}</span>
+          <span class="grade-name">${v}</span>
+          <div class="grade-dots">${dots}</div>
+        </div>
+      `;
+    }).join("");
+
+    document.getElementById("combat-stats").innerHTML = `
+      <div class="section-title">Progressione Gradi</div>
+      <div class="grade-list">${items}</div>
+    `;
+  }
+
+  function renderBaseAttacks(c) {
+    const cards = Object.values(c.attacchi_base_e_stats)
+      .filter(v => typeof v === "object" && v && v.name)
+      .map(a => buildEntryCard(a.name, a))
+      .join("");
+
+    document.getElementById("base-attacks").innerHTML = `
+      <div class="section-title">Attacchi Base</div>
+      <div class="entries-grid">${cards}</div>
+    `;
+  }
+
+  function renderSpecialAbilities(c) {
+    const cards = Object.entries(c.abilità_speciali)
+      .map(([name, a]) => buildEntryCard(name, a))
+      .join("");
+
+    document.getElementById("special-abilities").innerHTML = `
+      <div class="section-title">Abilità Speciali</div>
+      <div class="entries-grid">${cards}</div>
+    `;
+  }
+
+  function buildEntryCard(title, a) {
+    const desc = a.description ? `<div class="entry-desc">${a.description}</div>` : "";
+    const badges = buildBadges(a);
+    return `
+      <div class="entry-card">
+        <div class="entry-name">${title}</div>
+        ${desc}
+        ${badges ? `<div class="entry-stats">${badges}</div>` : ""}
+      </div>
+    `;
+  }
+
+  function buildBadges(a) {
+    let html = "";
+    if (a.damage != null)              html += `<span class="badge badge-dmg">⚔ DMG ${a.damage.toLocaleString()}</span>`;
+    if (a.energy_cost != null)         html += `<span class="badge badge-energy">⚡ Energy ${a.energy_cost}</span>`;
+    if (a.protection_percent != null)  html += `<span class="badge badge-def">🛡 DEF ${a.protection_percent}%</span>`;
+    if (a.damage_per_energy != null)   html += `<span class="badge badge-dpe">✦ DPE ${a.damage_per_energy}</span>`;
+    if (a.hp != null)                  html += `<span class="badge badge-hp">♥ HP ${a.hp.toLocaleString()}</span>`;
+    return html;
+  }
+</script>
 </body>
 </html>
-
