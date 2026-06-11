@@ -10,16 +10,16 @@
   },
   "addons": [
     {
-      "name_en": "Brandnew part",
+      "name_en": "Brand new part",
       "name_it": "Pezzo nuovo",
       "rarity": "ultra rare",
-      "image": "https://placehold.co/72x72/111120/005500?text=DP"
+      "image": "https://deadbydaylight.wiki.gg/images/IconAddon_brandNewPart.png"
     },
     {
-      "name_en": "???",
+      "name_en": "Spool of Wire",
       "name_it": "Bobina di filo",
       "rarity": "rare",
-      "image": "https://placehold.co/72x72/111120/9A7A2A?text=BF"
+      "image": "https://deadbydaylight.wiki.gg/images/IconAddon_spoolOfWire.png"
     }
   ],
   "perks": [
@@ -27,25 +27,25 @@
       "name_en": "Déjà Vu",
       "name_it": "Déjà Vu",
       "rarity": "very rare",
-      "image": "https://placehold.co/86x86/111120/8200CC?text=DV"
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_dejaVu.png"
     },
     {
       "name_en": "Resilience",
       "name_it": "Determinazione",
       "rarity": "very rare",
-      "image": "https://placehold.co/86x86/111120/9A7A2A?text=R"
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_Resilience.png"
     },
     {
       "name_en": "No Mither",
       "name_it": "Nessuna bega",
       "rarity": "very rare",
-      "image": "https://placehold.co/86x86/111120/9A7A2A?text=NM"
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_noMither.png"
     },
     {
       "name_en": "Prove Thyself",
       "name_it": "Mettiti alla Prova",
       "rarity": "very rare",
-      "image": "https://placehold.co/86x86/111120/005500?text=PT"
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_proveTyself.png"
     }
   ]
 }
