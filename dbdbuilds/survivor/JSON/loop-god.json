@@ -1,0 +1,51 @@
+{
+  "name": "Loop God",
+  "description": "Massimizza la capacità di fare loop e creare distanza dal Killer in ogni situazione. Ideale per giocatori esperti che conoscono le mappe a memoria.",
+  "author": "NightVeil",
+  "item": {
+    "name_en": "Flashlight",
+    "name_it": "Torcia",
+    "rarity": "common",
+    "image": "https://placehold.co/96x96/111120/CC2222?text=FL"
+  },
+  "addons": [
+    {
+      "name_en": "Halogen 1-1-2",
+      "name_it": "Alogeno 1-1-2",
+      "rarity": "uncommon",
+      "image": "https://placehold.co/72x72/111120/9A7A2A?text=A1"
+    },
+    {
+      "name_en": "Leather Wrist Strap",
+      "name_it": "Cinturino in Pelle",
+      "rarity": "common",
+      "image": "https://placehold.co/72x72/111120/9A7A2A?text=A2"
+    }
+  ],
+  "perks": [
+    {
+      "name_en": "Dead Hard",
+      "name_it": "Duro a Morire",
+      "rarity": "very rare",
+      "image": "https://placehold.co/86x86/111120/8200CC?text=DH"
+    },
+    {
+      "name_en": "Sprint Burst",
+      "name_it": "Scatto Esplosivo",
+      "rarity": "very rare",
+      "image": "https://placehold.co/86x86/111120/8200CC?text=SB"
+    },
+    {
+      "name_en": "Windows of Opportunity",
+      "name_it": "Finestre di Opportunità",
+      "rarity": "rare",
+      "image": "https://placehold.co/86x86/111120/005500?text=WO"
+    },
+    {
+      "name_en": "Lithe",
+      "name_it": "Agile",
+      "rarity": "rare",
+      "image": "https://placehold.co/86x86/111120/005500?text=LT"
+    }
+  ]
+}

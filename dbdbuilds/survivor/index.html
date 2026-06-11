@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survivor Builds — DBD Builds</title>
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="navbar-brand" href="../index.html">
+      <span class="brand-hook">
+        <span></span><span></span><span></span>
+      </span>
+      DBD Builds
+    </a>
+    <ul class="navbar-links">
+      <li><a href="./index.html" class="active">Survivor</a></li>
+      <li><a href="../killer/index.html">Killer</a></li>
+    </ul>
+  </nav>
+
+  <div class="section-header">
+    <p class="section-eyebrow">Archivio Build</p>
+    <h1 class="section-title"><em>Survivor</em></h1>
+    <p class="section-count" id="count-display">Caricamento…</p>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <input
+        class="search-input"
+        type="search"
+        id="search-input"
+        placeholder="Cerca per nome build o autore…"
+        aria-label="Cerca build"
+      >
+    </div>
+    <select class="filter-select" id="filter-author" aria-label="Filtra per autore">
+      <option value="">Tutti gli autori</option>
+    </select>
+    <span class="results-count" id="results-count"></span>
+  </div>
+
+  <main id="builds-container">
+    <div class="state-wrap">
+      <div class="spinner"></div>
+      <p>Caricamento build…</p>
+    </div>
+  </main>
+
+  <script>
+    const BASE_PATH = './JSON/';
+
+    // ── Load all builds from manifest ──────────────────────────
+    async function loadBuilds() {
+      const manifestRes = await fetch(BASE_PATH + 'manifest.json');
+      if (!manifestRes.ok) throw new Error('manifest.json non trovato');
+      const manifest = await manifestRes.json();
+
+      const builds = await Promise.all(
+        manifest.map(async (filename) => {
+          const res = await fetch(BASE_PATH + filename);
+          if (!res.ok) throw new Error(`Errore caricamento ${filename}`);
+          const data = await res.json();
+          return { ...data, _filename: filename };
+        })
+      );
+      return builds;
+    }
+
+    // ── Populate author filter ──────────────────────────────────
+    function populateAuthorFilter(builds) {
+      const authors = [...new Set(builds.map(b => b.author))].sort();
+      const select = document.getElementById('filter-author');
+      authors.forEach(a => {
+        const opt = document.createElement('option');
+        opt.value = a;
+        opt.textContent = a;
+        select.appendChild(opt);
+      });
+    }
+
+    // ── Render build cards ──────────────────────────────────────
+    function renderCards(builds) {
+      const container = document.getElementById('builds-container');
+      const resultsEl = document.getElementById('results-count');
+
+      if (builds.length === 0) {
+        container.innerHTML = '<p class="empty-msg">Nessuna build trovata con i criteri selezionati.</p>';
+        resultsEl.textContent = '0 risultati';
+        return;
+      }
+
+      resultsEl.textContent = `${builds.length} build`;
+
+      const grid = document.createElement('div');
+      grid.className = 'builds-grid';
+
+      builds.forEach(build => {
+        const card = document.createElement('article');
+        card.className = 'build-card';
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `Visualizza build: ${build.name}`);
+
+        card.innerHTML = `
+          <div class="card-top">
+            <h2 class="card-name">${escHtml(build.name)}</h2>
+            <span class="card-arrow">→</span>
+          </div>
+          <p class="card-desc">${escHtml(build.description)}</p>
+          <div class="card-meta">
+            <span class="meta-author">di <strong>${escHtml(build.author)}</strong></span>
+            <span class="meta-badge">Survivor</span>
+          </div>
+        `;
+
+        const dest = `./display/?build=${encodeURIComponent(build._filename)}`;
+        card.addEventListener('click', () => { window.location.href = dest; });
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = dest; }
+        });
+
+        grid.appendChild(card);
+      });
+
+      container.innerHTML = '';
+      container.appendChild(grid);
+    }
+
+    // ── Filter logic ────────────────────────────────────────────
+    function filterBuilds(builds, query, authorFilter) {
+      const q = query.trim().toLowerCase();
+      return builds.filter(b => {
+        const matchesQuery = !q ||
+          b.name.toLowerCase().includes(q) ||
+          b.author.toLowerCase().includes(q);
+        const matchesAuthor = !authorFilter || b.author === authorFilter;
+        return matchesQuery && matchesAuthor;
+      });
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // ── Init ────────────────────────────────────────────────────
+    (async () => {
+      try {
+        const allBuilds = await loadBuilds();
+
+        document.getElementById('count-display').textContent =
+          `${allBuilds.length} build disponibili`;
+
+        populateAuthorFilter(allBuilds);
+        renderCards(allBuilds);
+
+        const searchInput  = document.getElementById('search-input');
+        const authorSelect = document.getElementById('filter-author');
+
+        function applyFilters() {
+          const filtered = filterBuilds(
+            allBuilds,
+            searchInput.value,
+            authorSelect.value
+          );
+          renderCards(filtered);
+        }
+
+        searchInput.addEventListener('input', applyFilters);
+        authorSelect.addEventListener('change', applyFilters);
+
+      } catch (err) {
+        document.getElementById('builds-container').innerHTML = `
+          <div class="state-wrap error"><p>${err.message}</p></div>
+        `;
+        document.getElementById('count-display').textContent = 'Errore caricamento';
+        console.error(err);
+      }
+    })();
+  </script>
+
+</body>
+</html>

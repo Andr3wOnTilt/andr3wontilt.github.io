@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --bg-void:     #050507;
+  --bg-deep:     #090910;
+  --bg-surface:  #0D0D18;
+  --bg-card:     #111120;
+  --bg-elevated: #171728;
+
+  --accent:        #9B1A1A;
+  --accent-bright: #C42222;
+  --accent-glow:   rgba(155, 26, 26, 0.4);
+  --accent-subtle: rgba(155, 26, 26, 0.12);
+
+  --gold:     #9A7A2A;
+  --gold-dim: rgba(154, 122, 42, 0.5);
+
+  --text-bright: #F0F0F8;
+  --text-body:   #A8A8BF;
+  --text-muted:  #5C5C78;
+
+  --border:        rgba(255,255,255,0.07);
+  --border-accent: rgba(155, 26, 26, 0.45);
+
+  --font-display: 'Cinzel', serif;
+  --font-body:    'Inter', sans-serif;
+
+  --cut: 13px;
+  --clip: polygon(var(--cut) 0%, 100% 0%, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0% 100%, 0% var(--cut));
+  --clip-sm: polygon(7px 0%, 100% 0%, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0% 100%, 0% 7px);
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-void);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-void); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-bright); }
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5, 5, 7, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 62px;
+  gap: 0;
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-right: 2rem;
+}
+
+.brand-hook {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.brand-hook span {
+  display: block;
+  width: 2px;
+  background: var(--accent-bright);
+  border-radius: 1px;
+}
+.brand-hook span:nth-child(1) { height: 14px; }
+.brand-hook span:nth-child(2) { height: 20px; }
+.brand-hook span:nth-child(3) { height: 14px; }
+
+.navbar-links {
+  display: flex;
+  gap: 2px;
+  list-style: none;
+}
+
+.navbar-links a {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.38rem 0.9rem;
+  clip-path: var(--clip-sm);
+  transition: all 0.2s;
+  display: block;
+}
+.navbar-links a:hover { color: var(--text-bright); background: var(--border); }
+.navbar-links a.active { color: var(--accent-bright); background: var(--accent-subtle); }
+
+.navbar-back {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.38rem 1rem;
+  clip-path: var(--clip-sm);
+  background: var(--border);
+  transition: all 0.2s;
+}
+.navbar-back:hover { color: var(--text-bright); background: var(--accent-subtle); }
+
+/* ── Section Header ─────────────────────────────────────────── */
+.section-header {
+  padding: 3rem 2rem 2rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.section-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+.section-title em {
+  color: var(--accent-bright);
+  font-style: normal;
+}
+.section-count {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Tooltip ────────────────────────────────────────────────── */
+[data-tip] {
+  position: relative;
+  cursor: pointer;
+}
+[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--bg-elevated);
+  color: var(--text-bright);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  padding: 0.45rem 0.8rem;
+  clip-path: var(--clip-sm);
+  border: 1px solid var(--border-accent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s, transform 0.18s;
+  z-index: 300;
+  font-family: var(--font-body);
+  line-height: 1.3;
+}
+[data-tip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Loading / Error States ─────────────────────────────────── */
+.state-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 5rem 2rem;
+  color: var(--text-muted);
+}
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent-bright);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.state-wrap p {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.state-wrap.error { color: var(--accent-bright); }
+.state-wrap.error p::before { content: '⚠ '; }
+
+.empty-msg {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Utility ────────────────────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .navbar { padding: 0 1rem; }
+  .section-header { padding: 2rem 1rem 1.5rem; }
+}

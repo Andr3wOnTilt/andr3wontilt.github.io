@@ -1,0 +1,51 @@
+{
+  "name": "Full Altruist",
+  "description": "Build dedicata al salvataggio dei compagni e alla cura rapida. Perfetta per chi ama il gioco di squadra e vuole supportare il proprio team in ogni momento.",
+  "author": "ShadowRunner",
+  "item": {
+    "name_en": "Med-Kit",
+    "name_it": "Kit Medico",
+    "rarity": "uncommon",
+    "image": "https://placehold.co/96x96/111120/CC2222?text=MK"
+  },
+  "addons": [
+    {
+      "name_en": "Medical Scissors",
+      "name_it": "Forbici Mediche",
+      "rarity": "rare",
+      "image": "https://placehold.co/72x72/111120/005500?text=MS"
+    },
+    {
+      "name_en": "Gauze Rolls",
+      "name_it": "Rotoli di Garza",
+      "rarity": "uncommon",
+      "image": "https://placehold.co/72x72/111120/9A7A2A?text=GR"
+    }
+  ],
+  "perks": [
+    {
+      "name_en": "Borrowed Time",
+      "name_it": "Tempo in Prestito",
+      "rarity": "very rare",
+      "image": "https://placehold.co/86x86/111120/8200CC?text=BT"
+    },
+    {
+      "name_en": "We'll Make It",
+      "name_it": "Ce la Faremo",
+      "rarity": "uncommon",
+      "image": "https://placehold.co/86x86/111120/9A7A2A?text=WM"
+    },
+    {
+      "name_en": "Empathy",
+      "name_it": "Empatia",
+      "rarity": "uncommon",
+      "image": "https://placehold.co/86x86/111120/9A7A2A?text=EM"
+    },
+    {
+      "name_en": "Prove Thyself",
+      "name_it": "Dimostra il Tuo Valore",
+      "rarity": "rare",
+      "image": "https://placehold.co/86x86/111120/005500?text=PT"
+    }
+  ]
+}

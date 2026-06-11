@@ -1,0 +1,47 @@
+{
+  "killer_en": "Ghostface",
+  "killer_it": "Faccia Fantasma",
+  "name": "Silent Stalker",
+  "description": "Utilizza la meccanica di stalking di Ghostface per rivelare e indebolire i Survivor prima dell'attacco. Perfetta per chi ama cacciare nell'ombra e colpire quando meno se lo aspettano.",
+  "author": "DarkVision",
+  "addons": [
+    {
+      "name_en": "Scratched Mirror",
+      "name_it": "Specchio Graffiato",
+      "rarity": "ultra rare",
+      "image": "https://placehold.co/72x72/111120/CC0055?text=SM"
+    },
+    {
+      "name_en": "Power Outlet",
+      "name_it": "Presa di Corrente",
+      "rarity": "rare",
+      "image": "https://placehold.co/72x72/111120/005500?text=PO"
+    }
+  ],
+  "perks": [
+    {
+      "name_en": "Surveillance",
+      "name_it": "Sorveglianza",
+      "rarity": "very rare",
+      "image": "https://placehold.co/86x86/111120/8200CC?text=SV"
+    },
+    {
+      "name_en": "I'm All Ears",
+      "name_it": "Sono Tutto Orecchi",
+      "rarity": "rare",
+      "image": "https://placehold.co/86x86/111120/005500?text=IAE"
+    },
+    {
+      "name_en": "Save the Best for Last",
+      "name_it": "Tieni il Meglio per la Fine",
+      "rarity": "very rare",
+      "image": "https://placehold.co/86x86/111120/8200CC?text=SBL"
+    },
+    {
+      "name_en": "Zanshin Tactics",
+      "name_it": "Tattiche Zanshin",
+      "rarity": "uncommon",
+      "image": "https://placehold.co/86x86/111120/9A7A2A?text=ZT"
+    }
+  ]
+}

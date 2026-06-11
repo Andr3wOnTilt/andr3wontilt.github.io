@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DBD Builds — The Archive</title>
+  <link rel="stylesheet" href="./shared.css">
+  <style>
+    .landing {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(155,26,26,0.06) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Diagonal divider */
+    .hero-divider {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--accent) 20%,
+        var(--accent-bright) 50%,
+        var(--accent) 80%,
+        transparent 100%
+      );
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .hero-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      background: var(--accent-bright);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      box-shadow: 0 0 16px var(--accent-glow), 0 0 32px var(--accent-glow);
+    }
+
+    /* ── Side Panels ─────────────────────────────────────── */
+    .hero-side {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 3rem;
+      min-height: 100vh;
+      overflow: hidden;
+      z-index: 2;
+      transition: background 0.4s;
+    }
+
+    .hero-side::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .hero-side:hover::before { opacity: 1; }
+
+    .side-survivor::before {
+      background: radial-gradient(ellipse at center, rgba(155,26,26,0.08) 0%, transparent 70%);
+    }
+
+    .side-killer::before {
+      background: radial-gradient(ellipse at center, rgba(80,20,150,0.08) 0%, transparent 70%);
+    }
+
+    /* Texture lines */
+    .hero-side::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.012) 40px,
+        rgba(255,255,255,0.012) 41px
+      );
+      pointer-events: none;
+    }
+
+    .side-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 380px;
+    }
+
+    .side-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .side-icon svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+      transition: opacity 0.3s, filter 0.3s;
+    }
+
+    .hero-side:hover .side-icon svg {
+      opacity: 1;
+      filter: drop-shadow(0 0 12px var(--accent-glow));
+    }
+
+    .side-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 0.6rem;
+    }
+
+    .side-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      color: var(--text-bright);
+      letter-spacing: 0.06em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .side-desc {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .side-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-bright);
+      background: var(--accent);
+      padding: 0.7rem 1.8rem;
+      clip-path: var(--clip);
+      transition: all 0.25s;
+    }
+
+    .side-cta:hover {
+      background: var(--accent-bright);
+      filter: drop-shadow(0 0 14px var(--accent-glow));
+      gap: 0.9rem;
+    }
+
+    .side-cta::after {
+      content: '→';
+      font-style: normal;
+      transition: transform 0.25s;
+    }
+
+    .hero-side:hover .side-cta::after { transform: translateX(3px); }
+
+    /* ── Header Banner ──────────────────────────────────── */
+    .site-banner {
+      text-align: center;
+      padding: 3rem 2rem 0;
+      position: relative;
+      z-index: 20;
+    }
+
+    .site-banner h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .site-banner h1 strong {
+      color: var(--accent-bright);
+      font-weight: 700;
+    }
+
+    .site-banner .divider-line {
+      width: 60px;
+      height: 1px;
+      background: var(--accent);
+      margin: 1rem auto 0;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    .footer {
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .footer em {
+      color: var(--accent-bright);
+      font-style: normal;
+    }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+
+      .hero-divider {
+        left: 0;
+        right: 0;
+        top: 50%;
+        bottom: auto;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          var(--accent) 20%,
+          var(--accent-bright) 50%,
+          var(--accent) 80%,
+          transparent 100%
+        );
+        transform: none;
+      }
+
+      .hero-side { min-height: 50vh; padding: 3rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="navbar-brand" href="./index.html">
+      <span class="brand-hook">
+        <span></span><span></span><span></span>
+      </span>
+      DBD Builds
+    </a>
+    <ul class="navbar-links">
+      <li><a href="./survivor/">Survivor</a></li>
+      <li><a href="./killer/">Killer</a></li>
+    </ul>
+  </nav>
+
+  <div class="landing">
+    <div class="site-banner">
+      <h1>Dead by Daylight — <strong>Build Archive</strong></h1>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-divider"></div>
+
+      <!-- Survivor Side -->
+      <a href="./survivor/" class="hero-side side-survivor">
+        <div class="side-content">
+          <div class="side-icon">
+            <!-- Survivor icon: person silhouette with heartbeat line -->
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="16" r="9" stroke="#C42222" stroke-width="1.5" fill="none"/>
+              <path d="M24 42 C24 30 56 30 56 42 L56 58 L48 58 L48 48 L32 48 L32 58 L24 58 Z"
+                    stroke="#C42222" stroke-width="1.5" fill="none"/>
+              <path d="M8 62 L22 62 L26 54 L30 70 L36 46 L40 66 L44 58 L48 62 L72 62"
+                    stroke="#A8A8BF" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <p class="side-label">Sezione</p>
+          <h2 class="side-title">Survivor</h2>
+          <p class="side-desc">
+            Esplora build per Survivor: perk, oggetti e add-on
+            per sopravvivere alla notte e sfuggire al Killer.
+          </p>
+          <span class="side-cta">Esplora Build</span>
+        </div>
+      </a>
+
+      <!-- Killer Side -->
+      <a href="./killer/" class="hero-side side-killer">
+        <div class="side-content">
+          <div class="side-icon">
+            <!-- Killer icon: hook/claw shape -->
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 8 L40 52 Q40 68 54 68 Q68 68 68 54 Q68 44 60 40"
+                    stroke="#C42222" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <circle cx="40" cy="8" r="4" fill="#C42222"/>
+              <path d="M52 34 L60 40 L52 46" stroke="#C42222" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M20 28 L20 52 Q20 60 28 60" stroke="#5C5C78" stroke-width="1.5"
+                    stroke-linecap="round" fill="none"/>
+              <path d="M14 24 L20 28 L26 24" stroke="#5C5C78" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <p class="side-label">Sezione</p>
+          <h2 class="side-title">Killer</h2>
+          <p class="side-desc">
+            Scopri le migliori build per Killer: perk e add-on
+            per cacciare, abbattere e agganciare i Survivor.
+          </p>
+          <span class="side-cta">Esplora Build</span>
+        </div>
+      </a>
+    </div>
+
+    <footer class="footer">
+      Fan site non ufficiale — <em>Dead by Daylight</em> è un marchio registrato di Behaviour Interactive
+    </footer>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+/* ── Survivor Section — List & Display Styles ──────────────── */
+
+/* ── Controls Bar ───────────────────────────────────────────── */
+.controls {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+  max-width: 400px;
+}
+
+.search-wrap::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background: var(--text-muted);
+  /* magnifying glass via clip-path */
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='10' cy='10' r='7' stroke='white' stroke-width='2' fill='none'/%3E%3Cline x1='15' y1='15' x2='22' y2='22' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='10' cy='10' r='7' stroke='white' stroke-width='2' fill='none'/%3E%3Cline x1='15' y1='15' x2='22' y2='22' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-bright);
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  padding: 0.58rem 1rem 0.58rem 2.4rem;
+  clip-path: var(--clip-sm);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus { border-color: var(--border-accent); }
+.search-input::placeholder { color: var(--text-muted); }
+
+.filter-select {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  padding: 0.58rem 1rem;
+  clip-path: var(--clip-sm);
+  outline: none;
+  transition: border-color 0.2s;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235C5C78' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+  padding-right: 2rem;
+}
+
+.filter-select:focus { border-color: var(--border-accent); }
+.filter-select option { background: var(--bg-elevated); }
+
+.results-count {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  align-self: center;
+}
+
+/* ── Builds Grid ─────────────────────────────────────────────── */
+.builds-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.2rem;
+}
+
+/* ── Build Card ──────────────────────────────────────────────── */
+.build-card {
+  background: var(--bg-card);
+  clip-path: var(--clip);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: background 0.25s, filter 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.build-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.build-card:hover {
+  background: var(--bg-elevated);
+  filter: drop-shadow(0 0 14px rgba(155, 26, 26, 0.3));
+}
+
+.build-card:hover::before { opacity: 1; }
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.card-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+}
+
+.card-arrow {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: transform 0.2s, color 0.2s;
+}
+.build-card:hover .card-arrow { transform: translateX(3px); color: var(--accent-bright); }
+
+.card-desc {
+  font-size: 0.82rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+}
+
+.meta-author {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.meta-author strong {
+  color: var(--text-body);
+  font-weight: 500;
+}
+
+.meta-badge {
+  margin-left: auto;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  background: var(--accent-subtle);
+  padding: 0.2rem 0.5rem;
+  clip-path: var(--clip-sm);
+}
+
+/* ── Display Page ────────────────────────────────────────────── */
+.display-main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+.display-header {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+
+.display-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 0.5rem;
+}
+
+.display-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6rem;
+}
+
+.display-desc {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 0.8rem;
+}
+
+.display-author {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.display-author strong {
+  color: var(--text-body);
+  font-weight: 500;
+}
+
+/* ── Build Sections ──────────────────────────────────────────── */
+.build-section {
+  margin-bottom: 2.5rem;
+}
+
+.build-section-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.build-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Item & Addon Slots ──────────────────────────────────────── */
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.slot-img-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  clip-path: var(--clip-sm);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  transition: filter 0.25s, border-color 0.25s;
+  overflow: hidden;
+}
+
+.slot-img-wrap:hover {
+  border-color: var(--border-accent);
+  filter: drop-shadow(0 0 10px var(--accent-glow));
+}
+
+.slot-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slot-img-wrap.item-slot { width: 96px; height: 96px; }
+.slot-img-wrap.addon-slot { width: 72px; height: 72px; }
+
+.slot-type {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Rarity borders */
+.rarity-common     { border-color: rgba(160,160,160,0.4); }
+.rarity-uncommon   { border-color: rgba(139,144,0,0.5); }
+.rarity-rare       { border-color: rgba(0,140,0,0.5); }
+.rarity-very-rare  { border-color: rgba(130,0,200,0.5); }
+.rarity-ultra-rare { border-color: rgba(200,0,100,0.5); }
+
+/* ── Perk Slots ──────────────────────────────────────────────── */
+.perks-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.perk-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.perk-img-wrap {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  /* Diamond shape for perks - classic DBD style */
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  background: var(--bg-elevated);
+  border: none;
+  transition: filter 0.25s;
+  overflow: hidden;
+}
+
+.perk-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.perk-slot:hover .perk-img-wrap {
+  filter: drop-shadow(0 0 12px var(--accent-glow)) brightness(1.15);
+}
+
+.perk-name-short {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 86px;
+  line-height: 1.3;
+}
+
+/* ── No-build Error ──────────────────────────────────────────── */
+.error-display {
+  text-align: center;
+  padding: 5rem 2rem;
+}
+.error-display h2 {
+  font-family: var(--font-display);
+  color: var(--accent-bright);
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.06em;
+}
+.error-display p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.error-display a {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  background: var(--accent);
+  padding: 0.6rem 1.4rem;
+  clip-path: var(--clip-sm);
+  transition: background 0.2s;
+}
+.error-display a:hover { background: var(--accent-bright); }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .builds-grid { padding: 0 1rem 3rem; grid-template-columns: 1fr; }
+  .controls { padding: 0 1rem 1.5rem; }
+  .display-main { padding: 0 1rem 3rem; }
+  .perks-row { gap: 0.8rem; }
+  .perk-img-wrap { width: 72px; height: 72px; }
+}

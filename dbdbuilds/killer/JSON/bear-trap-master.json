@@ -1,0 +1,47 @@
+{
+  "killer_en": "The Trapper",
+  "killer_it": "Il Cacciatore",
+  "name": "Bear Trap Master",
+  "description": "Controllo totale della mappa attraverso il posizionamento strategico delle trappole. Blocca i percorsi chiave e costringe i Survivor a rallentare, creando opportunità perfette per gli inseguimenti.",
+  "author": "HookMaster",
+  "addons": [
+    {
+      "name_en": "Iridescent Stone",
+      "name_it": "Pietra Iridata",
+      "rarity": "ultra rare",
+      "image": "https://placehold.co/72x72/111120/CC0055?text=IS"
+    },
+    {
+      "name_en": "Bloody Coil",
+      "name_it": "Bobina Insanguinata",
+      "rarity": "very rare",
+      "image": "https://placehold.co/72x72/111120/8200CC?text=BC"
+    }
+  ],
+  "perks": [
+    {
+      "name_en": "Corrupt Intervention",
+      "name_it": "Intervento Corrotto",
+      "rarity": "very rare",
+      "image": "https://placehold.co/86x86/111120/8200CC?text=CI"
+    },
+    {
+      "name_en": "Nowhere to Hide",
+      "name_it": "Nessun Posto Dove Nascondersi",
+      "rarity": "rare",
+      "image": "https://placehold.co/86x86/111120/005500?text=NTH"
+    },
+    {
+      "name_en": "Whispers",
+      "name_it": "Sussurri",
+      "rarity": "common",
+      "image": "https://placehold.co/86x86/111120/808080?text=WH"
+    },
+    {
+      "name_en": "Pop Goes the Weasel",
+      "name_it": "Pop va la Donnola",
+      "rarity": "very rare",
+      "image": "https://placehold.co/86x86/111120/8200CC?text=POP"
+    }
+  ]
+}

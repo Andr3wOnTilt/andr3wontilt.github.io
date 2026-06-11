@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Survivor — DBD Builds</title>
+  <link rel="stylesheet" href="../../shared.css">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="navbar-brand" href="../../index.html">
+      <span class="brand-hook">
+        <span></span><span></span><span></span>
+      </span>
+      DBD Builds
+    </a>
+    <ul class="navbar-links">
+      <li><a href="../index.html" class="active">Survivor</a></li>
+      <li><a href="../../killer/index.html">Killer</a></li>
+    </ul>
+    <a href="../index.html" class="navbar-back">← Tutte le build</a>
+  </nav>
+
+  <main id="display-root">
+    <div class="state-wrap">
+      <div class="spinner"></div>
+      <p>Caricamento build…</p>
+    </div>
+  </main>
+
+  <script>
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function formatName(nameEn, nameIt) {
+      if (nameIt) return `${escHtml(nameEn)} (${escHtml(nameIt)})`;
+      return escHtml(nameEn);
+    }
+
+    function rarityClass(rarity) {
+      const map = {
+        common: 'rarity-common',
+        uncommon: 'rarity-uncommon',
+        rare: 'rarity-rare',
+        'very rare': 'rarity-very-rare',
+        'ultra rare': 'rarity-ultra-rare'
+      };
+      return map[(rarity || '').toLowerCase()] || '';
+    }
+
+    // ── Render the full build page ────────────────────────────
+    function renderBuild(build) {
+      const root = document.getElementById('display-root');
+      document.title = `${build.name} — DBD Builds`;
+
+      // Item & Addons section
+      const itemHtml = build.item ? `
+        <div class="build-section">
+          <p class="build-section-label">Oggetto &amp; Add-on</p>
+          <div class="item-row">
+            <!-- Item -->
+            <div class="slot" data-tip="${formatName(build.item.name_en, build.item.name_it)}">
+              <div class="slot-img-wrap item-slot ${rarityClass(build.item.rarity)}">
+                <img
+                  src="${escHtml(build.item.image)}"
+                  alt="${escHtml(build.item.name_en)}"
+                  onerror="this.src='data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#111120"/><text x="40" y="45" text-anchor="middle" fill="#5C5C78" font-size="11" font-family="sans-serif">?</text></svg>`)}'">
+              </div>
+              <span class="slot-type">Oggetto</span>
+            </div>
+
+            <!-- Addons -->
+            ${(build.addons || []).map((a, i) => `
+              <div class="slot" data-tip="${formatName(a.name_en, a.name_it)}">
+                <div class="slot-img-wrap addon-slot ${rarityClass(a.rarity)}">
+                  <img
+                    src="${escHtml(a.image)}"
+                    alt="${escHtml(a.name_en)}"
+                    onerror="this.src='data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#111120"/><text x="40" y="45" text-anchor="middle" fill="#5C5C78" font-size="11" font-family="sans-serif">?</text></svg>`)}'">
+                </div>
+                <span class="slot-type">Add-on ${i + 1}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : '';
+
+      // Perks section
+      const perksHtml = `
+        <div class="build-section">
+          <p class="build-section-label">Perk</p>
+          <div class="perks-row">
+            ${(build.perks || []).map(p => `
+              <div class="perk-slot" data-tip="${formatName(p.name_en, p.name_it)}">
+                <div class="perk-img-wrap ${rarityClass(p.rarity)}">
+                  <img
+                    src="${escHtml(p.image)}"
+                    alt="${escHtml(p.name_en)}"
+                    onerror="this.src='data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#111120"/><text x="40" y="45" text-anchor="middle" fill="#5C5C78" font-size="10" font-family="sans-serif">PERK</text></svg>`)}'">
+                </div>
+                <span class="perk-name-short">${escHtml(p.name_en)}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      root.innerHTML = `
+        <div class="display-main">
+          <header class="display-header">
+            <p class="display-eyebrow">Build Survivor</p>
+            <h1 class="display-title">${escHtml(build.name)}</h1>
+            <p class="display-desc">${escHtml(build.description)}</p>
+            <p class="display-author">Build creata da <strong>${escHtml(build.author)}</strong></p>
+          </header>
+
+          ${itemHtml}
+          ${perksHtml}
+        </div>
+      `;
+    }
+
+    // ── Init ─────────────────────────────────────────────────
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      const buildFile = params.get('build');
+      const root = document.getElementById('display-root');
+
+      if (!buildFile) {
+        root.innerHTML = `
+          <div class="display-main error-display">
+            <h2>Build non specificata</h2>
+            <p>Nessun file build indicato nell'URL.</p>
+            <a href="../index.html">← Torna alle build</a>
+          </div>
+        `;
+        return;
+      }
+
+      try {
+        const res = await fetch(`../JSON/${encodeURIComponent(buildFile)}`);
+        if (!res.ok) throw new Error(`File non trovato: ${buildFile}`);
+        const build = await res.json();
+        renderBuild(build);
+      } catch (err) {
+        root.innerHTML = `
+          <div class="display-main error-display">
+            <h2>Build non trovata</h2>
+            <p>${err.message}</p>
+            <a href="../index.html">← Torna alle build</a>
+          </div>
+        `;
+        console.error(err);
+      }
+    })();
+  </script>
+
+</body>
+</html>
