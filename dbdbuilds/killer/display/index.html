@@ -5,161 +5,298 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Build Killer — DBD Builds</title>
   <link rel="stylesheet" href="../../shared.css">
-  <link rel="stylesheet" href="../index.css">
+  <style>
+    body { background: #06060C; }
+
+    .build-hero {
+      position: relative;
+      min-height: 300px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% -10%, rgba(100,0,180,0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 110%, rgba(155,26,26,0.14) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 110%, rgba(0,0,40,0.2) 0%, transparent 50%),
+        #060609;
+    }
+    .build-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(-55deg, transparent, transparent 70px, rgba(255,255,255,0.015) 70px, rgba(255,255,255,0.015) 71px),
+        repeating-linear-gradient(35deg, transparent, transparent 90px, rgba(255,255,255,0.008) 90px, rgba(255,255,255,0.008) 91px);
+      pointer-events: none;
+    }
+    .build-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(100,0,160,0.1) 0%, transparent 55%);
+      animation: heropulse 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes heropulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 920px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 2.8rem;
+    }
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      left: 2rem; top: 2.5rem; bottom: 2.8rem;
+      width: 3px;
+      background: linear-gradient(to bottom, transparent, #9B1A1A 20%, #C42222 50%, #9B1A1A 80%, transparent);
+      border-radius: 2px;
+    }
+    .hero-inner { padding-left: 1.6rem; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: #C42222;
+      background: rgba(155,26,26,0.15);
+      border: 1px solid rgba(155,26,26,0.35);
+      padding: 0.3rem 0.8rem;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+      margin-bottom: 0.5rem;
+    }
+    .hero-badge::before {
+      content: '';
+      display: block; width: 5px; height: 5px;
+      background: #C42222; border-radius: 50%;
+      box-shadow: 0 0 6px #C42222;
+    }
+
+    .hero-killer-name {
+      font-family: var(--font-display);
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #7878A0; margin-bottom: 0.4rem;
+    }
+
+    .hero-build-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 700; color: #F0F0F8;
+      letter-spacing: 0.06em; line-height: 1.1;
+      text-shadow: 0 0 40px rgba(120,0,180,0.25), 0 2px 8px rgba(0,0,0,0.9);
+      margin-bottom: 1rem;
+    }
+    .hero-divider {
+      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.9rem;
+    }
+    .hero-divider-line { height: 1px; width: 48px; background: linear-gradient(90deg, #9B1A1A, transparent); }
+    .hero-divider-diamond {
+      width: 6px; height: 6px; background: #C42222;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      box-shadow: 0 0 8px rgba(196,34,34,0.6);
+    }
+    .hero-desc { font-size: 0.9rem; color: #9898B8; line-height: 1.75; max-width: 520px; margin-bottom: 0.7rem; }
+    .hero-author { font-size: 0.76rem; color: var(--text-muted); letter-spacing: 0.05em; }
+    .hero-author strong { color: #B8B8D0; font-weight: 500; }
+
+    .page-body {
+      max-width: 920px; margin: 0 auto;
+      padding: 2.5rem 2rem 3rem;
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+
+    .section-panel {
+      position: relative;
+      background: #0C0C1A;
+      clip-path: polygon(16px 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%, 0% 16px);
+      padding: 2rem 2rem 2.2rem;
+    }
+    .section-panel::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent 5%, #9B1A1A 30%, #C42222 50%, #9B1A1A 70%, transparent 95%);
+    }
+    .section-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--text-muted); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.8rem;
+    }
+    .section-label::after { content:''; flex:1; height:1px; background: linear-gradient(90deg, rgba(255,255,255,0.07), transparent); }
+
+    .loadout-row { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+    .loadout-connector { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+    .connector-dot { width: 4px; height: 4px; background: var(--text-muted); border-radius: 50%; }
+    .connector-line { width: 1px; height: 20px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
+    .connector-text { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; color: #C42222; }
+
+    .slot-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; cursor: default; transition: transform 0.2s; }
+    .slot-wrap:hover { transform: translateY(-3px); }
+
+    .slot-outer {
+      width: var(--slot-size, 96px); height: var(--slot-size, 96px);
+      clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+      background: var(--rarity-color, #444460); padding: 2px; transition: filter 0.3s;
+    }
+    .slot-wrap:hover .slot-outer { filter: drop-shadow(0 0 14px var(--rarity-glow, rgba(100,100,150,0.6))); }
+    .slot-inner {
+      width: 100%; height: 100%;
+      clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+      background: #090916; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slot-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slot-name-en { font-family: var(--font-display); font-size: 0.7rem; font-weight: 600; color: #D0D0E8; text-align: center; letter-spacing: 0.03em; line-height: 1.3; max-width: var(--slot-size, 96px); }
+    .slot-name-it { font-size: 0.64rem; color: var(--text-muted); text-align: center; margin-top: -0.3rem; max-width: var(--slot-size, 96px); }
+    .slot-type-tag { font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); opacity: 0.7; margin-top: -0.2rem; }
+    .slot-addon .slot-outer { --slot-size: 90px; }
+
+    .perks-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .perk-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; cursor: default; transition: transform 0.2s; }
+    .perk-wrap:hover { transform: translateY(-4px); }
+
+    .perk-outer {
+      width: 120px; height: 120px;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      background: var(--rarity-color, #444460);
+      display: flex; align-items: center; justify-content: center;
+      transition: filter 0.3s; flex-shrink: 0;
+    }
+    .perk-wrap:hover .perk-outer { filter: drop-shadow(0 0 18px var(--rarity-glow, rgba(100,100,150,0.7))) brightness(1.1); }
+    .perk-mid { width: 112px; height: 112px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); background: #100E1C; display: flex; align-items: center; justify-content: center; }
+    .perk-inner { width: 104px; height: 104px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); background: #090916; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .perk-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .perk-name-en { font-family: var(--font-display); font-size: 0.7rem; font-weight: 600; color: #D0D0E8; text-align: center; letter-spacing: 0.03em; line-height: 1.3; max-width: 110px; }
+    .perk-name-it { font-size: 0.63rem; color: var(--text-muted); text-align: center; margin-top: -0.3rem; max-width: 110px; }
+
+    .bottom-nav { max-width: 920px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.76rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-body); background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border); padding: 0.6rem 1.3rem;
+      clip-path: var(--clip-sm); transition: all 0.2s; text-decoration: none;
+    }
+    .btn-back:hover { color: var(--text-bright); background: var(--accent-subtle); border-color: var(--border-accent); }
+
+    .error-page { min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-align: center; padding: 3rem; }
+    .error-page h2 { font-family: var(--font-display); font-size: 1.5rem; color: #C42222; letter-spacing: 0.06em; }
+    .error-page p { font-size: 0.85rem; color: var(--text-muted); }
+
+    @media (max-width: 600px) {
+      .hero-content::before { display: none; }
+      .hero-inner { padding-left: 0; }
+      .page-body { padding: 1.5rem 1rem 2.5rem; }
+      .section-panel { padding: 1.5rem 1.2rem; }
+      .perks-row { gap: 0.9rem; }
+      .perk-outer { width: 90px; height: 90px; }
+      .perk-mid { width: 84px; height: 84px; }
+      .perk-inner { width: 78px; height: 78px; }
+      .bottom-nav { padding: 0 1rem 3rem; }
+    }
+  </style>
 </head>
 <body>
 
   <nav class="navbar">
     <a class="navbar-brand" href="../../index.html">
-      <span class="brand-hook">
-        <span></span><span></span><span></span>
-      </span>
+      <span class="brand-hook"><span></span><span></span><span></span></span>
       DBD Builds
     </a>
     <ul class="navbar-links">
       <li><a href="../../survivor/index.html">Survivor</a></li>
       <li><a href="../index.html" class="active">Killer</a></li>
     </ul>
-    <a href="../index.html" class="navbar-back">← Tutte le build</a>
   </nav>
 
-  <main id="display-root">
-    <div class="state-wrap">
-      <div class="spinner"></div>
-      <p>Caricamento build…</p>
-    </div>
-  </main>
+  <div id="display-root">
+    <div class="state-wrap"><div class="spinner"></div><p>Caricamento build…</p></div>
+  </div>
 
   <script>
-    function escHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+    function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    const FB=`data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#090916"/><text x="40" y="46" text-anchor="middle" fill="#3A3A58" font-size="12" font-family="sans-serif">?</text></svg>')}`;
+    const RARITY={
+      'common':    {color:'#686868',glow:'rgba(104,104,104,0.65)'},
+      'uncommon':  {color:'#8B9B10',glow:'rgba(139,155,16,0.65)'},
+      'rare':      {color:'#0E8A0E',glow:'rgba(14,138,14,0.65)'},
+      'very rare': {color:'#8800CC',glow:'rgba(136,0,204,0.65)'},
+      'ultra rare':{color:'#CC0077',glow:'rgba(204,0,119,0.65)'},
+    };
+    function getRarity(r){return RARITY[(r||'').toLowerCase()]||{color:'#3A3A58',glow:'rgba(58,58,88,0.5)'};}
+
+    function slotHTML(item, cls, label) {
+      const r=getRarity(item.rarity);
+      return `<div class="slot-wrap ${cls}" style="--rarity-color:${r.color};--rarity-glow:${r.glow}">
+        <div class="slot-outer"><div class="slot-inner">
+          <img src="${esc(item.image)}" alt="${esc(item.name_en)}" onerror="this.src='${FB}'">
+        </div></div>
+        <span class="slot-name-en">${esc(item.name_en)}</span>
+        ${item.name_it?`<span class="slot-name-it">${esc(item.name_it)}</span>`:''}
+        <span class="slot-type-tag">${label}</span>
+      </div>`;
     }
 
-    function formatName(nameEn, nameIt) {
-      if (nameIt) return `${escHtml(nameEn)} (${escHtml(nameIt)})`;
-      return escHtml(nameEn);
+    function perkHTML(p) {
+      const r=getRarity(p.rarity);
+      return `<div class="perk-wrap" style="--rarity-color:${r.color};--rarity-glow:${r.glow}">
+        <div class="perk-outer"><div class="perk-mid"><div class="perk-inner">
+          <img src="${esc(p.image)}" alt="${esc(p.name_en)}" onerror="this.src='${FB}'">
+        </div></div></div>
+        <span class="perk-name-en">${esc(p.name_en)}</span>
+        ${p.name_it?`<span class="perk-name-it">${esc(p.name_it)}</span>`:''}
+      </div>`;
     }
 
-    function rarityClass(rarity) {
-      const map = {
-        common: 'rarity-common',
-        uncommon: 'rarity-uncommon',
-        rare: 'rarity-rare',
-        'very rare': 'rarity-very-rare',
-        'ultra rare': 'rarity-ultra-rare'
-      };
-      return map[(rarity || '').toLowerCase()] || '';
-    }
-
-    const FALLBACK_IMG = encodeURIComponent(
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">` +
-      `<rect width="80" height="80" fill="#111120"/>` +
-      `<text x="40" y="45" text-anchor="middle" fill="#5C5C78" font-size="11" font-family="sans-serif">?</text></svg>`
-    );
-
-    // ── Render the full killer build page ─────────────────────
     function renderBuild(build) {
-      const root = document.getElementById('display-root');
-      document.title = `${build.name} — DBD Builds`;
-
+      document.title=`${build.name} — DBD Builds`;
       const killerDisplay = build.killer_it
-        ? `${escHtml(build.killer_en || build.killer)} (${escHtml(build.killer_it)})`
-        : escHtml(build.killer_en || build.killer);
+        ? `${esc(build.killer_en||build.killer)} (${esc(build.killer_it)})`
+        : esc(build.killer_en||build.killer||'');
 
-      // Addons section
-      const addonsHtml = `
-        <div class="build-section">
-          <p class="build-section-label">Add-on</p>
-          <div class="item-row">
-            ${(build.addons || []).map((a, i) => `
-              <div class="slot" data-tip="${formatName(a.name_en, a.name_it)}">
-                <div class="slot-img-wrap addon-slot ${rarityClass(a.rarity)}">
-                  <img
-                    src="${escHtml(a.image)}"
-                    alt="${escHtml(a.name_en)}"
-                    onerror="this.src='data:image/svg+xml,${FALLBACK_IMG}'">
-                </div>
-                <span class="slot-type">Add-on ${i + 1}</span>
-              </div>
-            `).join('')}
+      const addonsSection = (build.addons||[]).length ? `
+        <div class="section-panel">
+          <p class="section-label">Add-on</p>
+          <div class="loadout-row">
+            ${build.addons.map((a,i)=>slotHTML(a,'slot-addon',`Add-on ${i+1}`)).join('')}
+          </div>
+        </div>` : '';
+
+      document.getElementById('display-root').innerHTML=`
+        <section class="build-hero">
+          <div class="hero-content"><div class="hero-inner">
+            <span class="hero-badge">Killer</span>
+            ${killerDisplay?`<p class="hero-killer-name">${killerDisplay}</p>`:''}
+            <h1 class="hero-build-name">${esc(build.name)}</h1>
+            <div class="hero-divider">
+              <div class="hero-divider-line"></div>
+              <div class="hero-divider-diamond"></div>
+            </div>
+            <p class="hero-desc">${esc(build.description)}</p>
+            <p class="hero-author">Build di <strong>${esc(build.author)}</strong></p>
+          </div></div>
+        </section>
+        <div class="page-body">
+          ${addonsSection}
+          <div class="section-panel">
+            <p class="section-label">Perk</p>
+            <div class="perks-row">${(build.perks||[]).map(p=>perkHTML(p)).join('')}</div>
           </div>
         </div>
-      `;
-
-      // Perks section
-      const perksHtml = `
-        <div class="build-section">
-          <p class="build-section-label">Perk</p>
-          <div class="perks-row">
-            ${(build.perks || []).map(p => `
-              <div class="perk-slot" data-tip="${formatName(p.name_en, p.name_it)}">
-                <div class="perk-img-wrap ${rarityClass(p.rarity)}">
-                  <img
-                    src="${escHtml(p.image)}"
-                    alt="${escHtml(p.name_en)}"
-                    onerror="this.src='data:image/svg+xml,${FALLBACK_IMG}'">
-                </div>
-                <span class="perk-name-short">${escHtml(p.name_en)}</span>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `;
-
-      root.innerHTML = `
-        <div class="display-main">
-          <header class="display-header">
-            <p class="display-eyebrow">Build Killer</p>
-            <p class="display-killer-name">${killerDisplay}</p>
-            <h1 class="display-title">${escHtml(build.name)}</h1>
-            <p class="display-desc">${escHtml(build.description)}</p>
-            <p class="display-author">Build creata da <strong>${escHtml(build.author)}</strong></p>
-          </header>
-
-          ${addonsHtml}
-          ${perksHtml}
-        </div>
-      `;
+        <div class="bottom-nav"><a class="btn-back" href="../index.html">← Tutte le build</a></div>`;
     }
 
-    // ── Init ─────────────────────────────────────────────────
-    (async () => {
-      const params = new URLSearchParams(window.location.search);
-      const buildFile = params.get('build');
-      const root = document.getElementById('display-root');
-
-      if (!buildFile) {
-        root.innerHTML = `
-          <div class="display-main error-display">
-            <h2>Build non specificata</h2>
-            <p>Nessun file build indicato nell'URL.</p>
-            <a href="../index.html">← Torna alle build</a>
-          </div>
-        `;
-        return;
-      }
-
-      try {
-        const res = await fetch(`../JSON/${encodeURIComponent(buildFile)}`);
-        if (!res.ok) throw new Error(`File non trovato: ${buildFile}`);
-        const build = await res.json();
-        renderBuild(build);
-      } catch (err) {
-        root.innerHTML = `
-          <div class="display-main error-display">
-            <h2>Build non trovata</h2>
-            <p>${err.message}</p>
-            <a href="../index.html">← Torna alle build</a>
-          </div>
-        `;
-        console.error(err);
+    (async()=>{
+      const p=new URLSearchParams(window.location.search);
+      const f=p.get('build');
+      const root=document.getElementById('display-root');
+      if(!f){root.innerHTML=`<div class="error-page"><h2>Build non specificata</h2><p>Nessun file indicato nell'URL.</p><a class="btn-back" href="../index.html">← Torna alle build</a></div>`;return;}
+      try{
+        const res=await fetch(`../JSON/${encodeURIComponent(f)}`);
+        if(!res.ok)throw new Error(`File non trovato: ${f}`);
+        renderBuild(await res.json());
+      }catch(err){
+        root.innerHTML=`<div class="error-page"><h2>Build non trovata</h2><p>${esc(err.message)}</p><a class="btn-back" href="../index.html">← Torna alle build</a></div>`;
       }
     })();
   </script>
-
 </body>
 </html>
