@@ -6,16 +6,16 @@
   "author": "blackghost0_0",
   "addons": [
     {
-      "name_en": "Not defined",
-      "name_it": "???",
-      "rarity": "common",
-      "image": ""
+      "name_en": "Iridescent Button",
+      "name_it": "Spilletta irridescente",
+      "rarity": "ultra rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconAddon_iridescentButton.png"
     },
     {
-      "name_en": "Not defined",
-      "name_it": "???",
-      "rarity": "common",
-      "image": ""
+      "name_en": "Julie's Mix Tape",
+      "name_it": "Cassetta di Julie",
+      "rarity": "rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconAddon_juliesMixTape.png"
     }
   ],
   "perks": [
