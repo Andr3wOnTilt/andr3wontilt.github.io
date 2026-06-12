@@ -3,10 +3,10 @@
   "description": "Nessuna Bega ti mantiene sempre ferito, permettendo a Determinazione di restare attiva per tutta la partita. Riparando uno dei generatori evidenziati da Déjà Vu ottieni un ulteriore bonus alla velocità, mentre Mettiti alla Prova aumenta ancora di più l'efficienza quando ripari insieme ai compagni. Completa il tutto con una cassetta degli attrezzi potenziata da Pezzo Nuovo per una pressione costante sui generatori.",
   "author": "Andr3wOnTilt",
   "item": {
-    "name_en": "???",
+    "name_en": "Commodious Toolbox",
     "name_it": "Cassetta spaziosa",
-    "rarity": "very rare",
-    "image": "https://placehold.co/96x96/111120/CC2222?text=CS"
+    "rarity": "rare",
+    "image": "https://deadbydaylight.wiki.gg/images/IconItems_commodiousToolbox.png"
   },
   "addons": [
     {
@@ -33,7 +33,7 @@
       "name_en": "Resilience",
       "name_it": "Determinazione",
       "rarity": "very rare",
-      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_Resilience.png"
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_resilience.png"
     },
     {
       "name_en": "No Mither",
@@ -45,7 +45,7 @@
       "name_en": "Prove Thyself",
       "name_it": "Mettiti alla Prova",
       "rarity": "very rare",
-      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_proveTyself.png"
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_proveThyself.png"
     }
   ]
 }
