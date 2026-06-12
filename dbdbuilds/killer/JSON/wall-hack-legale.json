@@ -1,0 +1,47 @@
+{
+  "killer_en": "The Nurse",
+  "killer_it": "L'Infermiera",
+  "name": "Wall hack legale",
+  "description": "Una build che mira alla raccolta di informazioni durante il gameplay, grazie agli addon avete meno affaticamento dopo un teletrasporto a vuoto e inoltre avete anche la destinazione segnata mentre usate il potere del teletrasporto, inoltre tramite i perk, mira a farvi vedere l'aura dei surv di continuo in situazioni variabili.",
+  "author": "blackghost0_0",
+  "addons": [
+    {
+      "name_en": "Not defined",
+      "name_it": "???",
+      "rarity": "common",
+      "image": ""
+    },
+    {
+      "name_en": "Not defined",
+      "name_it": "???",
+      "rarity": "common",
+      "image": ""
+    }
+  ],
+  "perks": [
+    {
+      "name_en": "I'm All Ears",
+      "name_it": "Sono tutt'orecchi",
+      "rarity": "very rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_imAllEars.png"
+    },
+    {
+      "name_en": "Ghost Fear",
+      "name_it": "Paura dei fantasmi",
+      "rarity": "very rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_ghostFear.png"
+    },
+    {
+      "name_en": "Nowhere to Hide",
+      "name_it": "Impossibile nascondersi",
+      "rarity": "very rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_nowhereToHide.png"
+    },
+    {
+      "name_en": "Lethal Pursuer",
+      "name_it": "Inseguitore letale",
+      "rarity": "very rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_lethalPursuer.png"
+    }
+  ]
+}

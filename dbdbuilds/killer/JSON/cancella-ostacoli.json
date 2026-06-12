@@ -1,0 +1,47 @@
+{
+  "killer_en": "The Legion",
+  "killer_it": "Legione",
+  "name": "Cancella ostacoli",
+  "description": "Mira a rendere i loop con i pallet parecchio fastidioso, con il potere potete dare la prima hit, in modo che quando scavalcano i surv dopo i 3s il pallet si spacca in automatico, tramite gli addon tutte le volte che venite storditi potete usare nuovamente il potere e se scavalcate si rompono da soli, resistente e furia dello spirito in modo che se vi spaccano i pallet addosso avete una hit quasi garantita e inganno per bloccare le finestre.",
+  "author": "blackghost0_0",
+  "addons": [
+    {
+      "name_en": "Not defined",
+      "name_it": "???",
+      "rarity": "common",
+      "image": ""
+    },
+    {
+      "name_en": "Not defined",
+      "name_it": "???",
+      "rarity": "common",
+      "image": ""
+    }
+  ],
+  "perks": [
+    {
+      "name_en": "Dissolution",
+      "name_it": "Dissoluzione",
+      "rarity": "very rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_dissolution.png"
+    },
+    {
+      "name_en": "Spirit Fury",
+      "name_it": "Furia dello spirtio",
+      "rarity": "very rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_spiritFury.png"
+    },
+    {
+      "name_en": "Deception",
+      "name_it": "Inganno",
+      "rarity": "very rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_deception.png"
+    },
+    {
+      "name_en": "Enduring",
+      "name_it": "Resistente",
+      "rarity": "very rare",
+      "image": "https://deadbydaylight.wiki.gg/images/IconPerks_enduring.png"
+    }
+  ]
+}
