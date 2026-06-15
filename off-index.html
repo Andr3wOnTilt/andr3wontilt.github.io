@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <script>
+    const root = "https://pack.ultrasmp.online/"
+    window.location.href = root + "dbdbuilds";
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="https://pack.ultrasmp.online/assets/omega-iconSmall.png" type="image/png">
+  <title>Reindirizzamento...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card-bg: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.12);
+      --accent: #007aff;
+      --text: #f5f5f7;
+      --muted: #a0a0a5;
+      --transition: 0.25s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(0,122,255,0.1), transparent),
+                  radial-gradient(900px 500px at 80% 90%, rgba(255,255,255,0.05), transparent),
+                  var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 56px 32px 48px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+      animation: fadeIn 0.6s var(--transition) forwards;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .omega {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      width: 140px;
+      height: 140px;
+      transform: translateX(-50%);
+      animation: float 6s ease-in-out infinite, rotate 20s linear infinite;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 12px rgba(124,77,255,0.3));
+    }
+
+    .redirect-icon {
+      width: 56px;
+      height: 56px;
+      margin: 28px auto 16px;
+      position: relative;
+      border: 3px solid rgba(255,255,255,0.2);
+      border-top: 3px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1.4s linear infinite;
+    }
+
+    .redirect-arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: 16px;
+      height: 16px;
+      border-right: 3px solid var(--accent);
+      border-top: 3px solid var(--accent);
+      border-radius: 2px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -5px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://pack.ultrasmp.online/assets/omega-icon.png" alt="Omega Icon" class="omega">
+    <div class="redirect-icon">
+      <div class="redirect-arrow"></div>
+    </div>
+    <h1>Reindirizzamento in corso...</h1>
+    <p>Verifica della chiave salvata. Attendere...</p>
+  </div>
+</body>
+</html>

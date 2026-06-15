@@ -1,131 +1,501 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <script>
-    const root = "https://pack.ultrasmp.online/"
-    window.location.href = root + "dbdbuilds";
-  </script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" href="https://pack.ultrasmp.online/assets/omega-iconSmall.png" type="image/png">
-  <title>Reindirizzamento...</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manutenzione — OmegaDEV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #0a0a0a;
-      --card-bg: rgba(255,255,255,0.06);
-      --glass-border: rgba(255,255,255,0.12);
-      --accent: #007aff;
-      --text: #f5f5f7;
-      --muted: #a0a0a5;
-      --transition: 0.25s ease;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    :root {
+      --bg:        #09090F;
+      --card:      #14141F;
+      --border:    #1E1E2E;
+      --accent:    #7B6EF8;
+      --accent-lo: rgba(123,110,248,0.18);
+      --text:      #E8E8F2;
+      --text-sub:  #6A6A8E;
+      --text-muted:#2A2A40;
     }
+
+    html, body { height: 100%; }
 
     body {
-      height: 100vh;
-      background: radial-gradient(1200px 800px at 20% 10%, rgba(0,122,255,0.1), transparent),
-                  radial-gradient(900px 500px at 80% 90%, rgba(255,255,255,0.05), transparent),
-                  var(--bg);
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Canvas particles (sits behind everything) ── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Dot-grid ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, #1C1C2E 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.6;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Ω watermark – breathes ── */
+    .omega-bg {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(260px, 40vw, 520px);
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--text-muted);
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+      line-height: 1;
+      opacity: 0;
+      animation: omegaIn 2s ease forwards 0.3s, omegaBreathe 8s ease-in-out infinite 2.3s;
+      transform-origin: center center;
+    }
+
+    @keyframes omegaIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes omegaBreathe {
+      0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 1;   }
+      50%       { transform: translate(-50%, -50%) scale(1.04); opacity: 0.7; }
+    }
+
+    /* ── Vignette ── */
+    .vignette {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 62% 62% at 50% 50%, transparent 28%, var(--bg) 78%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── Card wrapper (handles the glowing border trick) ── */
+    .card-wrap {
+      position: relative;
+      z-index: 2;
+      border-radius: 21px;
+      max-width: 560px;
+      width: calc(100% - 2rem);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s;
+    }
+
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Traveling-light border */
+    .card-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 21px;
+      background: conic-gradient(
+        from var(--angle),
+        transparent 0%,
+        var(--accent) 7%,
+        transparent 14%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 1px;
+      animation: borderSpin 5s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes borderSpin {
+      to { --angle: 360deg; }
+    }
+
+    /* ── Main card ── */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: clamp(2rem, 6vw, 3.5rem) clamp(2rem, 7vw, 4rem);
+      text-align: center;
+    }
+
+    /* Top shimmer line */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 12%; right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 1px;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.5; left: 20%; right: 20%; }
+      50%       { opacity: 1;   left: 8%;  right: 8%;  }
+    }
+
+    /* ── Status badge ── */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-lo);
+      border: 1px solid rgba(123,110,248,0.3);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.1s;
+    }
+
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1;   transform: scale(1);    box-shadow: 0 0 0 0   rgba(123,110,248,0.5); }
+      50%       { opacity: 0.5; transform: scale(0.7);  box-shadow: 0 0 0 4px rgba(123,110,248,0);   }
+    }
+
+    /* ── Headline (typewriter target) ── */
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+      min-height: 2.8em;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.3s;
+    }
+
+    h1 .accent { color: var(--accent); }
+
+    /* Blinking cursor */
+    .cursor {
+      display: inline-block;
+      width: 2px; height: 1em;
+      background: var(--accent);
+      margin-left: 3px;
+      vertical-align: middle;
+      border-radius: 1px;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* ── Message ── */
+    .message {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-sub);
+      max-width: 400px;
+      margin: 0 auto 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.5s;
+    }
+
+    /* ── Progress bar ── */
+    .progress-wrap {
+      background: var(--border);
+      border-radius: 999px;
+      height: 3px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.7s;
+    }
+
+    .progress-bar {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), #B8AFFF);
+      width: 0%;
+      animation: progressFill 4s cubic-bezier(0.4, 0, 0.2, 1) forwards 2s,
+                 progressLoop 6s ease-in-out infinite 6.2s;
+    }
+
+    @keyframes progressFill {
+      to { width: 70%; }
+    }
+
+    @keyframes progressLoop {
+      0%   { width: 70%; }
+      40%  { width: 88%; }
+      60%  { width: 88%; }
+      100% { width: 70%; }
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.8s;
+    }
+
+    /* ── Signature ── */
+    .signature {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.9s;
+    }
+
+    .logo-mark {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: var(--accent-lo);
+      border: 1px solid rgba(123,110,248,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      animation: logoGlow 3s ease-in-out infinite 2.5s;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% { box-shadow: 0 0 0 0   rgba(123,110,248,0); }
+      50%       { box-shadow: 0 0 12px 2px rgba(123,110,248,0.35); }
+    }
+
+    .sig-text { text-align: left; }
+
+    .sig-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px; font-weight: 600;
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em;
     }
 
-    .card {
-      position: relative;
-      width: 100%;
-      max-width: 480px;
-      background: var(--card-bg);
-      backdrop-filter: blur(25px) saturate(180%);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 56px 32px 48px;
+    .sig-role { font-size: 12px; color: var(--text-sub); margin-top: 1px; }
+
+    /* ── Footer ── */
+    .footer {
+      position: fixed;
+      bottom: 1.5rem; left: 0; right: 0;
       text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-      animation: fadeIn 0.6s var(--transition) forwards;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 2.2s;
     }
 
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 10px;
+    /* shared fade-up */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0);    }
     }
 
-    p {
-      color: var(--muted);
-      font-size: 0.95rem;
+    @media (max-width: 480px) {
+      .card { border-radius: 14px; }
+      .card-wrap { border-radius: 15px; }
+      .card-wrap::before { border-radius: 15px; }
     }
 
-    .omega {
-      position: absolute;
-      top: -80px;
-      left: 50%;
-      width: 140px;
-      height: 140px;
-      transform: translateX(-50%);
-      animation: float 6s ease-in-out infinite, rotate 20s linear infinite;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 12px rgba(124,77,255,0.3));
-    }
-
-    .redirect-icon {
-      width: 56px;
-      height: 56px;
-      margin: 28px auto 16px;
-      position: relative;
-      border: 3px solid rgba(255,255,255,0.2);
-      border-top: 3px solid var(--accent);
-      border-radius: 50%;
-      animation: spin 1.4s linear infinite;
-    }
-
-    .redirect-arrow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      width: 16px;
-      height: 16px;
-      border-right: 3px solid var(--accent);
-      border-top: 3px solid var(--accent);
-      border-radius: 2px;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -5px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .dot, .progress-bar, .logo-mark, .omega-bg,
+      .card-wrap::before, .card::after { animation: none !important; }
+      .card-wrap, .status-badge, h1, .message,
+      .progress-wrap, .divider, .signature, .footer {
+        animation: none !important; opacity: 1 !important; transform: none !important;
+      }
+      .omega-bg { opacity: 1; }
+      .progress-bar { width: 70%; }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="https://pack.ultrasmp.online/assets/omega-icon.png" alt="Omega Icon" class="omega">
-    <div class="redirect-icon">
-      <div class="redirect-arrow"></div>
+
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="omega-bg" aria-hidden="true">Ω</div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <main class="card-wrap" role="main">
+    <div class="card">
+
+      <div class="status-badge">
+        <span class="dot" aria-hidden="true"></span>
+        Manutenzione in corso
+      </div>
+
+      <h1 id="headline" aria-label="Ci scusiamo per il disagio"></h1>
+
+      <p class="message">
+        Il sito è attualmente offline, riporva tra poco.
+      </p>
+
+      <div class="progress-wrap" role="progressbar" aria-label="Avanzamento manutenzione" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar"></div>
+      </div>
+
+      <div class="divider" role="separator"></div>
+
+      <div class="signature">
+        <div class="logo-mark" aria-hidden="true">Ω</div>
+        <div class="sig-text">
+          <div class="sig-name">OmegaDEV</div>
+          <div class="sig-role">Cordiali saluti — il Team</div>
+        </div>
+      </div>
+
     </div>
-    <h1>Reindirizzamento in corso...</h1>
-    <p>Verifica della chiave salvata. Attendere...</p>
-  </div>
+  </main>
+
+  <footer class="footer" aria-label="Info pagina">
+    © 2025 OmegaDEV · Tutti i diritti riservati
+  </footer>
+
+  <script>
+    /* ── Typewriter on h1 ── */
+    (function () {
+      const el = document.getElementById('headline');
+      const lines = ['Ci scusiamo per', 'il <span class="accent">disagio</span>'];
+      const fullText = 'Ci scusiamo per\nil disagio';
+      const chars = Array.from('Ci scusiamo per\nil disagio');
+      let i = 0;
+      const cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      cursor.setAttribute('aria-hidden', 'true');
+
+      el.innerHTML = '';
+      el.appendChild(cursor);
+
+      function tick() {
+        if (i < chars.length) {
+          const ch = chars[i];
+          if (ch === '\n') {
+            el.insertBefore(document.createElement('br'), cursor);
+          } else {
+            const isAccentStart = i === 17;
+            const txt = document.createTextNode(ch);
+            if (i >= 17) {
+              let span = el.querySelector('span.accent');
+              if (!span) {
+                span = document.createElement('span');
+                span.className = 'accent';
+                el.insertBefore(span, cursor);
+              }
+              span.appendChild(txt);
+            } else {
+              el.insertBefore(txt, cursor);
+            }
+          }
+          i++;
+          setTimeout(tick, i < 17 ? 55 : 65);
+        } else {
+          setTimeout(() => { cursor.style.display = 'none'; }, 1800);
+        }
+      }
+
+      setTimeout(tick, 1400);
+    })();
+
+    /* ── Canvas particles ── */
+    (function () {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const COUNT = 55;
+      const ACCENT = [123, 110, 248];
+
+      for (let i = 0; i < COUNT; i++) {
+        particles.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          r: Math.random() * 1.4 + 0.3,
+          speed: Math.random() * 0.35 + 0.1,
+          drift: (Math.random() - 0.5) * 0.25,
+          alpha: Math.random() * 0.35 + 0.05,
+          pulse: Math.random() * Math.PI * 2,
+        });
+      }
+
+      function frame(t) {
+        ctx.clearRect(0, 0, W, H);
+        for (const p of particles) {
+          p.y -= p.speed;
+          p.x += p.drift;
+          p.pulse += 0.012;
+          const a = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
+          if (p.y < -4) { p.y = H + 4; p.x = Math.random() * W; }
+          if (p.x < -4 || p.x > W + 4) p.x = Math.random() * W;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${ACCENT[0]},${ACCENT[1]},${ACCENT[2]},${a.toFixed(3)})`;
+          ctx.fill();
+        }
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+  </script>
+
 </body>
 </html>
