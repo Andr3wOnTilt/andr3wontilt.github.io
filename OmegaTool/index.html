@@ -5,203 +5,333 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OmegaTool — Download</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#08070c;
-  --surface:#121018;
-  --surface-2:#1a1622;
-  --border:#2a2435;
-  --violet:#8b5cf6;
-  --violet-bright:#a78bfa;
-  --violet-dim:#4c3a75;
-  --text:#e9e6f2;
-  --text-dim:#8a8497;
-  --green:#4ade80;
+  --panel:#0d0b14;
+  --panel-2:#120f1c;
+  --line:#231d33;
+  --accent:#8b5cf6;
+  --accent-2:#a78bfa;
+  --text:#e5e0f5;
+  --muted:#6b6480;
+  --ok:#4ade80;
+  --warn:#f59e0b;
+  --mono:'JetBrains Mono', monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html,body{height:100%;}
 body{
   background:var(--bg);
-  background-image:
-    radial-gradient(circle at 15% 10%, rgba(139,92,246,0.08), transparent 40%),
-    radial-gradient(circle at 85% 60%, rgba(139,92,246,0.06), transparent 45%);
   color:var(--text);
-  font-family:'JetBrains Mono', monospace;
-  min-height:100vh;
-  line-height:1.5;
+  font-family:var(--mono);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(139,92,246,0.10), transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(139,92,246,0.08), transparent 40%);
 }
-.wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+.wrap{
+  flex:1 1 auto;
+  min-height:0;
+  width:100%;
+  max-width:860px;
+  margin:0 auto;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
 
-header{
-  border-bottom:1px solid var(--border);
-  padding:22px 0;
+.header{
+  flex-shrink:0;
+  display:flex;align-items:center;gap:10px;
+  padding:16px 24px;
+  border-bottom:1px solid var(--line);
+  background:var(--bg);
 }
-header .wrap{display:flex;align-items:center;justify-content:space-between;}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:1px;}
-.logo .omega{color:var(--violet-bright);}
-.badge{
-  font-size:11px;color:var(--text-dim);border:1px solid var(--border);
-  padding:4px 10px;border-radius:20px;letter-spacing:0.5px;
+.header .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent);}
+.header span{font-size:13px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
+
+.term{
+  width:100%;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  opacity:1;
+  display:flex;
+  flex-direction:column;
+  max-height:100%;
+  min-height:0;
+  overflow:hidden;
+}
+.term.closing{
+  display:none;
+}
+.term-bar{
+  display:flex;align-items:center;
+  padding:0 0 0 14px;background:var(--panel-2);
+  border-bottom:1px solid var(--line);
+  height:36px;
+  flex-shrink:0;
+}
+.term-bar .app-icon{
+  width:14px;height:14px;border-radius:3px;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  flex-shrink:0;
+}
+.term-bar .title{
+  margin-left:10px;font-size:12.5px;color:var(--muted);
+  font-weight:500;
+}
+.win-controls{display:flex;height:100%;margin-left:auto;}
+.win-controls button{
+  width:44px;height:100%;border:none;background:transparent;
+  color:var(--muted);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:13px;
+  transition:background .1s ease, color .1s ease;
+}
+.win-controls button:hover{background:#1b1728;color:var(--text);}
+.win-controls button.close:hover{background:#c0392b;color:#fff;}
+.term-body{padding:32px 28px;overflow-y:auto;flex:1;min-height:0;}
+
+.ascii{
+  color:var(--accent-2);
+  font-size:11px;
+  line-height:1.3;
+  white-space:pre;
+  margin-bottom:24px;
+  opacity:.9;
 }
 
-.hero{padding:90px 0 60px;position:relative;}
-.eyebrow{
-  color:var(--violet-bright);font-size:13px;letter-spacing:2px;
-  text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px;
-}
-.eyebrow::before{content:'';width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);}
 h1{
-  font-size:clamp(38px,6vw,64px);font-weight:800;letter-spacing:-1px;
-  line-height:1.05;margin-bottom:22px;
+  font-size:28px;font-weight:800;letter-spacing:-.01em;
+  margin-bottom:6px;
 }
-h1 span{color:var(--violet-bright);}
-.lead{color:var(--text-dim);font-size:16px;max-width:560px;margin-bottom:40px;}
+.sub{color:var(--muted);font-size:14px;margin-bottom:28px;}
 
-.terminal{
-  background:var(--surface);border:1px solid var(--border);border-radius:10px;
-  overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);margin-bottom:40px;
+.status-line{
+  display:flex;align-items:center;gap:10px;
+  font-size:14px;margin-bottom:4px;
 }
-.terminal-bar{
-  background:var(--surface-2);padding:10px 16px;display:flex;align-items:center;gap:8px;
-  border-bottom:1px solid var(--border);
+.status-line .prompt{color:var(--accent-2);}
+.status-line .k{color:var(--muted);}
+.status-line .v{color:var(--text);font-weight:600;}
+.cursor{
+  display:inline-block;width:8px;height:16px;background:var(--accent-2);
+  animation:blink 1s step-end infinite;vertical-align:-3px;
 }
-.dot{width:10px;height:10px;border-radius:50%;}
-.dot.r{background:#ff5f57;}
-.dot.y{background:#febc2e;}
-.dot.g{background:#28c840;}
-.terminal-title{margin-left:8px;font-size:12px;color:var(--text-dim);}
-.terminal-body{padding:22px;font-size:14px;}
-.terminal-body .line{margin-bottom:6px;}
-.prompt{color:var(--green);}
-.path{color:var(--violet-bright);}
-.cmd{color:var(--text);}
-.out{color:var(--text-dim);}
-.cursor{display:inline-block;width:8px;height:16px;background:var(--violet-bright);vertical-align:middle;animation:blink 1s step-end infinite;}
 @keyframes blink{50%{opacity:0;}}
+@media (prefers-reduced-motion: reduce){.cursor{animation:none;}}
 
-.cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
-.btn{
+.meta{margin:24px 0 28px;display:flex;flex-direction:column;gap:6px;}
+
+.cta{
   display:inline-flex;align-items:center;gap:10px;
-  background:var(--violet);color:#fff;border:none;
-  padding:15px 26px;border-radius:8px;font-family:inherit;font-weight:700;
-  font-size:15px;text-decoration:none;cursor:pointer;
-  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-  box-shadow:0 0 0 rgba(139,92,246,0);
+  background:var(--accent);color:#0a0813;
+  font-family:var(--mono);font-weight:700;font-size:15px;
+  padding:14px 22px;border-radius:8px;text-decoration:none;
+  border:1px solid var(--accent);
+  transition:background .15s ease, transform .1s ease;
 }
-.btn:hover{background:var(--violet-bright);transform:translateY(-2px);box-shadow:0 10px 30px rgba(139,92,246,0.35);}
-.btn:active{transform:translateY(0);}
-.btn svg{width:16px;height:16px;}
-.meta-line{color:var(--text-dim);font-size:12.5px;}
-.meta-line b{color:var(--text);font-weight:600;}
+.cta:hover{background:var(--accent-2);}
+.cta:active{transform:translateY(1px);}
+.cta:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;}
+.cta .size{color:rgba(10,8,19,.6);font-weight:500;}
 
-section{padding:50px 0;border-top:1px solid var(--border);}
-.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:28px;}
-.section-head .idx{color:var(--violet-dim);font-weight:800;font-size:13px;}
-.section-head h2{font-size:20px;font-weight:700;letter-spacing:0.3px;}
-
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.card{
-  background:var(--surface);border:1px solid var(--border);border-radius:10px;
-  padding:20px;transition:border-color .15s ease;
+.hash{
+  margin-top:14px;font-size:11px;color:var(--muted);
+  word-break:break-all;
 }
-.card:hover{border-color:var(--violet-dim);}
-.card .k{color:var(--violet-bright);font-size:13px;font-weight:700;margin-bottom:8px;}
-.card .v{color:var(--text-dim);font-size:13px;}
+.hash span{color:var(--accent-2);}
 
-.specs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.spec-row{display:contents;}
-.spec-row div{padding:14px 18px;font-size:13.5px;border-bottom:1px solid var(--border);}
-.spec-row:last-child div{border-bottom:none;}
-.spec-row .k{color:var(--text-dim);background:var(--surface);}
-.spec-row .v{color:var(--text);background:var(--surface);border-left:1px solid var(--border);}
+.divider{height:1px;background:var(--line);margin:32px 0;}
 
-.changelog{border-left:2px solid var(--violet-dim);padding-left:20px;}
-.changelog .entry{margin-bottom:22px;}
-.changelog .ver{color:var(--violet-bright);font-weight:700;font-size:14px;margin-bottom:4px;}
-.changelog .date{color:var(--text-dim);font-size:11.5px;margin-left:8px;}
-.changelog ul{list-style:none;margin-top:8px;}
-.changelog li{color:var(--text-dim);font-size:13px;padding-left:16px;position:relative;margin-bottom:4px;}
-.changelog li::before{content:'>';position:absolute;left:0;color:var(--violet-dim);}
+.log-title{font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.log-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.log-list li{
+  font-size:13.5px;line-height:1.5;color:var(--text);
+  padding-left:18px;position:relative;
+}
+.log-list li::before{
+  content:'>';position:absolute;left:0;color:var(--accent);font-weight:700;
+}
 
-footer{border-top:1px solid var(--border);padding:30px 0;color:var(--text-dim);font-size:12px;display:flex;justify-content:space-between;}
+.err{color:var(--warn);font-size:13px;}
 
-@media(max-width:720px){
-  .grid{grid-template-columns:1fr;}
-  .specs{grid-template-columns:1fr;}
-  .spec-row .v{border-left:none;border-top:1px solid var(--border);}
-  footer{flex-direction:column;gap:8px;}
+.footer{
+  flex-shrink:0;
+  text-align:center;color:var(--muted);font-size:12px;
+  padding:14px 24px;
+  border-top:1px solid var(--line);
+  background:var(--bg);
+}
+.footer a{color:var(--accent-2);text-decoration:none;}
+.footer a:hover{text-decoration:underline;}
+
+.taskbar-btn{
+  display:none;
+  width:88px;flex-direction:column;align-items:center;gap:6px;
+  background:transparent;border:none;cursor:pointer;
+  padding:10px 8px;border-radius:4px;
+}
+.taskbar-btn.visible{display:flex;}
+.taskbar-btn:hover .icon-box, .taskbar-btn:focus-visible .icon-box{
+  outline:1px dashed rgba(167,139,250,.5);
+  background:rgba(139,92,246,.08);
+}
+.icon-box{
+  position:relative;width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:6px;
+}
+.icon-box img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));}
+.icon-fallback{
+  display:none;width:38px;height:38px;
+  align-items:center;justify-content:center;
+  font-size:22px;font-weight:800;color:var(--accent-2);
+  background:linear-gradient(135deg, rgba(139,92,246,.25), rgba(167,139,250,.15));
+  border-radius:6px;
+}
+.shortcut-arrow{
+  position:absolute;left:-2px;bottom:-2px;
+  width:16px;height:16px;
+  background:var(--panel-2);border:1px solid var(--line);
+  border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+}
+.shortcut-arrow svg{width:10px;height:10px;}
+.taskbar-btn .label{
+  font-family:var(--mono);font-size:11px;color:var(--text);
+  text-align:center;line-height:1.3;
+  text-shadow:0 1px 3px rgba(0,0,0,.8);
+}
+.taskbar-btn:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;}
+
+@media (max-width:600px){
+  .term-body{padding:24px 18px;}
+  .ascii{font-size:9px;}
+  h1{font-size:22px;}
 }
 </style>
 </head>
 <body>
-
-<header>
-  <div class="wrap">
-    <div class="logo"><span class="omega">Ω</span>megaDEV</div>
-    <div class="badge">SYSTEM UTILITY</div>
-  </div>
-</header>
-
-<div class="hero wrap">
-  <div class="eyebrow">BETA</div>
-  <h1>Scarica <span>OmegaTool</span></h1>
-  <p class="lead">Utility di sistema per Windows: monitoraggio hardware, manutenzione automatica, aggiornamenti integrati. Un solo eseguibile, zero configurazione.</p>
-
-  <div class="terminal">
-    <div class="terminal-bar">
-      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-      <div class="terminal-title">omegatool.exe</div>
-    </div>
-    <div class="terminal-body">
-      <div class="line"><span class="prompt">C:\></span> <span class="cmd">omegatool.exe</span></div>
-      <div class="line out">OmegaTool BETA — SHA256 verificato</div>
-    </div>
-  </div>
-
-  <div class="cta-row">
-    <a src="https://andr3wontilt.github.io/OmegaTool/OmegaTool.exe" id="downloadBtn" class="btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v13m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
-      Scarica per Windows
-    </a>
-    <div class="meta-line"><b>~18 MB</b> · Windows 10/11 x64 · richiede privilegi amministratore</div>
-  </div>
+<div class="header">
+  <div class="dot"></div><span>OmegaDEV</span>
 </div>
 
-<section class="wrap">
-  <div class="section-head"><span class="idx">01</span><h2>Cosa include</h2></div>
-  <div class="grid">
-    <div class="card"><div class="k">Monitoraggio hardware</div><div class="v">CPU, GPU, RAM in tempo reale con schede colorate per vendor.</div></div>
-    <div class="card"><div class="k">Manutenzione</div><div class="v">SFC e DISM con log live e possibilità di annullare in corso.</div></div>
-    <div class="card"><div class="k">Aggiornamenti automatici</div><div class="v">Controllo versione con verifica integrità SHA256.</div></div>
-    <div class="card"><div class="k">Terminale integrato</div><div class="v">Streaming output in tempo reale per ogni operazione di sistema.</div></div>
-    <div class="card"><div class="k">Controllo EOL Windows</div><div class="v">Verifica automatica della fine supporto della tua versione.</div></div>
-    <div class="card"><div class="k">Interfaccia dark</div><div class="v">Tema scuro violetto, nessuna configurazione richiesta.</div></div>
-  </div>
-</section>
+<div class="wrap">
 
-<section class="wrap">
-  <div class="section-head"><span class="idx">02</span><h2>Requisiti</h2></div>
-  <div class="specs">
-    <div class="spec-row"><div class="k">Sistema operativo</div><div class="v">Windows 10 64-bit o superiore</div></div>
-    <div class="spec-row"><div class="k">Privilegi</div><div class="v">Amministratore (elevazione UAC automatica)</div></div>
-    <div class="spec-row"><div class="k">Spazio su disco</div><div class="v">~50 MB</div></div>
-    <div class="spec-row"><div class="k">Connessione</div><div class="v">Richiesta per il controllo aggiornamenti</div></div>
-  </div>
-</section>
+  <div class="term">
+    <div class="term-bar">
+      <div class="app-icon"></div>
+      <span class="title">OmegaTool.exe@download-latest</span>
+      <div class="win-controls">
+        <button aria-hidden="true">─</button>
+        <button aria-hidden="true">☐</button>
+        <button class="close" id="close-btn" aria-label="Chiudi">✕</button>
+      </div>
+    </div>
+    <div class="term-body">
+      <pre class="ascii">  ___  __  __ ___ ___   _
+ / _ \|  \/  | __/ __| /_\
+| (_) | |\/| | _| (_ |/ _ \
+ \___/|_|  |_|___\___/_/ \_\</pre>
 
-<footer class="wrap">
-  <div>© 2026 OmegaDEV</div>
-  <div>OmegaTool BETA</div>
-</footer>
+      <h1>OmegaTool</h1>
+      <div class="sub">Utility di sistema per Windows — monitoraggio hardware, manutenzione, aggiornamenti.</div>
+
+      <div id="status">
+        <div class="status-line"><span class="prompt">$</span><span class="k">fetch</span> version.json<span class="cursor"></span></div>
+      </div>
+
+      <div id="meta" class="meta" style="display:none">
+        <div class="status-line"><span class="k">versione</span><span class="v" id="v-version">—</span></div>
+        <div class="status-line"><span class="k">rilasciata</span><span class="v" id="v-date">—</span></div>
+      </div>
+
+      <a id="dl-btn" class="cta" href="#" style="display:none">
+        ⭳ Scarica OmegaTool <span class="size" id="dl-name"></span>
+      </a>
+      <div class="hash" id="dl-hash" style="display:none"></div>
+
+      <div class="divider"></div>
+
+      <div class="log-title">Changelog</div>
+      <ul class="log-list" id="changelog"></ul>
+    </div>
+  </div>
+
+  <button class="taskbar-btn" id="restore-btn" aria-label="Riapri OmegaTool">
+    <div class="icon-box">
+      <img src="iconOmegaTool.png" alt="OmegaTool" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="icon-fallback">Ω</div>
+      <div class="shortcut-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17L17 7M7 7h10v10"/>
+        </svg>
+      </div>
+    </div>
+    <span class="label">OmegaTool.exe</span>
+  </button>
+
+</div>
+
+<div class="footer">© OmegaDEV — <a href="index.html">torna al sito</a></div>
 
 <script>
-document.getElementById('downloadBtn').addEventListener('click', function(e){
-  e.preventDefault();
-  window.location.href = 'https://pack.ultrasmp.online/update/OmegaTool_latest.exe';
-});
-</script>
+async function loadVersionInfo(){
+  const statusEl = document.getElementById('status');
+  try{
+    const res = await fetch('version.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
 
+    document.getElementById('v-version').textContent = data.version || 'n/d';
+    document.getElementById('v-date').textContent = data.date || 'n/d';
+    document.getElementById('meta').style.display = 'flex';
+
+    const dlBtn = document.getElementById('dl-btn');
+    dlBtn.href = data.download || (data.file || '');
+    document.getElementById('dl-name').textContent = data.download || data.file || '';
+    dlBtn.style.display = 'inline-flex';
+
+    if(data.sha256){
+      document.getElementById('dl-hash').innerHTML = 'SHA256 <span>' + data.sha256 + '</span>';
+      document.getElementById('dl-hash').style.display = 'block';
+    }
+
+    const list = document.getElementById('changelog');
+    const entries = Array.isArray(data.changelog) ? data.changelog : [];
+    list.innerHTML = entries.length
+      ? entries.map(e => '<li>' + e + '</li>').join('')
+      : '<li>Nessuna nota di rilascio disponibile.</li>';
+
+    statusEl.innerHTML = '<div class="status-line"><span class="prompt">$</span><span class="k">fetch</span> version.json <span style="color:var(--ok)">ok</span></div>';
+  }catch(err){
+    statusEl.innerHTML = '<div class="status-line err">✕ version.json non trovato o non leggibile (' + err.message + ')</div>';
+  }
+}
+loadVersionInfo();
+
+const termEl = document.querySelector('.term');
+const restoreBtn = document.getElementById('restore-btn');
+
+document.getElementById('close-btn').addEventListener('click', () => {
+  termEl.classList.add('closing');
+  restoreBtn.classList.add('visible');
+});
+
+restoreBtn.addEventListener('click', () => {
+  termEl.classList.remove('closing');
+  restoreBtn.classList.remove('visible');
+});
+
+</script>
 </body>
 </html>
