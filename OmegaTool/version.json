@@ -1,12 +1,19 @@
 {
-    "version": "0.10.538-BETA", 
-    "date": "04-08-2026",
+    "version": "0.11-BETA", 
+    "date": "15-09-2026",
     "download": "OmegaTool.exe",
-    "sha256": "5793a64a5b7ffb19e8f514f98334a939a0a26e0af5b87211e4d74386d9890edd", 
-    "url": "https://pack.ultrasmp.online/update/OmegaTool.exe",
+    "sha256": "ec6e9599f3114585fd17dc91deeedb53e33e3373743bce6edf327b4ebc1eb84e", 
+    "url": "https://pack.ultrasmp.online/OmegaTool/OmegaTool.exe",
     "changelog": 
     [
         "Interfaccia Manutenzione rinnovata con un design moderno e più dettagliato.",
-        "Possibilità di installare applicazioni supportate tramite la sezione WINGET"
-    ]   
+        "Possibilità di installare applicazioni supportate tramite la sezione WINGET",
+        "Funzionalità di Backup - Concept ancora in sviluppo (Early Access)",
+        "Ottimizzazione UI e Bug-Fix vari"
+    ]
+    "latest_windows":
+    {
+        "10": "22H2", 
+        "11": "25H2"
+    }
 }
