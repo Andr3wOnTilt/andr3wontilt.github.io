@@ -10,7 +10,7 @@
         "Possibilità di installare applicazioni supportate tramite la sezione WINGET",
         "Funzionalità di Backup - Concept ancora in sviluppo (Early Access)",
         "Ottimizzazione UI e Bug-Fix vari"
-    ]
+    ],
     "latest_windows":
     {
         "10": "22H2", 
