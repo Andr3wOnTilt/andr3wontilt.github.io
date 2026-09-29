@@ -1,15 +1,16 @@
 {
-    "version": "0.11-BETA", 
-    "date": "15-09-2026",
+    "version": "0.12-BETA", 
+    "date": "30-09-2026",
     "download": "OmegaTool.exe",
-    "sha256": "ec6e9599f3114585fd17dc91deeedb53e33e3373743bce6edf327b4ebc1eb84e", 
+    "sha256": "4483f5a8e1029abbf77c7786f2c4677b2db293c49d242c0bc15078a91e4ac3a9", 
     "url": "https://pack.ultrasmp.online/OmegaTool/OmegaTool.exe",
     "changelog": 
     [
-        "Interfaccia Manutenzione rinnovata con un design moderno e più dettagliato.",
-        "Possibilità di installare applicazioni supportate tramite la sezione WINGET",
-        "Funzionalità di Backup - Concept ancora in sviluppo (Early Access)",
-        "Ottimizzazione UI e Bug-Fix vari"
+        "Nuova sezione Backup: crea e ripristina archivi cifrati con password.",
+        "Due modalità: una rapida con le cartelle principali, una avanzata con la scelta esatta dei file.",
+        "Ripristino completo con un solo clic.",
+        "Archivi salvati in modo sicuro, anche se il programma viene chiuso durante l'operazione.",
+        "Interfaccia più scattante e vari problemi risolti."
     ],
     "latest_windows":
     {
