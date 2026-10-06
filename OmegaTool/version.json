@@ -1,15 +1,12 @@
 {
-    "version": "0.12-BETA", 
-    "date": "30-09-2026",
+    "version": "0.13-BETA", 
+    "date": "06-10-2026",
     "download": "OmegaTool.exe",
-    "sha256": "8f7015aa5a8bccb74ef81997916225d5ffedc3b9765fdaaf32ec13499072939c", 
+    "sha256": "C6E583931FACD4482C9905C7A8CD7F89AD255D0B72153912AE85EE1BEF0A01FA", 
     "url": "https://pack.ultrasmp.online/OmegaTool/OmegaTool.exe",
     "changelog": 
     [
-        "Nuova sezione Backup: crea e ripristina archivi cifrati con password.",
-        "Due modalità: una rapida con le cartelle principali, una avanzata con la scelta esatta dei file.",
-        "Ripristino completo con un solo clic.",
-        "Archivi salvati in modo sicuro, anche se il programma viene chiuso durante l'operazione.",
+        "Nuova Home, rifatta da zero.",
         "Interfaccia più scattante e vari problemi risolti."
     ],
     "latest_windows":
