@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="fuochiTitle fuochiDesc">
+  <title id="fuochiTitle">La notte dell'inaugurazione</title>
+  <desc id="fuochiDesc">Fuochi d'artificio colorati esplodono sopra lo spawn di UltraSMP.</desc>
+  <defs>
+    <linearGradient id="fuSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#060a12"/>
+      <stop offset=".6" stop-color="#0d1820"/>
+      <stop offset="1" stop-color="#1d1a12"/>
+    </linearGradient>
+    <linearGradient id="fuStone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c3b36"/>
+      <stop offset="1" stop-color="#0b100e"/>
+    </linearGradient>
+    <radialGradient id="fuGold" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset=".4" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fuGreen" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#d9f99d"/>
+      <stop offset=".4" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#059669" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fuPurple" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#f5d0fe"/>
+      <stop offset=".4" stop-color="#c084fc"/>
+      <stop offset="1" stop-color="#7e22ce" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="fuGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0v80" fill="none" stroke="#fef3c7" stroke-opacity=".035"/>
+    </pattern>
+    <filter id="fuBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+    <filter id="fuGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#fuSky)"/>
+  <rect width="1600" height="900" fill="url(#fuGrid)"/>
+  <g fill="#fef3c7" opacity=".45">
+    <circle cx="140" cy="120" r="2"/><circle cx="310" cy="210" r="1.5"/><circle cx="520" cy="90" r="2"/>
+    <circle cx="760" cy="170" r="1.5"/><circle cx="1010" cy="80" r="2"/><circle cx="1260" cy="160" r="1.5"/>
+    <circle cx="1460" cy="90" r="2"/><circle cx="1380" cy="300" r="1.5"/>
+  </g>
+  <g filter="url(#fuGlow)">
+    <g transform="translate(430 290)">
+      <circle r="92" fill="url(#fuGold)" opacity=".7" filter="url(#fuBlur)"/>
+      <g stroke="#fbbf24" stroke-width="4" stroke-linecap="round">
+        <path d="M0-130v54M0 76v54M-130 0h54M76 0h54M-92-92l38 38M54 54l38 38M92-92l-38 38M-54 54l-38 38"/>
+      </g>
+      <g stroke="#fde68a" stroke-width="3" stroke-linecap="round" opacity=".8">
+        <path d="M-44-122l18 50M44-122l-18 50M-122-44l50 18M122-44l-50 18M-122 44l50-18M122 44l-50-18M-44 122l18-50M44 122l-18-50"/>
+      </g>
+      <g fill="#fef3c7">
+        <circle cx="0" cy="-139" r="5"/><circle cx="0" cy="139" r="5"/><circle cx="-139" cy="0" r="5"/><circle cx="139" cy="0" r="5"/>
+        <circle cx="-100" cy="-100" r="4"/><circle cx="100" cy="100" r="4"/><circle cx="100" cy="-100" r="4"/><circle cx="-100" cy="100" r="4"/>
+      </g>
+    </g>
+    <g transform="translate(1120 230)">
+      <circle r="76" fill="url(#fuGreen)" opacity=".7" filter="url(#fuBlur)"/>
+      <g stroke="#34d399" stroke-width="4" stroke-linecap="round">
+        <path d="M0-110v46M0 64v46M-110 0h46M64 0h46M-78-78l32 32M46 46l32 32M78-78l-32 32M-46 46l-32 32"/>
+      </g>
+      <g fill="#d9f99d">
+        <circle cx="0" cy="-118" r="5"/><circle cx="0" cy="118" r="5"/><circle cx="-118" cy="0" r="5"/><circle cx="118" cy="0" r="5"/>
+        <circle cx="-84" cy="-84" r="4"/><circle cx="84" cy="84" r="4"/><circle cx="84" cy="-84" r="4"/><circle cx="-84" cy="84" r="4"/>
+      </g>
+    </g>
+    <g transform="translate(800 430)">
+      <circle r="54" fill="url(#fuPurple)" opacity=".7" filter="url(#fuBlur)"/>
+      <g stroke="#c084fc" stroke-width="3" stroke-linecap="round">
+        <path d="M0-82v34M0 48v34M-82 0h34M48 0h34M-58-58l24 24M34 34l24 24M58-58l-24 24M-34 34l-24 24"/>
+      </g>
+      <g fill="#f5d0fe">
+        <circle cx="0" cy="-88" r="4"/><circle cx="0" cy="88" r="4"/><circle cx="-88" cy="0" r="4"/><circle cx="88" cy="0" r="4"/>
+        <circle cx="-62" cy="-62" r="3"/><circle cx="62" cy="62" r="3"/><circle cx="62" cy="-62" r="3"/><circle cx="-62" cy="62" r="3"/>
+      </g>
+    </g>
+    <g transform="translate(1440 470)" opacity=".7">
+      <circle r="42" fill="url(#fuGold)" opacity=".5" filter="url(#fuBlur)"/>
+      <g stroke="#fbbf24" stroke-width="3" stroke-linecap="round">
+        <path d="M0-64v24M0 40v24M-64 0h24M40 0h24M-45-45l18 18M27 27l18 18M45-45l-18 18M-27 27l-18 18"/>
+      </g>
+    </g>
+  </g>
+  <path d="M0 700l190-40 180 28 210-44 200 38 200-30 210 42 190-24 220 20v210H0z" fill="#08100c"/>
+  <path d="M0 780l250-24 240 28 260-26 250 22 260-18 240 20 100-6v124H0z" fill="#040806"/>
+  <g>
+    <path d="M620 690V470l100-40 100 40v220z" fill="url(#fuStone)"/>
+    <path d="M700 430l140-56 140 56v260H700z" fill="#1c2e28"/>
+    <path d="M760 690V500l80-32 80 32v190z" fill="#101f1a"/>
+    <path d="M650 470l70-44 70 44-70 28z" fill="#3e554c"/>
+    <path d="M720 430l120-48 120 48-120 34z" fill="#486158"/>
+    <path d="M610 440h60v-74h-60zM930 440h60v-74h-60z" fill="#243a32"/>
+    <path d="M600 366l40-46 40 46zM920 366l40-46 40 46z" fill="#a16207"/>
+    <path d="M740 380v-70h40v70z" fill="#2c453c"/>
+    <path d="M730 310l30-40 30 40z" fill="#fbbf24"/>
+    <rect x="742" y="560" width="116" height="130" fill="#050b09"/>
+    <path d="M742 560c0-34 26-56 58-56s58 22 58 56z" fill="#0b1713"/>
+    <g filter="url(#fuGlow)">
+      <rect x="778" y="440" width="10" height="10" fill="#fbbf24"/>
+      <rect x="816" y="440" width="10" height="10" fill="#34d399"/>
+      <rect x="654" y="440" width="8" height="8" fill="#fbbf24"/>
+      <rect x="940" y="440" width="8" height="8" fill="#34d399"/>
+    </g>
+    <g fill="#14251f">
+      <rect x="300" y="610" width="26" height="90"/>
+      <rect x="1270" y="600" width="26" height="100"/>
+    </g>
+    <g fill="#14532d">
+      <rect x="268" y="556" width="60" height="62"/>
+      <rect x="326" y="578" width="46" height="54"/>
+      <rect x="1240" y="544" width="58" height="68"/>
+      <rect x="1296" y="572" width="46" height="54"/>
+    </g>
+  </g>
+  <g font-family="'Trebuchet MS', 'Segoe UI', sans-serif">
+    <text x="110" y="150" fill="#fbbf24" font-size="20" font-weight="700" letter-spacing="7">INAUGURAZIONE</text>
+    <text x="110" y="790" fill="#fffbeb" font-size="56" font-weight="800">SI COMINCIA INSIEME.</text>
+    <text x="112" y="828" fill="#cbbfa8" font-size="22" letter-spacing="3">12 SETTEMBRE · ORE 21:00</text>
+  </g>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#fbbf24" stroke-opacity=".18" stroke-width="2"/>
+</svg>

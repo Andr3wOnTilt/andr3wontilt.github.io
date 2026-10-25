@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">UltraSMP</title>
+  <desc id="logoDesc">Cubo isometrico di smeraldo, simbolo del server UltraSMP.</desc>
+  <defs>
+    <linearGradient id="logoBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1f18"/>
+      <stop offset="1" stop-color="#050b09"/>
+    </linearGradient>
+    <linearGradient id="cubeTop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a7f3d0"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#059669"/>
+      <stop offset="1" stop-color="#033b2b"/>
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#064e3b"/>
+    </linearGradient>
+    <filter id="logoGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="url(#logoBg)"/>
+  <rect x="4" y="4" width="120" height="120" rx="27" fill="none" stroke="#34d399" stroke-opacity=".22"/>
+  <circle cx="64" cy="64" r="42" fill="#34d399" opacity=".12" filter="url(#logoGlow)"/>
+  <g filter="url(#logoGlow)">
+    <path d="M64 24l36 20-36 20-36-20z" fill="url(#cubeTop)"/>
+    <path d="M28 44l36 20v40L28 84z" fill="url(#cubeLeft)"/>
+    <path d="M100 44L64 64v40l36-20z" fill="url(#cubeRight)"/>
+  </g>
+  <path d="M64 33l23 13-23 13-23-13z" fill="#052e22" opacity=".35"/>
+  <path d="M43 67v15l9 5V72zM76 72v15l9-5V67zM54 78v13l10 6 10-6V78l-10 5z" fill="#d1fae5" opacity=".9"/>
+  <circle cx="101" cy="27" r="3" fill="#a3e635"/>
+  <circle cx="24" cy="99" r="2" fill="#34d399"/>
+</svg>

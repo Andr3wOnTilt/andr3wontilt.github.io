@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="ecoTitle ecoDesc">
+  <title id="ecoTitle">Economia 2.0</title>
+  <desc id="ecoDesc">Un baule aperto pieno di monete d'oro, cristalli di smeraldo e un grafico del mercato.</desc>
+  <defs>
+    <radialGradient id="ecoBg" cx=".45" cy=".45" r=".8">
+      <stop offset="0" stop-color="#1c2a1d"/>
+      <stop offset=".5" stop-color="#0c1510"/>
+      <stop offset="1" stop-color="#040807"/>
+    </radialGradient>
+    <radialGradient id="ecoGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ecoWood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9a5b2a"/>
+      <stop offset="1" stop-color="#4a2a12"/>
+    </linearGradient>
+    <linearGradient id="ecoWoodTop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d18a4a"/>
+      <stop offset="1" stop-color="#7c421c"/>
+    </linearGradient>
+    <linearGradient id="ecoGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset=".4" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="ecoEmerald" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9f99d"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="ecoChart" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity=".55"/>
+    </linearGradient>
+    <pattern id="ecoGrid" width="84" height="84" patternUnits="userSpaceOnUse">
+      <path d="M84 0H0v84" fill="none" stroke="#fbbf24" stroke-opacity=".04"/>
+    </pattern>
+    <filter id="ecoBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="36"/>
+    </filter>
+    <filter id="ecoGlow2" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#ecoBg)"/>
+  <rect width="1600" height="900" fill="url(#ecoGrid)"/>
+  <circle cx="600" cy="500" r="340" fill="url(#ecoGlow)" filter="url(#ecoBlur)"/>
+  <path d="M0 720l180-32 200 38 220-44 260 38 200-26 300 46 240-30v190H0z" fill="#08110d"/>
+  <path d="M0 780l240-24 260 32 250-30 280 30 250-20 320 28v104H0z" fill="#050a08"/>
+  <g>
+    <path d="M320 430l210-70 210 58-210 84z" fill="#5b3519"/>
+    <path d="M320 430v228l210 84V502z" fill="url(#ecoWood)"/>
+    <path d="M740 418v228l-210 96V502z" fill="#6d3f1e"/>
+    <path d="M320 430l210-70 210 58-210 84z" fill="#8a4f24"/>
+    <path d="M370 440l160-54 158 44-158 64z" fill="#3b2110"/>
+    <path d="M320 502l210 84 210-96v42l-210 98-210-86z" fill="#2f1a0b"/>
+    <path d="M512 476l38-14 40 14-40 18z" fill="#fbbf24"/>
+    <path d="M522 484v56l28 12V496z" fill="#b45309"/>
+    <path d="M550 496v56l30-12v-56z" fill="#92400e"/>
+    <rect x="520" y="588" width="14" height="20" fill="#fde68a"/>
+    <g fill="url(#ecoGold)">
+      <circle cx="450" cy="500" r="24"/>
+      <circle cx="508" cy="520" r="20"/>
+      <circle cx="576" cy="506" r="26"/>
+      <circle cx="638" cy="488" r="20"/>
+      <circle cx="600" cy="550" r="22"/>
+      <circle cx="532" cy="570" r="18"/>
+      <circle cx="680" cy="528" r="16"/>
+      <circle cx="466" cy="552" r="16"/>
+    </g>
+    <g fill="#b45309">
+      <circle cx="450" cy="500" r="8"/>
+      <circle cx="576" cy="506" r="9"/>
+      <circle cx="600" cy="550" r="7"/>
+      <circle cx="508" cy="520" r="6"/>
+    </g>
+    <g filter="url(#ecoGlow2)">
+      <path d="M690 460l30-82 30 82-30 52z" fill="url(#ecoEmerald)"/>
+      <path d="M738 494l22-60 22 60-22 38z" fill="#34d399"/>
+      <path d="M430 472l20-54 20 54-20 34z" fill="url(#ecoEmerald)"/>
+    </g>
+    <g opacity=".65" fill="#fde68a">
+      <rect x="384" y="424" width="7" height="7"/>
+      <rect x="620" y="610" width="6" height="6"/>
+      <rect x="706" y="550" width="5" height="5"/>
+    </g>
+  </g>
+  <g>
+    <path d="M1000 300h420v330h-420z" fill="#06130f" opacity=".75"/>
+    <path d="M1020 610V340M1020 610h370" stroke="#34d399" stroke-opacity=".35" stroke-width="3"/>
+    <g stroke="#34d399" stroke-opacity=".13" stroke-width="2">
+      <path d="M1020 540h370M1020 470h370M1020 400h370"/>
+      <path d="M1110 340v270M1200 340v270M1290 340v270"/>
+    </g>
+    <path d="M1040 570l70-52 60 28 58-74 58 14 62-90v204h-308z" fill="url(#ecoChart)"/>
+    <path d="M1040 570l70-52 60 28 58-74 58 14 62-90" fill="none" stroke="#34d399" stroke-width="6" filter="url(#ecoGlow2)"/>
+    <g fill="#a3e635">
+      <circle cx="1110" cy="518" r="7"/>
+      <circle cx="1170" cy="546" r="7"/>
+      <circle cx="1228" cy="472" r="7"/>
+      <circle cx="1286" cy="486" r="7"/>
+      <circle cx="1348" cy="396" r="7"/>
+    </g>
+    <text x="1042" y="336" fill="#a7f3d0" font-family="monospace" font-size="18" letter-spacing="5">MERCATO GLOBALE</text>
+    <text x="1042" y="660" fill="#fbbf24" font-family="monospace" font-size="16" letter-spacing="3">+24.8% QUESTA SETTIMANA</text>
+  </g>
+  <g fill="#d1fae5" opacity=".35">
+    <circle cx="220" cy="180" r="2"/><circle cx="380" cy="260" r="1.5"/><circle cx="880" cy="200" r="2"/>
+    <circle cx="1120" cy="760" r="1.5"/><circle cx="1420" cy="240" r="2"/><circle cx="780" cy="140" r="1.5"/>
+  </g>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#fbbf24" stroke-opacity=".18" stroke-width="2"/>
+</svg>

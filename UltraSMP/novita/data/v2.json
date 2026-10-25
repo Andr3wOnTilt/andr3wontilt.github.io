@@ -1,0 +1,9 @@
+{
+  "version": "BETA-Era2",
+  "name": "Nessun dato",
+  "accent": "#facc15",
+  "summary": "Non abbiamo nessun dato a riguardo.",
+  "cover": "images/errore-era1.svg",
+  "coverAlt": "Una cartella vuota con un simbolo di avviso e una sezione tratteggiata",
+  "sections": []
+}

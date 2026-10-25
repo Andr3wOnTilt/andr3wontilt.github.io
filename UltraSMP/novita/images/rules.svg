@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="rulesTitle rulesDesc">
+  <title id="rulesTitle">Regole chiare dal primo giorno</title>
+  <desc id="rulesDesc">Un grande libro aperto con pagine illuminate, un sigillo e una spada decorativa.</desc>
+  <defs>
+    <linearGradient id="rulesBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#11100c"/>
+      <stop offset=".55" stop-color="#0b0d0b"/>
+      <stop offset="1" stop-color="#050706"/>
+    </linearGradient>
+    <linearGradient id="rulePaper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset="1" stop-color="#d6bd8a"/>
+    </linearGradient>
+    <linearGradient id="rulePaperShadow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c9ad75"/>
+      <stop offset="1" stop-color="#8a6d3f"/>
+    </linearGradient>
+    <linearGradient id="ruleCover" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7f1d1d"/>
+      <stop offset="1" stop-color="#3f0a0a"/>
+    </linearGradient>
+    <linearGradient id="ruleGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset=".4" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#b45309"/>
+    </linearGradient>
+    <radialGradient id="ruleGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="ruleGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0v80" fill="none" stroke="#fef3c7" stroke-opacity=".035"/>
+    </pattern>
+    <filter id="ruleBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="32"/>
+    </filter>
+    <filter id="ruleGlow2" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#rulesBg)"/>
+  <rect width="1600" height="900" fill="url(#ruleGrid)"/>
+  <circle cx="800" cy="520" r="330" fill="url(#ruleGlow)" filter="url(#ruleBlur)"/>
+  <g fill="#fef3c7" opacity=".4">
+    <circle cx="210" cy="160" r="2"/><circle cx="420" cy="230" r="1.5"/><circle cx="1260" cy="140" r="2"/>
+    <circle cx="1430" cy="250" r="1.5"/><circle cx="980" cy="110" r="1.5"/>
+  </g>
+  <g transform="translate(800 500)">
+    <path d="M-430-40c130-84 250-90 390-36v342c-140-54-260-48-390 36z" fill="url(#rulePaperShadow)"/>
+    <path d="M430-40c-130-84-250-90-390-36v342c140-54 260-48 390 36z" fill="url(#rulePaper)"/>
+    <path d="M-430-40c130-84 250-90 390-36v342c-140-54-260-48-390 36z" fill="url(#rulePaper)"/>
+    <path d="M0-76v342" stroke="#b99a62" stroke-width="8"/>
+    <path d="M-382-64c96-40 180-42 286-12M-382 28c96-40 180-42 286-12M-382 120c96-40 180-42 286-12M382-64c-96-40-180-42-286-12M382 28c-96-40-180-42-286-12M382 120c-96-40-180-42-286-12" stroke="#8a6d3f" stroke-width="6" stroke-linecap="round" opacity=".55" fill="none"/>
+    <path d="M-430-40c130-84 250-90 390-36v-72c-140-54-260-48-390 36z" fill="url(#ruleCover)"/>
+    <path d="M430-40c-130-84-250-90-390-36v-72c140-54 260-48 390 36z" fill="url(#ruleCover)"/>
+    <path d="M-430-112c130-84 250-90 390-36v32c-140-54-260-48-390 36zM430-112c-130-84-250-90-390-36v32c140-54 260-48 390 36z" fill="#5f1010"/>
+    <path d="M-384-96c96-48 178-50 284-20M384-96c-96-48-178-50-284-20" stroke="#fbbf24" stroke-width="5" opacity=".55" fill="none"/>
+    <g filter="url(#ruleGlow2)">
+      <circle cx="0" cy="306" r="26" fill="url(#ruleGold)"/>
+      <circle cx="0" cy="306" r="14" fill="#7f1d1d"/>
+      <path d="M-14 306h28M0 292v28" stroke="#fde68a" stroke-width="4"/>
+    </g>
+  </g>
+  <g transform="rotate(18 1120 480)" filter="url(#ruleGlow2)">
+    <rect x="1100" y="190" width="26" height="360" rx="6" fill="#94a3b8"/>
+    <path d="M1113 190l14-62 14 62z" fill="#e2e8f0"/>
+    <rect x="1070" y="550" width="86" height="20" rx="8" fill="#fbbf24"/>
+    <rect x="1100" y="570" width="26" height="110" rx="8" fill="#6b4a2a"/>
+    <circle cx="1113" cy="700" r="14" fill="#fbbf24"/>
+  </g>
+  <g transform="rotate(-14 470 570)" filter="url(#ruleGlow2)">
+    <rect x="410" y="640" width="34" height="200" rx="8" fill="#6b4a2a"/>
+    <rect x="388" y="590" width="78" height="70" rx="10" fill="#fbbf24"/>
+    <rect x="402" y="604" width="50" height="42" rx="4" fill="#78350f"/>
+  </g>
+  <g font-family="'Trebuchet MS', 'Segoe UI', sans-serif">
+    <text x="110" y="150" fill="#fbbf24" font-size="20" font-weight="700" letter-spacing="7">FAIR PLAY</text>
+    <text x="110" y="790" fill="#fffbeb" font-size="56" font-weight="800">REGOLE CHIARE. GIOCO MIGLIORE.</text>
+    <text x="112" y="828" fill="#cbbfa8" font-size="22" letter-spacing="3">RISPETTO · TRASPARENZA · COMMUNITY</text>
+  </g>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#fbbf24" stroke-opacity=".18" stroke-width="2"/>
+</svg>

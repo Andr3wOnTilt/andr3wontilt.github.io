@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="dunTitle dunDesc">
+  <title id="dunTitle">Dungeon dinamici</title>
+  <desc id="dunDesc">Un cancello di pietra in un dungeon sotterraneo, illuminato da torce e rune verdi.</desc>
+  <defs>
+    <radialGradient id="dunBg" cx=".5" cy=".45" r=".75">
+      <stop offset="0" stop-color="#17322b"/>
+      <stop offset=".55" stop-color="#0a1714"/>
+      <stop offset="1" stop-color="#040908"/>
+    </radialGradient>
+    <radialGradient id="dunGate" cx=".5" cy=".45" r=".6">
+      <stop offset="0" stop-color="#d9f99d"/>
+      <stop offset=".25" stop-color="#34d399"/>
+      <stop offset=".65" stop-color="#065f46"/>
+      <stop offset="1" stop-color="#021e18"/>
+    </radialGradient>
+    <linearGradient id="dunStone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38564d"/>
+      <stop offset="1" stop-color="#12231f"/>
+    </linearGradient>
+    <linearGradient id="dunWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d332c"/>
+      <stop offset="1" stop-color="#091310"/>
+    </linearGradient>
+    <pattern id="dunBricks" width="160" height="80" patternUnits="userSpaceOnUse">
+      <rect width="160" height="80" fill="none"/>
+      <path d="M0 0h160M0 80h160M80 0v40M40 40v40M120 40v40" stroke="#a7f3d0" stroke-opacity=".08" stroke-width="2"/>
+    </pattern>
+    <radialGradient id="torchGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fde68a" stop-opacity=".9"/>
+      <stop offset=".4" stop-color="#f59e0b" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="dunBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="dunGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#dunBg)"/>
+  <path d="M0 0h360l120 90v720l-120 90H0zM1600 0h-360l-120 90v720l120 90h360z" fill="#06100d"/>
+  <path d="M250 0h280l60 80v740l-60 80H250l60-80V80zM1350 0h-280l-60 80v740l60 80h280l-60-80V80z" fill="url(#dunWall)"/>
+  <rect x="300" y="0" width="1000" height="900" fill="url(#dunWall)"/>
+  <rect x="300" y="0" width="1000" height="900" fill="url(#dunBricks)"/>
+  <g>
+    <path d="M560 760V360c0-148 104-250 240-250s240 102 240 250v400z" fill="#081411"/>
+    <path d="M590 760V364c0-128 90-216 210-216s210 88 210 216v396z" fill="url(#dunGate)" opacity=".22" filter="url(#dunBlur)"/>
+    <path d="M640 760V380c0-100 70-172 160-172s160 72 160 172v380z" fill="url(#dunGate)"/>
+    <path d="M660 760V386c0-88 60-152 140-152s140 64 140 152v374z" fill="#031a14" opacity=".55"/>
+    <g fill="#a7f3d0" opacity=".45">
+      <rect x="700" y="420" width="200" height="4"/>
+      <rect x="680" y="560" width="240" height="4"/>
+      <rect x="720" y="660" width="160" height="4"/>
+    </g>
+    <path d="M560 760V360c0-148 104-250 240-250s240 102 240 250v400" fill="none" stroke="#3b6b5c" stroke-width="22"/>
+    <g fill="#25473c">
+      <rect x="532" y="300" width="56" height="460"/>
+      <rect x="508" y="282" width="104" height="34"/>
+      <rect x="1012" y="300" width="56" height="460"/>
+      <rect x="988" y="282" width="104" height="34"/>
+    </g>
+    <g fill="#3b6b5c">
+      <rect x="540" y="322" width="40" height="40"/>
+      <rect x="540" y="410" width="40" height="40"/>
+      <rect x="540" y="498" width="40" height="40"/>
+      <rect x="1020" y="322" width="40" height="40"/>
+      <rect x="1020" y="410" width="40" height="40"/>
+      <rect x="1020" y="498" width="40" height="40"/>
+    </g>
+    <path d="M572 230h496v52H572z" fill="#203d34"/>
+    <path d="M612 196h416v38H612z" fill="#2e5045"/>
+    <path d="M660 158h320v40H660z" fill="#1a332b"/>
+    <g filter="url(#dunGlow)" fill="#a3e635">
+      <rect x="760" y="684" width="80" height="10"/>
+      <rect x="820" y="714" width="44" height="10"/>
+      <rect x="736" y="624" width="10" height="32"/>
+      <rect x="854" y="624" width="10" height="32"/>
+    </g>
+    <g filter="url(#dunGlow)" fill="#34d399">
+      <path d="M600 560l14-34 14 34-14 24z"/>
+      <path d="M972 560l14-34 14 34-14 24z"/>
+    </g>
+    <circle cx="810" cy="672" r="80" fill="#34d399" opacity=".2" filter="url(#dunBlur)"/>
+  </g>
+  <g>
+    <circle cx="430" cy="360" r="120" fill="url(#torchGlow)" opacity=".8"/>
+    <rect x="424" y="340" width="12" height="76" fill="#3f2d1d"/>
+    <path d="M410 340h40l-8-30h-24z" fill="#1c1712"/>
+    <path d="M418 338c0-30 8-44 14-4 6-40 14-26 14 4z" fill="#fbbf24"/>
+    <path d="M422 336c0-16 5-24 10-2 5-22 10-14 10 2z" fill="#fef3c7"/>
+    <circle cx="1170" cy="360" r="120" fill="url(#torchGlow)" opacity=".8"/>
+    <rect x="1164" y="340" width="12" height="76" fill="#3f2d1d"/>
+    <path d="M1150 340h40l-8-30h-24z" fill="#1c1712"/>
+    <path d="M1158 338c0-30 8-44 14-4 6-40 14-26 14 4z" fill="#fbbf24"/>
+    <path d="M1162 336c0-16 5-24 10-2 5-22 10-14 10 2z" fill="#fef3c7"/>
+  </g>
+  <g fill="#a7f3d0" opacity=".4">
+    <circle cx="520" cy="180" r="2"/><circle cx="680" cy="260" r="1.5"/><circle cx="1120" cy="210" r="2"/>
+    <circle cx="980" cy="120" r="1.5"/><circle cx="900" cy="300" r="1.5"/><circle cx="480" cy="520" r="1.5"/>
+  </g>
+  <rect x="0" y="760" width="1600" height="140" fill="#030807"/>
+  <path d="M0 780h1600" stroke="#34d399" stroke-opacity=".15" stroke-width="2"/>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#34d399" stroke-opacity=".15" stroke-width="2"/>
+</svg>

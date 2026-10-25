@@ -1,0 +1,8 @@
+{
+  "server": "UltraSMP",
+  "entries": [
+    "v3.json",
+    "v2.json",
+    "v1.json"
+  ]
+}

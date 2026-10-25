@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="perfTitle perfDesc">
+  <title id="perfTitle">Meno lag, più avventura</title>
+  <desc id="perfDesc">Un grafico delle prestazioni stabile, un server rack e linee di velocità verdi.</desc>
+  <defs>
+    <radialGradient id="perfBg" cx=".5" cy=".45" r=".8">
+      <stop offset="0" stop-color="#0b2a22"/>
+      <stop offset=".55" stop-color="#071411"/>
+      <stop offset="1" stop-color="#030807"/>
+    </radialGradient>
+    <linearGradient id="perfPanel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#173a30"/>
+      <stop offset="1" stop-color="#081511"/>
+    </linearGradient>
+    <linearGradient id="perfLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".15"/>
+      <stop offset=".5" stop-color="#a3e635" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity=".4"/>
+    </linearGradient>
+    <radialGradient id="perfGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="perfGrid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0v64" fill="none" stroke="#a7f3d0" stroke-opacity=".05"/>
+    </pattern>
+    <filter id="perfBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+    <filter id="perfGlow2" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#perfBg)"/>
+  <rect width="1600" height="900" fill="url(#perfGrid)"/>
+  <circle cx="780" cy="450" r="380" fill="url(#perfGlow)" filter="url(#perfBlur)" opacity=".7"/>
+  <g transform="translate(170 240)">
+    <rect x="0" y="0" width="730" height="420" rx="24" fill="url(#perfPanel)" stroke="#34d399" stroke-opacity=".22" stroke-width="2"/>
+    <rect x="22" y="22" width="686" height="376" rx="14" fill="#04100c" opacity=".7"/>
+    <g stroke="#34d399" stroke-opacity=".12" stroke-width="2">
+      <path d="M60 340h620M60 280h620M60 220h620M60 160h620M60 100h620"/>
+      <path d="M180 70v290M300 70v290M420 70v290M540 70v290M660 70v290"/>
+    </g>
+    <path d="M60 320l90-14 70 8 80-54 90 20 70-78 80 12 80-56 70 8" fill="none" stroke="#34d399" stroke-width="4" opacity=".22"/>
+    <path d="M60 314l90-8 70 12 80-36 90 14 70-58 80 6 80-46 70 10" fill="none" stroke="url(#perfLine)" stroke-width="7" filter="url(#perfGlow2)"/>
+    <g fill="#a3e635">
+      <circle cx="60" cy="314" r="7"/><circle cx="150" cy="306" r="7"/><circle cx="220" cy="318" r="7"/>
+      <circle cx="300" cy="282" r="7"/><circle cx="390" cy="296" r="7"/><circle cx="460" cy="238" r="7"/>
+      <circle cx="540" cy="244" r="7"/><circle cx="620" cy="198" r="7"/><circle cx="690" cy="208" r="7"/>
+    </g>
+    <text x="60" y="44" fill="#a7f3d0" font-family="monospace" font-size="18" letter-spacing="4">TPS / 20.0</text>
+    <rect x="540" y="24" width="168" height="30" rx="15" fill="#052e22" stroke="#34d399" stroke-opacity=".4"/>
+    <circle cx="562" cy="39" r="5" fill="#a3e635"/>
+    <text x="578" y="45" fill="#d1fae5" font-family="monospace" font-size="14" letter-spacing="2">STABILE</text>
+  </g>
+  <g transform="translate(1020 260)">
+    <rect x="0" y="0" width="280" height="470" rx="20" fill="#071410" stroke="#34d399" stroke-opacity=".2" stroke-width="2"/>
+    <g>
+      <rect x="26" y="26" width="228" height="72" rx="10" fill="#0b221b"/>
+      <rect x="26" y="116" width="228" height="72" rx="10" fill="#0b221b"/>
+      <rect x="26" y="206" width="228" height="72" rx="10" fill="#0b221b"/>
+      <rect x="26" y="296" width="228" height="72" rx="10" fill="#0b221b"/>
+      <rect x="26" y="386" width="228" height="58" rx="10" fill="#0b221b"/>
+      <g fill="#34d399">
+        <rect x="44" y="48" width="36" height="6" rx="3"/>
+        <rect x="44" y="138" width="58" height="6" rx="3"/>
+        <rect x="44" y="228" width="44" height="6" rx="3"/>
+        <rect x="44" y="318" width="66" height="6" rx="3"/>
+        <rect x="44" y="408" width="30" height="6" rx="3"/>
+      </g>
+      <g fill="#a3e635">
+        <circle cx="226" cy="58" r="5"/><circle cx="226" cy="148" r="5"/><circle cx="226" cy="238" r="5"/>
+        <circle cx="226" cy="328" r="5"/><circle cx="226" cy="414" r="5"/>
+      </g>
+      <g fill="#12382d">
+        <rect x="44" y="64" width="140" height="14" rx="4"/>
+        <rect x="44" y="154" width="100" height="14" rx="4"/>
+        <rect x="44" y="244" width="160" height="14" rx="4"/>
+        <rect x="44" y="334" width="120" height="14" rx="4"/>
+        <rect x="44" y="424" width="168" height="10" rx="4"/>
+      </g>
+    </g>
+  </g>
+  <g stroke="#34d399" stroke-linecap="round" filter="url(#perfGlow2)">
+    <path d="M120 760h300" stroke-width="4" opacity=".5"/>
+    <path d="M160 800h380" stroke-width="3" opacity=".35"/>
+    <path d="M1240 760h240" stroke-width="4" opacity=".45"/>
+    <path d="M1120 806h360" stroke-width="3" opacity=".3"/>
+  </g>
+  <g fill="#a7f3d0" opacity=".35">
+    <circle cx="150" cy="150" r="2"/><circle cx="1420" cy="150" r="2"/><circle cx="1300" cy="760" r="2"/>
+    <circle cx="240" cy="780" r="1.5"/><circle cx="1480" cy="640" r="1.5"/>
+  </g>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#34d399" stroke-opacity=".15" stroke-width="2"/>
+</svg>

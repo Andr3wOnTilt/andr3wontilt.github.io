@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="netTitle netDesc">
+  <title id="netTitle">Il Nether rinasce</title>
+  <desc id="netDesc">Un mare di lava, torri di basalto e un portale del Nether luminoso.</desc>
+  <defs>
+    <linearGradient id="netSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#160a0a"/>
+      <stop offset=".5" stop-color="#2b0d09"/>
+      <stop offset="1" stop-color="#180705"/>
+    </linearGradient>
+    <radialGradient id="netLava" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fef08a"/>
+      <stop offset=".3" stop-color="#fb923c"/>
+      <stop offset=".7" stop-color="#dc2626"/>
+      <stop offset="1" stop-color="#450a0a"/>
+    </radialGradient>
+    <radialGradient id="netPortal" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#f5d0fe"/>
+      <stop offset=".3" stop-color="#c084fc"/>
+      <stop offset=".7" stop-color="#7e22ce"/>
+      <stop offset="1" stop-color="#2e1065"/>
+    </radialGradient>
+    <linearGradient id="netRock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b2b2b"/>
+      <stop offset="1" stop-color="#120b0b"/>
+    </linearGradient>
+    <linearGradient id="netObs" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b0764"/>
+      <stop offset="1" stop-color="#0b0410"/>
+    </linearGradient>
+    <radialGradient id="netGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#f97316" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="netGrid" width="70" height="70" patternUnits="userSpaceOnUse">
+      <path d="M70 0H0v70" fill="none" stroke="#fca5a5" stroke-opacity=".04"/>
+    </pattern>
+    <filter id="netBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+    <filter id="netGlow2" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#netSky)"/>
+  <rect width="1600" height="900" fill="url(#netGrid)"/>
+  <circle cx="1120" cy="420" r="310" fill="url(#netGlow)" filter="url(#netBlur)"/>
+  <g opacity=".5" fill="#450a0a">
+    <rect x="120" y="150" width="150" height="22" rx="4"/>
+    <rect x="180" y="128" width="72" height="22" rx="4"/>
+    <rect x="1320" y="190" width="110" height="18" rx="4"/>
+  </g>
+  <path d="M0 560l120-62 140 30 180-70 140 72 160-42 180 56 150-66 160 64 170-40 180 58v300H0z" fill="#1b0b08"/>
+  <g>
+    <rect y="650" width="1600" height="250" fill="url(#netLava)"/>
+    <g fill="#fef08a" opacity=".55">
+      <rect x="0" y="680" width="180" height="10"/>
+      <rect x="240" y="720" width="260" height="8"/>
+      <rect x="560" y="668" width="220" height="12"/>
+      <rect x="880" y="740" width="300" height="8"/>
+      <rect x="1260" y="690" width="340" height="10"/>
+      <rect x="120" y="800" width="340" height="10"/>
+      <rect x="640" y="820" width="260" height="8"/>
+      <rect x="1080" y="790" width="300" height="12"/>
+    </g>
+    <g fill="#450a0a" opacity=".7">
+      <rect x="200" y="760" width="160" height="18"/>
+      <rect x="760" y="700" width="180" height="14"/>
+      <rect x="1160" y="740" width="220" height="16"/>
+      <rect x="480" y="850" width="260" height="20"/>
+    </g>
+    <g fill="#fbbf24" opacity=".5">
+      <circle cx="360" cy="700" r="5"/><circle cx="700" cy="760" r="4"/><circle cx="1040" cy="720" r="6"/>
+      <circle cx="1340" cy="780" r="4"/><circle cx="520" cy="820" r="5"/><circle cx="1420" cy="700" r="3"/>
+    </g>
+  </g>
+  <g>
+    <path d="M180 650l100-54 90 24 40 54-90 26z" fill="url(#netRock)"/>
+    <path d="M260 650V440l60-38 48 40v210z" fill="#241414"/>
+    <path d="M300 402l30-88 34 88z" fill="#1c0e0e"/>
+    <path d="M214 650V520l32-24 30 20v134z" fill="#1a0f0f"/>
+    <path d="M240 496l20-48 20 48z" fill="#2a1616"/>
+    <path d="M1190 650l120-64 120 36 60 58-128 32-132-20z" fill="url(#netRock)"/>
+    <path d="M1250 650V390l74-44 64 46v258z" fill="#1c0f0f"/>
+    <path d="M1300 346l38-104 42 104z" fill="#170b0b"/>
+    <path d="M1380 650V460l42-30 42 28v192z" fill="#231212"/>
+    <path d="M1404 430l28-62 30 62z" fill="#2b1616"/>
+  </g>
+  <g>
+    <path d="M690 650V330h260v320z" fill="#0b0605"/>
+    <path d="M700 650V342h240v308z" fill="url(#netPortal)" filter="url(#netGlow2)"/>
+    <path d="M722 650V362h196v288z" fill="url(#netPortal)"/>
+    <path d="M750 650V390h140v260z" fill="#2e1065" opacity=".55"/>
+    <path d="M690 650V330h260v320" fill="none" stroke="#3b0764" stroke-width="22"/>
+    <g fill="#581c87" stroke="#7e22ce" stroke-width="3">
+      <rect x="662" y="304" width="70" height="46"/>
+      <rect x="908" y="304" width="70" height="46"/>
+      <rect x="652" y="344" width="48" height="306"/>
+      <rect x="940" y="344" width="48" height="306"/>
+    </g>
+    <g fill="#a855f7" opacity=".5" filter="url(#netGlow2)">
+      <rect x="670" y="360" width="12" height="12"/>
+      <rect x="958" y="380" width="12" height="12"/>
+      <rect x="700" y="600" width="10" height="10"/>
+      <rect x="910" y="620" width="10" height="10"/>
+    </g>
+    <circle cx="820" cy="500" r="170" fill="#a855f7" opacity=".14" filter="url(#netBlur)"/>
+  </g>
+  <g fill="#fdba74" opacity=".5" filter="url(#netGlow2)">
+    <rect x="436" y="330" width="5" height="5"/>
+    <rect x="1100" y="270" width="4" height="4"/>
+    <rect x="1240" y="480" width="5" height="5"/>
+    <rect x="560" y="560" width="4" height="4"/>
+    <rect x="980" y="600" width="5" height="5"/>
+    <rect x="320" y="600" width="4" height="4"/>
+  </g>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#f97316" stroke-opacity=".18" stroke-width="2"/>
+</svg>

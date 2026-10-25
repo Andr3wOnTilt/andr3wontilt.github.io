@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="fixTitle fixDesc">
+  <title id="fixTitle">Bug fix</title>
+  <desc id="fixDesc">Uno scudo luminoso con una spunta, una chiave inglese e un martello su sfondo scuro.</desc>
+  <defs>
+    <radialGradient id="fixBg" cx=".5" cy=".45" r=".8">
+      <stop offset="0" stop-color="#10241e"/>
+      <stop offset=".55" stop-color="#07110e"/>
+      <stop offset="1" stop-color="#030706"/>
+    </radialGradient>
+    <linearGradient id="fixShield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#065f46"/>
+    </linearGradient>
+    <linearGradient id="fixMetal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#cbd5e1"/>
+      <stop offset=".5" stop-color="#64748b"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+    <radialGradient id="fixGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="fixGrid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0H0v72" fill="none" stroke="#a7f3d0" stroke-opacity=".04"/>
+    </pattern>
+    <filter id="fixBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+    <filter id="fixGlow2" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#fixBg)"/>
+  <rect width="1600" height="900" fill="url(#fixGrid)"/>
+  <circle cx="800" cy="450" r="360" fill="url(#fixGlow)" filter="url(#fixBlur)"/>
+  <g opacity=".4" fill="#153b30">
+    <rect x="170" y="200" width="70" height="70"/>
+    <rect x="240" y="270" width="36" height="36"/>
+    <rect x="1390" y="560" width="80" height="80"/>
+    <rect x="1330" y="640" width="40" height="40"/>
+    <rect x="1280" y="210" width="48" height="48"/>
+  </g>
+  <g transform="translate(800 455)" filter="url(#fixGlow2)">
+    <path d="M0-270l210 76v184c0 150-86 238-210 300-124-62-210-150-210-300v-184z" fill="#04231b" stroke="#34d399" stroke-width="14"/>
+    <path d="M0-236l178 64v158c0 126-72 202-178 258-106-56-178-132-178-258v-158z" fill="url(#fixShield)" opacity=".9"/>
+    <path d="M0-236l178 64v158c0 126-72 202-178 258z" fill="#0b3b2d" opacity=".35"/>
+    <path d="M-92 20l58 58 128-132" fill="none" stroke="#ecfdf5" stroke-width="34" stroke-linecap="square" stroke-linejoin="round"/>
+  </g>
+  <g transform="rotate(-28 420 660)" filter="url(#fixGlow2)">
+    <path d="M290 560l220 220 40-40-220-220z" fill="url(#fixMetal)"/>
+    <path d="M456 500c-48 4-88 42-94 90l54 10 28-38 38-28z" fill="#e2e8f0"/>
+    <path d="M494 538l-60 60 30 30 60-60z" fill="#94a3b8"/>
+  </g>
+  <g transform="rotate(22 1180 650)" filter="url(#fixGlow2)">
+    <rect x="1138" y="500" width="42" height="250" rx="12" fill="#6b4a2a"/>
+    <rect x="1120" y="440" width="78" height="90" rx="18" fill="url(#fixMetal)"/>
+    <rect x="1142" y="458" width="34" height="54" rx="8" fill="#1e293b"/>
+  </g>
+  <g fill="#a3e635" filter="url(#fixGlow2)">
+    <rect x="300" y="300" width="12" height="12"/>
+    <rect x="1260" y="340" width="10" height="10"/>
+    <rect x="1220" y="740" width="14" height="14"/>
+    <rect x="340" y="720" width="8" height="8"/>
+  </g>
+  <g font-family="'Trebuchet MS', 'Segoe UI', sans-serif">
+    <text x="110" y="150" fill="#34d399" font-size="20" font-weight="700" letter-spacing="7">ULTRASMP / PATCH NOTES</text>
+    <text x="110" y="790" fill="#ecfdf5" font-size="52" font-weight="800">RISOLTO.</text>
+    <text x="112" y="828" fill="#9fb8ae" font-size="22" letter-spacing="3">PIÙ STABILITÀ, MENO PROBLEMI</text>
+  </g>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#34d399" stroke-opacity=".15" stroke-width="2"/>
+</svg>

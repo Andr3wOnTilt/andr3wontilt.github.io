@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="eventoTitle eventoDesc">
+  <title id="eventoTitle">La Notte delle Rovine</title>
+  <desc id="eventoDesc">Una luna eclissata brilla sopra un tempio in rovina con rune viola e verdi.</desc>
+  <defs>
+    <linearGradient id="evSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#080a16"/>
+      <stop offset=".55" stop-color="#111024"/>
+      <stop offset="1" stop-color="#071310"/>
+    </linearGradient>
+    <radialGradient id="evMoon" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fdf4ff"/>
+      <stop offset=".55" stop-color="#e879f9"/>
+      <stop offset="1" stop-color="#a21caf" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="evHalo" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#e879f9" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#e879f9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="evStone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b3a52"/>
+      <stop offset="1" stop-color="#12121d"/>
+    </linearGradient>
+    <linearGradient id="evRune" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0abfc"/>
+      <stop offset="1" stop-color="#7e22ce"/>
+    </linearGradient>
+    <pattern id="evGrid" width="76" height="76" patternUnits="userSpaceOnUse">
+      <path d="M76 0H0v76" fill="none" stroke="#e879f9" stroke-opacity=".04"/>
+    </pattern>
+    <filter id="evBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="32"/>
+    </filter>
+    <filter id="evGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#evSky)"/>
+  <rect width="1600" height="900" fill="url(#evGrid)"/>
+  <circle cx="800" cy="300" r="280" fill="url(#evHalo)" filter="url(#evBlur)"/>
+  <circle cx="800" cy="300" r="130" fill="url(#evMoon)"/>
+  <circle cx="800" cy="300" r="94" fill="#18061f"/>
+  <circle cx="800" cy="300" r="94" fill="none" stroke="#f0abfc" stroke-width="3" opacity=".55"/>
+  <circle cx="770" cy="272" r="10" fill="#a21caf" opacity=".4"/>
+  <circle cx="832" cy="322" r="6" fill="#a21caf" opacity=".35"/>
+  <g fill="#f5d0fe" opacity=".55">
+    <circle cx="170" cy="150" r="2"/><circle cx="330" cy="250" r="1.5"/><circle cx="520" cy="120" r="2"/>
+    <circle cx="1000" cy="160" r="1.5"/><circle cx="1210" cy="100" r="2"/><circle cx="1420" cy="230" r="1.5"/>
+    <circle cx="1480" cy="130" r="2"/><circle cx="680" cy="110" r="1.5"/><circle cx="1120" cy="330" r="1.5"/>
+  </g>
+  <path d="M0 680l150-56 150 34 180-62 170 52 160-38 180 56 160-46 160 42 140-30v268H0z" fill="#07100d"/>
+  <path d="M0 760l190-34 170 32 190-44 180 40 190-36 180 38 190-30 180 24v150H0z" fill="#040908"/>
+  <circle cx="800" cy="640" r="260" fill="#a855f7" opacity=".12" filter="url(#evBlur)"/>
+  <g>
+    <path d="M430 680l180-44 200 32 100 42-150 34-210-8-120-34z" fill="#0f1d18"/>
+    <path d="M470 640l100-36 100 24 56 42-100 30-120-6-66-30z" fill="#142a22"/>
+    <rect x="480" y="440" width="64" height="196" fill="url(#evStone)"/>
+    <rect x="462" y="424" width="100" height="26" fill="#4a4560"/>
+    <rect x="474" y="620" width="76" height="18" fill="#211b2e"/>
+    <rect x="660" y="390" width="76" height="250" fill="url(#evStone)"/>
+    <rect x="642" y="372" width="112" height="28" fill="#4a4560"/>
+    <rect x="654" y="622" width="88" height="22" fill="#211b2e"/>
+    <path d="M760 440h330v60H760z" fill="#191324"/>
+    <path d="M740 440l88-52 88 52z" fill="#2e2440"/>
+    <path d="M1030 500l110-26 46 54-116 34z" fill="#14101f"/>
+    <path d="M860 560l130-24 40 46-140 30z" fill="#14101f"/>
+    <path d="M560 560h230M690 520h260" stroke="#a855f7" stroke-width="3" opacity=".25"/>
+    <g filter="url(#evGlow)">
+      <path d="M850 520l24-64 24 64-24 42z" fill="url(#evRune)"/>
+      <path d="M1010 580l18-44 18 44-18 30z" fill="#c084fc" opacity=".85"/>
+      <path d="M570 590l16-40 16 40-16 28z" fill="#34d399" opacity=".8"/>
+    </g>
+    <g stroke="#a855f7" stroke-width="4" fill="none" opacity=".7" filter="url(#evGlow)">
+      <circle cx="800" cy="610" r="52"/>
+      <path d="M800 558v104M748 610h104M766 576l68 68M834 576l-68 68"/>
+    </g>
+    <g fill="#34d399" opacity=".55">
+      <rect x="512" y="560" width="8" height="8"/>
+      <rect x="630" y="604" width="6" height="6"/>
+      <rect x="932" y="594" width="8" height="8"/>
+      <rect x="1086" y="548" width="6" height="6"/>
+    </g>
+  </g>
+  <g font-family="'Trebuchet MS', 'Segoe UI', sans-serif">
+    <text x="110" y="150" fill="#e879f9" font-size="20" font-weight="700" letter-spacing="7">EVENTO DI LANCIO</text>
+    <text x="110" y="790" fill="#fdf4ff" font-size="56" font-weight="800">LA NOTTE DELLE ROVINE</text>
+    <text x="112" y="828" fill="#c4b5d4" font-size="22" letter-spacing="3">31 OTTOBRE · ORE 21:00</text>
+  </g>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#a855f7" stroke-opacity=".2" stroke-width="2"/>
+</svg>

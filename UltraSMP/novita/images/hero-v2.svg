@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="hero2Title hero2Desc">
+  <title id="hero2Title">BETA-Era2 - La Grande Espansione</title>
+  <desc id="hero2Desc">Isole sospese, un portale luminoso e un castello in un paesaggio notturno a blocchi.</desc>
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#03100c"/>
+      <stop offset=".5" stop-color="#07201a"/>
+      <stop offset="1" stop-color="#0a1a18"/>
+    </linearGradient>
+    <radialGradient id="portal2" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#d9f99d"/>
+      <stop offset=".25" stop-color="#34d399"/>
+      <stop offset=".7" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#042f2e"/>
+    </radialGradient>
+    <radialGradient id="halo2" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bottom2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#020907" stop-opacity="0"/>
+      <stop offset=".55" stop-color="#020907" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#020907" stop-opacity=".98"/>
+    </linearGradient>
+    <linearGradient id="stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#33534a"/>
+      <stop offset="1" stop-color="#12241f"/>
+    </linearGradient>
+    <linearGradient id="grass2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#065f46"/>
+    </linearGradient>
+    <pattern id="grid2" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0v80" fill="none" stroke="#a7f3d0" stroke-opacity=".045"/>
+      <rect x="0" y="0" width="2" height="2" fill="#a7f3d0" opacity=".07"/>
+    </pattern>
+    <filter id="blur2" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+    <filter id="soft2" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky2)"/>
+  <rect width="1600" height="900" fill="url(#grid2)"/>
+  <g fill="#d1fae5">
+    <circle cx="180" cy="130" r="2" opacity=".55"/>
+    <circle cx="310" cy="220" r="1.5" opacity=".35"/>
+    <circle cx="470" cy="100" r="2.5" opacity=".5"/>
+    <circle cx="690" cy="170" r="1.5" opacity=".3"/>
+    <circle cx="870" cy="90" r="2" opacity=".55"/>
+    <circle cx="1050" cy="160" r="1.5" opacity=".4"/>
+    <circle cx="1250" cy="95" r="2" opacity=".5"/>
+    <circle cx="1420" cy="190" r="2.5" opacity=".45"/>
+    <circle cx="1520" cy="110" r="1.5" opacity=".35"/>
+    <circle cx="760" cy="300" r="2" opacity=".3"/>
+    <circle cx="1150" cy="330" r="1.5" opacity=".35"/>
+    <circle cx="380" cy="360" r="1.5" opacity=".25"/>
+  </g>
+  <g opacity=".5" fill="#0f2b23">
+    <rect x="1160" y="250" width="120" height="22" rx="4"/>
+    <rect x="1210" y="228" width="70" height="22" rx="4"/>
+    <rect x="220" y="250" width="92" height="18" rx="4"/>
+    <rect x="260" y="232" width="54" height="18" rx="4"/>
+  </g>
+  <circle cx="820" cy="460" r="330" fill="url(#halo2)" filter="url(#blur2)"/>
+  <g>
+    <path d="M0 760l120-30 90 20 110-45 120 30 90-18 145 48 110-22 140 42 120-20 120 34 135-48 100 22 100-26v196H0z" fill="#07100e"/>
+    <path d="M0 810l130-26 120 22 160-38 140 42 180-26 150 34 170-46 150 40 120-18 180 34v112H0z" fill="#050c0a"/>
+  </g>
+  <g>
+    <path d="M160 610l120-34 150 22 92 46-88 34-172 10-102-34z" fill="url(#grass2)"/>
+    <path d="M160 646l102 34 172-10 88-34v54l-122 38-164-14-76-32z" fill="url(#stone2)"/>
+    <path d="M236 676l36 18v68l-36-18zM316 686l34 14v54l-34-12z" fill="#132720"/>
+    <rect x="238" y="550" width="24" height="68" fill="#1f3d33"/>
+    <path d="M232 554h84l-18-34h-48z" fill="#022c22"/>
+    <path d="M240 520l12-26 12 26zM274 520l12-26 12 26z" fill="#34d399"/>
+    <rect x="248" y="560" width="8" height="8" fill="#a3e635"/>
+    <rect x="276" y="610" width="8" height="8" fill="#a3e635"/>
+  </g>
+  <g>
+    <path d="M1240 540l120-24 124 34 60 34-72 28-138 4-94-34z" fill="url(#grass2)"/>
+    <path d="M1240 574l94 34 138-4 72-28v50l-102 34-134-6-68-34z" fill="url(#stone2)"/>
+    <path d="M1302 604l34 14v78l-34-16zM1380 612l36 12v56l-36-10z" fill="#132720"/>
+    <rect x="1360" y="432" width="40" height="112" fill="#1e3a32"/>
+    <rect x="1348" y="426" width="64" height="16" fill="#2d5146"/>
+    <path d="M1340 426l40-58 40 58z" fill="#0f2c25"/>
+    <path d="M1354 414l26-38 26 38z" fill="#34d399" opacity=".25"/>
+    <rect x="1372" y="456" width="16" height="22" fill="#a3e635" opacity=".85"/>
+    <rect x="1402" y="558" width="8" height="8" fill="#a3e635"/>
+    <rect x="1306" y="574" width="8" height="8" fill="#34d399"/>
+  </g>
+  <g>
+    <path d="M620 430l100-30 130 22 84 44-96 38-148 2-82-38z" fill="url(#grass2)"/>
+    <path d="M620 466l82 38 148-2 96-38v66l-108 36-146-8-72-38z" fill="url(#stone2)"/>
+    <path d="M676 500l38 16v88l-38-18zM760 512l36 12v72l-36-10z" fill="#10231d"/>
+    <rect x="660" y="386" width="26" height="56" fill="#1d3b31"/>
+    <rect x="706" y="370" width="22" height="72" fill="#1d3b31"/>
+    <rect x="756" y="392" width="18" height="48" fill="#1d3b31"/>
+    <path d="M648 392l25-30 25 30zM694 376l23-34 23 34z" fill="#059669"/>
+    <circle cx="800" cy="478" r="6" fill="#a3e635"/>
+    <circle cx="822" cy="506" r="4" fill="#34d399"/>
+  </g>
+  <g>
+    <path d="M706 258l142-44 190 36 72 68-118 54-160-4-126-56z" fill="#0c241e"/>
+    <path d="M706 258l126 56 160 4 118-54v84l-136 62-150-10-118-60z" fill="#081814"/>
+    <path d="M736 334l36 16v92l-36-18zM842 350l34 12v72l-34-12zM944 344l38 14v68l-38-14z" fill="#112a23"/>
+    <g>
+      <path d="M890 300v190" stroke="#34d399" stroke-width="4" opacity=".45"/>
+      <path d="M856 344c0-58 22-92 54-92s54 34 54 92v104h-108z" fill="#071e19" stroke="#2c5c4f" stroke-width="8"/>
+      <path d="M874 348c0-42 14-66 36-66s36 24 36 66v84h-72z" fill="url(#portal2)" filter="url(#soft2)"/>
+      <path d="M880 350c0-36 11-56 30-56s30 20 30 56v76h-60z" fill="url(#portal2)"/>
+      <rect x="846" y="438" width="128" height="18" fill="#34594e"/>
+      <rect x="862" y="452" width="96" height="12" fill="#1d3a32"/>
+      <rect x="984" y="366" width="16" height="16" fill="#a3e635" opacity=".8"/>
+      <rect x="820" y="390" width="14" height="14" fill="#34d399" opacity=".8"/>
+    </g>
+  </g>
+  <g opacity=".9">
+    <rect x="146" y="678" width="10" height="10" fill="#22d3ee"/>
+    <rect x="124" y="700" width="6" height="6" fill="#22d3ee" opacity=".6"/>
+    <rect x="1428" y="642" width="8" height="8" fill="#a3e635" opacity=".7"/>
+    <rect x="1150" y="300" width="6" height="6" fill="#a3e635" opacity=".6"/>
+  </g>
+  <rect width="1600" height="900" fill="url(#bottom2)"/>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#34d399" stroke-opacity=".18" stroke-width="2"/>
+</svg>

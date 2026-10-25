@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="rovTitle rovDesc">
+  <title id="rovTitle">Le Rovine di Aetheria</title>
+  <desc id="rovDesc">Rovine di un tempio antico con colonne spezzate e cristalli di smeraldo sotto la luna.</desc>
+  <defs>
+    <linearGradient id="rovSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050b14"/>
+      <stop offset=".55" stop-color="#0a1a1d"/>
+      <stop offset="1" stop-color="#0b211c"/>
+    </linearGradient>
+    <radialGradient id="rovMoon" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ecfeff"/>
+      <stop offset=".6" stop-color="#a5f3fc"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rovStone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f4a44"/>
+      <stop offset="1" stop-color="#0e1b18"/>
+    </linearGradient>
+    <linearGradient id="rovCrystal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9f99d"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="rovFog" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#34d399" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#020807" stop-opacity=".9"/>
+    </linearGradient>
+    <pattern id="rovGrid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0v64" fill="none" stroke="#a5f3fc" stroke-opacity=".035"/>
+    </pattern>
+    <filter id="rovBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="rovGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#rovSky)"/>
+  <rect width="1600" height="900" fill="url(#rovGrid)"/>
+  <circle cx="1180" cy="220" r="165" fill="url(#rovMoon)" opacity=".6" filter="url(#rovBlur)"/>
+  <circle cx="1180" cy="220" r="82" fill="#d9f9ff" opacity=".85"/>
+  <circle cx="1160" cy="205" r="13" fill="#a5f3fc" opacity=".5"/>
+  <circle cx="1204" cy="244" r="9" fill="#a5f3fc" opacity=".45"/>
+  <circle cx="1188" cy="186" r="6" fill="#a5f3fc" opacity=".35"/>
+  <g fill="#d1fae5" opacity=".45">
+    <circle cx="160" cy="140" r="2"/><circle cx="300" cy="220" r="1.5"/><circle cx="470" cy="110" r="2"/>
+    <circle cx="620" cy="250" r="1.5"/><circle cx="780" cy="120" r="2.5"/><circle cx="940" cy="210" r="1.5"/>
+    <circle cx="1380" cy="120" r="2"/><circle cx="1480" cy="280" r="1.5"/><circle cx="1040" cy="330" r="1.5"/>
+  </g>
+  <path d="M0 720l130-44 110 22 160-58 140 40 170-30 150 52 170-38 160 44 140-30 150 36v186H0z" fill="#081310"/>
+  <path d="M0 780l190-26 170 34 200-42 180 34 210-36 190 40 180-26 180 22v120H0z" fill="#050d0b"/>
+  <circle cx="730" cy="600" r="230" fill="#34d399" opacity=".1" filter="url(#rovBlur)"/>
+  <g>
+    <path d="M360 640l70-26 88 18 88-22 84 24 84-18 72 24 66-18 94 22 78-16 54 24-88 34-126-6-88 18-100-18-84 20-92-18-78 16-102-14z" fill="#0d1d19"/>
+    <path d="M380 650l90 24v90l-90-24zM560 668l84 14v86l-84-14zM824 662l88 12v92l-88-12zM1040 664l80 16v82l-80-16z" fill="#132822"/>
+    <rect x="472" y="430" width="74" height="238" fill="url(#rovStone)"/>
+    <rect x="458" y="414" width="102" height="28" fill="#34584e"/>
+    <rect x="464" y="644" width="90" height="22" fill="#1d3a32"/>
+    <path d="M472 430l22-16 20 16 32-20v20h-74z" fill="#3d6559"/>
+    <rect x="760" y="360" width="88" height="300" fill="url(#rovStone)"/>
+    <rect x="744" y="342" width="120" height="30" fill="#34584e"/>
+    <rect x="754" y="628" width="100" height="28" fill="#1d3a32"/>
+    <path d="M760 360l28 18 30-18 30 14v-14h-88z" fill="#3d6559"/>
+    <path d="M900 400h150v72H900z" fill="#1c352d"/>
+    <path d="M880 400l70-54 70 54z" fill="#2c4d42"/>
+    <path d="M1030 470l90-24 40 54-90 32z" fill="#12251f"/>
+    <path d="M530 470h210v44H530z" fill="#142a23" opacity=".8"/>
+    <path d="M860 500l110-28 36 60-118 34z" fill="#12251f"/>
+    <path d="M430 560h380" stroke="#34d399" stroke-width="3" opacity=".2"/>
+    <g fill="#1f3d33">
+      <rect x="420" y="690" width="42" height="52"/>
+      <rect x="640" y="676" width="36" height="66"/>
+      <rect x="1090" y="682" width="52" height="48"/>
+      <rect x="1210" y="694" width="32" height="38"/>
+    </g>
+    <g filter="url(#rovGlow)">
+      <path d="M676 584l20-58 20 58-20 40z" fill="url(#rovCrystal)"/>
+      <path d="M700 610l14-38 14 38-14 24z" fill="#6ee7b7" opacity=".9"/>
+      <path d="M1110 574l18-46 18 46-18 34z" fill="url(#rovCrystal)" opacity=".85"/>
+      <path d="M604 470l12-30 12 30-12 22z" fill="#a3e635" opacity=".8"/>
+    </g>
+    <circle cx="696" cy="600" r="40" fill="#34d399" opacity=".22" filter="url(#rovGlow)"/>
+    <path d="M470 440c36 22 28 82 58 104M784 370c-26 44-4 92-22 138M1000 470c-18 34 6 66-8 104" stroke="#065f46" stroke-width="5" fill="none" opacity=".85"/>
+    <g fill="#22c55e" opacity=".8">
+      <rect x="486" y="482" width="8" height="8"/>
+      <rect x="498" y="520" width="6" height="6"/>
+      <rect x="768" y="416" width="8" height="8"/>
+      <rect x="982" y="512" width="6" height="6"/>
+      <rect x="1086" y="574" width="6" height="6"/>
+    </g>
+    <g fill="#a5f3fc" opacity=".55">
+      <circle cx="540" cy="610" r="3"/><circle cx="880" cy="540" r="2"/><circle cx="1180" cy="500" r="2.5"/>
+    </g>
+  </g>
+  <rect y="640" width="1600" height="260" fill="url(#rovFog)"/>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#34d399" stroke-opacity=".16" stroke-width="2"/>
+</svg>

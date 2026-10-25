@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="errTitle errDesc">
+  <title id="errTitle">Archivio senza dati</title>
+  <desc id="errDesc">Una cartella vuota con un simbolo di avviso rosso e una sezione tratteggiata vuota.</desc>
+  <rect width="1200" height="800" fill="#0d0d0d"/>
+  <circle cx="600" cy="400" r="292" fill="#131313"/>
+  <path d="M300 345h230l50 55h320a40 40 0 0 1 40 40v180a40 40 0 0 1-40 40H300a40 40 0 0 1-40-40V385a40 40 0 0 1 40-40z" fill="#171717" stroke="#facc15" stroke-width="8"/>
+  <path d="M260 470h680" stroke="#2b2b2b" stroke-width="8"/>
+  <rect x="390" y="505" width="280" height="18" rx="9" fill="#2e2e2e"/>
+  <rect x="390" y="545" width="180" height="14" rx="7" fill="#262626"/>
+  <rect x="390" y="385" width="420" height="58" rx="10" fill="none" stroke="#fb923c" stroke-width="4" stroke-dasharray="14 12" opacity=".8"/>
+  <circle cx="818" cy="280" r="92" fill="#1b0f0f" stroke="#f87171" stroke-width="8"/>
+  <rect x="806" y="220" width="24" height="78" rx="12" fill="#f87171"/>
+  <circle cx="818" cy="322" r="13" fill="#f87171"/>
+  <rect x="336" y="246" width="18" height="18" rx="2" fill="#facc15"/>
+  <rect x="366" y="206" width="10" height="10" rx="2" fill="#facc15" opacity=".7"/>
+  <rect x="880" y="520" width="14" height="14" rx="2" fill="#38bdf8" opacity=".7"/>
+  <path d="M270 670h660" stroke="#262626" stroke-width="6" stroke-linecap="round"/>
+</svg>

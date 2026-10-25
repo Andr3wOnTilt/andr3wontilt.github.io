@@ -1,0 +1,170 @@
+{
+  "version": "BETA-Era3",
+  "name": "Lorem ipsum dolor sit amet",
+  "date": "2026-11-01",
+  "accent": "#fb923c",
+  "cover": "images/BETA-Era3.png",
+  "coverAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam.",
+  "tags": [
+    "Lorem",
+    "Ipsum",
+    "Dolor sit amet"
+  ],
+  "sections": [
+    {
+      "kind": "new",
+      "title": "Lorem ipsum dolor",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "items": [
+        {
+          "title": "Lorem ipsum dolor sit",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Lorem",
+          "image": "images/rovine.svg",
+          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "tags": [
+            "Lorem",
+            "Ipsum",
+            "Dolor"
+          ]
+        },
+        {
+          "title": "Consectetur adipiscing elit",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Ipsum",
+          "image": "images/dungeon.svg",
+          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "caption": "Sed do eiusmod tempor incididunt ut labore et dolore.",
+          "tags": [
+            "Lorem",
+            "Ipsum",
+            "Dolor"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "update",
+      "title": "Consectetur adipiscing",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "items": [
+        {
+          "title": "Sed do eiusmod tempor",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Dolor",
+          "image": "images/economia.svg",
+          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "caption": "Ut enim ad minim veniam, quis nostrud exercitation.",
+          "tags": [
+            "Lorem",
+            "Ipsum",
+            "Dolor"
+          ]
+        },
+        {
+          "title": "Incididunt ut labore",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Sit amet",
+          "image": "images/nether.svg",
+          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "caption": "Duis aute irure dolor in reprehenderit in voluptate.",
+          "tags": [
+            "Lorem",
+            "Ipsum",
+            "Dolor"
+          ]
+        },
+        {
+          "title": "Dolore magna aliqua",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Consectetur",
+          "image": "images/performance.svg",
+          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "tags": [
+            "Lorem",
+            "Ipsum",
+            "Dolor"
+          ]
+        },
+        {
+          "title": "Ut enim ad minim",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Adipiscing",
+          "image": "images/claim.svg",
+          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "caption": "Sed do eiusmod tempor incididunt ut labore et dolore.",
+          "tags": [
+            "Lorem",
+            "Ipsum",
+            "Dolor"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "fix",
+      "title": "Sed do eiusmod",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "items": [
+        {
+          "title": "Quis nostrud exercitation",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Tempor",
+          "image": "images/fix.svg",
+          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "caption": "Ut enim ad minim veniam, quis nostrud exercitation.",
+          "tags": [
+            "Lorem",
+            "Ipsum",
+            "Dolor"
+          ]
+        },
+        {
+          "title": "Ullamco laboris nisi",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Labore"
+        },
+        {
+          "title": "Aliquip ex ea commodo",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Magna aliqua"
+        },
+        {
+          "title": "Duis aute irure dolor",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Veniam"
+        },
+        {
+          "title": "In reprehenderit voluptate",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Lorem"
+        }
+      ]
+    },
+    {
+      "kind": "event",
+      "title": "Tempor incididunt",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "items": [
+        {
+          "title": "Velit esse cillum",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "kicker": "Ipsum",
+          "meta": "Lorem ipsum · Dolor sit amet",
+          "image": "images/evento.svg",
+          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "caption": "Duis aute irure dolor in reprehenderit in voluptate.",
+          "tags": [
+            "Lorem",
+            "Ipsum",
+            "Dolor"
+          ]
+        }
+      ]
+    }
+  ],
+  "signoff": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+}
