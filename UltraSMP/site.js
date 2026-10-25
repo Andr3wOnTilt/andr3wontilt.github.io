@@ -53,6 +53,32 @@
     });
   });
 
+  const choiceButton = page.querySelector("[data-download-choice]");
+  const choiceDialog = page.querySelector("#download-dialog");
+  if (choiceButton && choiceDialog) {
+    const supportsDialog = typeof choiceDialog.showModal === "function";
+
+    choiceButton.addEventListener("click", (event) => {
+      if (!supportsDialog) {
+        return;
+      }
+      event.preventDefault();
+      if (!choiceDialog.open) {
+        choiceDialog.showModal();
+      }
+    });
+
+    choiceDialog.addEventListener("click", (event) => {
+      if (event.target === choiceDialog) {
+        choiceDialog.close();
+      }
+    });
+
+    choiceDialog.querySelectorAll("[data-download-option]").forEach((option) => {
+      option.addEventListener("click", () => choiceDialog.close());
+    });
+  }
+
   const download = page.querySelector("[data-pack-download]");
   if (!download) {
     return;

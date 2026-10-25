@@ -15,12 +15,8 @@ window.ULTRASMP_SITE = {
       name: "UltraSMP Mod Pack",
       releaseLabel: "Disponibile",
       minecraft: "26.3",
-      format: "ZIP · solo mod",
-      loader: "Fabric",
-      file: "UltraSMP-Mods.zip",
-      size: "21 MB",
-      downloadUrl: "../../downloadable/UltraSMP-Mods.zip",
-      downloadLabel: "Scarica le mod"
+      format: "Import CurseForge / .jar",
+      loader: "Fabric"
     }
   }
 };
