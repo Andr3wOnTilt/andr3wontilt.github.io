@@ -4,12 +4,13 @@ window.ULTRASMP_SITE = {
     texture: {
       name: "UltraSMP Texture Pack",
       version: "v1.0.0",
-      releaseLabel: "In preparazione",
+      releaseLabel: "Disponibile",
       minecraft: "1.21.x",
       format: "Resource Pack",
-      file: "UltraSMP-TexturePack-v1.0.0.zip",
+      file: "UltraSMP-Texture-Pack.zip",
       size: "—",
-      downloadUrl: ""
+      downloadUrl: "https://www.mediafire.com/file/4d6q82sd3ezwtga/UltraSMP-Texture-Pack.zip/file",
+      downloadLabel: "Scarica il Texture Pack"
     },
     mod: {
       name: "UltraSMP Mod Pack",
