@@ -786,6 +786,33 @@ main {
   color: var(--orange);
 }
 
+.pack-warning,
+.download-dialog-warning {
+  padding: 10px 12px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-left: 3px solid var(--red);
+  border-radius: 4px;
+  background: rgba(248, 113, 113, 0.07);
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.pack-warning {
+  max-width: 600px;
+  margin: 16px 0 0;
+}
+
+.download-dialog-warning {
+  margin: 14px 0 0;
+  font-size: 0.8rem;
+}
+
+.pack-warning strong,
+.download-dialog-warning strong {
+  color: var(--red);
+}
+
 .status-chip {
   display: inline-flex;
   align-items: center;
