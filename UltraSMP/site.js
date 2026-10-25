@@ -60,9 +60,10 @@
 
   const downloadUrl = String(pack.downloadUrl || "").trim();
   if (downloadUrl) {
+    const downloadLabel = String(pack.downloadLabel || "").trim();
     download.href = downloadUrl;
     download.download = pack.file;
-    download.textContent = `Scarica ${pack.version}`;
+    download.textContent = downloadLabel || (pack.version ? `Scarica ${pack.version}` : "Scarica");
     download.classList.remove("is-disabled");
     download.removeAttribute("aria-disabled");
     download.removeAttribute("tabindex");

@@ -13,14 +13,14 @@ window.ULTRASMP_SITE = {
     },
     mod: {
       name: "UltraSMP Mod Pack",
-      version: "v1.0.0",
-      releaseLabel: "In preparazione",
-      minecraft: "1.21.x",
-      format: "Modrinth Pack",
+      releaseLabel: "Disponibile",
+      minecraft: "26.3",
+      format: "ZIP · solo mod",
       loader: "Fabric",
-      file: "UltraSMP-ModPack-v1.0.0.mrpack",
-      size: "—",
-      downloadUrl: ""
+      file: "UltraSMP-Mods.zip",
+      size: "21 MB",
+      downloadUrl: "../../downloadable/UltraSMP-Mods.zip",
+      downloadLabel: "Scarica le mod"
     }
   }
 };
