@@ -730,6 +730,11 @@ main {
   color: var(--text);
 }
 
+.choice-requirement {
+  color: var(--orange);
+  font-weight: 600;
+}
+
 .packs-note {
   padding: 0 0 48px;
   color: var(--faint);
@@ -762,6 +767,23 @@ main {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.7;
+}
+
+.pack-requirement {
+  max-width: 600px;
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(251, 146, 60, 0.4);
+  border-left: 3px solid var(--orange);
+  border-radius: 4px;
+  background: rgba(251, 146, 60, 0.07);
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.pack-requirement strong {
+  color: var(--orange);
 }
 
 .status-chip {
