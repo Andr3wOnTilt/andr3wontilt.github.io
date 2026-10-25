@@ -1,15 +1,15 @@
 {
-  "version": "BETA-Era3",
-  "name": "Lorem ipsum dolor sit amet",
+  "version": "BETA-v3",
+  "name": "Un ritorno promettente",
   "date": "2026-11-01",
   "accent": "#fb923c",
   "cover": "images/BETA-Era3.png",
-  "coverAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam.",
+  "coverAlt": "Benvenuto in BETA-v3",
+  "summary": "BETA-v3 sta tornando più forte che mai! Dopo ottimizzazioni e miglioramenti alle funzionalità esistenti, siamo pronti a ripartire, esplorare nuove terre e conquistare nuovi orizzonti. Il prossimo capitolo sta per iniziare, e questa volta non ci sono limiti!",
   "tags": [
-    "Lorem",
-    "Ipsum",
-    "Dolor sit amet"
+    "Miglioramenti",
+    "Aggiornamenti",
+    "ReBoot"
   ],
   "sections": [
     {
