@@ -128,13 +128,13 @@
           </dl>
 
           <a class="button button-primary download-button" href="../../downloadable/UltraSMP-Import.zip" download="UltraSMP-Import.zip" data-download-choice aria-haspopup="dialog" aria-controls="download-dialog">Scarica</a>
-          <p class="download-hint">Scegli tra import CurseForge e file .jar.</p>
+          <p class="download-hint">Scegli il pacchetto Base o Plus e il formato di download.</p>
         </section>
 
         <aside class="download-aside" aria-labelledby="install-title">
           <h2 id="install-title">Installazione</h2>
           <ol>
-            <li>Premi <strong>Scarica</strong> e scegli il formato.</li>
+            <li>Premi <strong>Scarica</strong>, scegli Base o Plus e il formato.</li>
             <li>Per l'import: apri CurseForge e importa <code>UltraSMP-Import.zip</code>.</li>
             <li>Per i file .jar: copiali nella cartella <code>mods</code> dell'istanza Fabric su CurseForge.</li>
             <li>Avvia Minecraft con il profilo <strong>Fabric</strong>.</li>
@@ -153,18 +153,41 @@
               <button class="download-dialog-close" type="submit" aria-label="Chiudi">Chiudi</button>
             </form>
           </div>
-          <p class="download-dialog-text">Seleziona come vuoi scaricare il pacchetto mod di UltraSMP.</p>
+          <p class="download-dialog-text">Scegli il pacchetto Base o Plus, poi seleziona come vuoi scaricarlo.</p>
           <p class="download-dialog-warning"><strong>Mod Pack non mantenuto:</strong> non verrà aggiornato. Sarà tuo compito aggiornare Minecraft, Fabric e le mod.</p>
+          <div class="download-variant">
+            <span class="download-variant-label" id="download-variant-label">Versione del pacchetto</span>
+            <div class="variant-picker" data-variant-picker>
+              <button class="variant-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="download-variant-label variant-trigger-value" data-variant-trigger>
+                <span class="variant-trigger-value" id="variant-trigger-value" data-variant-value>Base</span>
+                <span class="variant-trigger-icon" aria-hidden="true"></span>
+              </button>
+              <ul class="variant-menu" role="listbox" aria-labelledby="download-variant-label" data-variant-menu hidden>
+                <li class="variant-option" role="option" tabindex="-1" aria-selected="true" data-variant-option="base">
+                  <span class="variant-option-text">
+                    <span class="variant-option-label" data-variant-option-label>Base</span>
+                    <span class="variant-option-note">(Solo Essenziali: solo prestazione + VoiceChat)</span>
+                  </span>
+                </li>
+                <li class="variant-option" role="option" tabindex="-1" aria-selected="false" data-variant-option="plus">
+                  <span class="variant-option-text">
+                    <span class="variant-option-label" data-variant-option-label>Plus</span>
+                    <span class="variant-option-note">(Pacchetto Base + Estetica)</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div class="download-options">
             <a class="download-option" href="../../downloadable/UltraSMP-Import.zip" download="UltraSMP-Import.zip" data-download-option="import">
-              <span class="download-option-kicker">CurseForge</span>
+              <span class="download-option-kicker">CurseForge · <span data-download-variant-label>Base</span></span>
               <span class="download-option-title">Import per CurseForge</span>
-              <span class="download-option-text">Scarica <code>UltraSMP-Import.zip</code> e importalo in CurseForge.</span>
+              <span class="download-option-text">Scarica <code data-download-file>UltraSMP-Import.zip</code> e importalo in CurseForge.</span>
             </a>
             <a class="download-option" href="../../downloadable/UltraSMP-Mods.zip" download="UltraSMP-Mods.zip" data-download-option="jars">
-              <span class="download-option-kicker">File .jar</span>
+              <span class="download-option-kicker">File .jar · <span data-download-variant-label>Base</span></span>
               <span class="download-option-title">Solo file .jar</span>
-              <span class="download-option-text">Scarica <code>UltraSMP-Mods.zip</code> con i file da copiare nella cartella <code>mods</code>.</span>
+              <span class="download-option-text">Scarica <code data-download-file>UltraSMP-Mods.zip</code> con i file da copiare nella cartella <code>mods</code>.</span>
             </a>
           </div>
         </div>

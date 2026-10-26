@@ -17,7 +17,20 @@ window.ULTRASMP_SITE = {
       releaseLabel: "Disponibile",
       minecraft: "26.3",
       format: "Import CurseForge / .jar",
-      loader: "Fabric"
+      loader: "Fabric",
+      defaultVariant: "base",
+      variants: {
+        base: {
+          label: "Base",
+          importFile: "UltraSMP-Import.zip",
+          modsFile: "UltraSMP-Mods.zip"
+        },
+        plus: {
+          label: "Plus",
+          importFile: "UltraSMP-Plus-Import.zip",
+          modsFile: "UltraSMP-Plus-Mods.zip"
+        }
+      }
     }
   }
 };

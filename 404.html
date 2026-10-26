@@ -1,112 +1,125 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" href="https://pack.ultrasmp.online/assets/omega-icon.png" type="image/png">
-  <title>404 - Pagina non trovata</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#090909">
+  <meta name="robots" content="noindex, follow">
+  <title>404 — Pagina non trovata · UltraSMP</title>
+  <link rel="canonical" href="https://pack.ultrasmp.online/404.html">
+  <link rel="preload" href="/UltraSMP/assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/png" sizes="64x64" href="/UltraSMP/images/lp-icon.png">
+  <link rel="apple-touch-icon" sizes="64x64" href="/UltraSMP/images/lp-icon.png">
+  <link rel="stylesheet" href="/UltraSMP/style.css">
   <style>
-    :root {
-      --bg: #0a0a0a;
-      --card-bg: rgba(255,255,255,0.06);
-      --glass-border: rgba(255,255,255,0.12);
-      --accent: #007aff;
-      --text: #f5f5f7;
-      --muted: #a0a0a5;
-      --transition: 0.25s ease;
+    .error-main {
+      padding: clamp(52px, 9vw, 108px) 0 clamp(64px, 8vw, 104px);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    .error-card {
+      width: min(760px, 100%);
+      padding: clamp(26px, 5vw, 48px);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--orange);
+      border-radius: var(--radius);
+      background: var(--surface);
     }
 
-    body {
-      height: 100vh;
-      background: radial-gradient(1200px 800px at 20% 10%, rgba(0,122,255,0.1), transparent),
-                  radial-gradient(900px 500px at 80% 90%, rgba(255,255,255,0.05), transparent),
-                  var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
+    .error-code {
+      margin: 18px 0 0;
+      color: var(--border-strong);
+      font-family: var(--font-mono);
+      font-size: clamp(4.5rem, 15vw, 9rem);
+      font-weight: 500;
+      letter-spacing: -0.08em;
+      line-height: 0.9;
     }
 
-    .card {
-      width: 100%;
-      max-width: 480px;
-      background: var(--card-bg);
-      backdrop-filter: blur(25px) saturate(180%);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 32px 32px 32px 32px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-      text-align: center;
-      animation: fadeIn 0.6s var(--transition) forwards;
-      transform: translateY(5px);
-      position: relative;
+    .error-title {
+      margin: 12px 0 0;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+      text-wrap: balance;
     }
 
-    .omega {
-      position: absolute;
-      top: -70px;
-      left: 50%;
-      width: 140px;
-      height: 140px;
-      transform: translateX(-50%);
-      animation: float 6s ease-in-out infinite, spin 20s linear infinite;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 12px rgba(0,122,255,0.3));
-    }
-
-    h1 {
-      margin-top: 80px;
-      font-size: 2.5rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-
-    p.lead {
-      margin-top: 12px;
-      font-size: 1rem;
+    .error-lead {
+      max-width: 56ch;
+      margin: 16px 0 0;
       color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
-    footer {
-      margin-top: 28px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.25);
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -10px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 520px) {
-      .card { padding: 36px 24px 24px 24px; }
-      h1 { font-size: 2rem; }
-      .omega { width: 120px; height: 120px; top: -60px; }
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="https://pack.ultrasmp.online/assets/omega-icon.png" alt="Omega Icon" class="omega">
-    <h1>404</h1>
-    <p class="lead">La pagina che stai cercando non esiste.</p>
-    <footer>OmegaDEV</footer>
-  </div>
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="page header-inner">
+      <a class="brand" href="/UltraSMP/" aria-label="UltraSMP — Sito ufficiale — Home">
+        <img class="brand-logo" src="/UltraSMP/images/lp-icon.png" alt="" width="32" height="32">
+        <span class="wordmark">UltraSMP</span>
+        <span class="brand-tag">Sito ufficiale</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navigazione principale">
+        <a class="nav-link" href="/UltraSMP/">Home</a>
+        <a class="nav-link" href="/UltraSMP/novita/">Novità</a>
+        <a class="nav-link" href="/UltraSMP/Packs/">Packs</a>
+        <a class="nav-link" href="https://wiki.ultrasmp.org/" target="_blank" rel="noopener noreferrer">
+          Wiki <span class="external-mark" aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="error-main" id="main">
+    <div class="page">
+      <section class="error-card" aria-labelledby="error-title">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Errore 404</p>
+        <p class="error-code" aria-hidden="true">404</p>
+        <h1 class="error-title" id="error-title">Questa pagina <span class="smp-accent">non esiste.</span></h1>
+        <p class="error-lead">Il link potrebbe essere sbagliato oppure la pagina è stata spostata. Torna alla home o continua dai pack di UltraSMP.</p>
+        <div class="error-actions">
+          <a class="button button-primary" href="/UltraSMP/">Torna alla home</a>
+          <a class="button button-secondary" href="/UltraSMP/Packs/">Vai ai pack</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-head">
+          <img class="footer-brand-logo" src="/UltraSMP/images/lp-icon.png" alt="Logo LP" width="32" height="32" loading="lazy">
+          <strong>UltraSMP</strong>
+        </div>
+        <p class="footer-copyright">Copyright &copy; 2023–2026 UltraSMP · Sito creato da: <span class="credit-omega">OmegaDEV</span> · Sviluppatore del server MC: <span class="credit-xedo">_Xedo_</span></p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Collegamenti del sito">
+        <a href="/UltraSMP/">Home</a>
+        <a href="/UltraSMP/novita/">Novità</a>
+        <a href="/UltraSMP/Packs/">Packs</a>
+        <a href="https://wiki.ultrasmp.org/" target="_blank" rel="noopener noreferrer">Wiki ↗</a>
+      </nav>
+    </div>
+
+    <div class="page texture-credit">
+      <p class="footer-heading">Crediti e attribuzioni</p>
+      <p>Il pacchetto texture è curato e mantenuto da <span class="credit-texture">Andr3wOnTilt</span>. Alcuni asset grafici provengono da texture pack di terze parti e sono utilizzati esclusivamente per uso personale, come integrazioni visive per UltraSMP e non come opere originali. La titolarità dei singoli asset resta ai rispettivi autori.</p>
+    </div>
+  </footer>
 </body>
 </html>
