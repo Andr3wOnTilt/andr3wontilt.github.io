@@ -5,166 +5,103 @@
   "accent": "#fb923c",
   "cover": "images/BETA-Era3.png",
   "coverAlt": "Benvenuto in BETA-v3",
-  "summary": "BETA-v3 sta tornando più forte che mai! Dopo ottimizzazioni e miglioramenti alle funzionalità esistenti, siamo pronti a ripartire, esplorare nuove terre e conquistare nuovi orizzonti. Il prossimo capitolo sta per iniziare, e questa volta non ci sono limiti!",
+  "summary": "L'aggiornamento di ottobre porta UltraSMP alla nuova versione di Minecraft per tutti gli script, con ottimizzazioni generali e nuove funzioni per i messaggi privati e il Profilo SMP. Sono stati risolti anche diversi bug.",
   "tags": [
-    "Miglioramenti",
-    "Aggiornamenti",
-    "ReBoot"
+    "Aggiornamento",
+    "Novità",
+    "Bug fix"
   ],
   "sections": [
     {
-      "kind": "new",
-      "title": "Lorem ipsum dolor",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "kind": "update",
+      "title": "Aggiornamento e prestazioni",
+      "description": "Le novità principali per chi gioca su UltraSMP.",
       "items": [
         {
-          "title": "Lorem ipsum dolor sit",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Lorem",
-          "image": "images/rovine.svg",
-          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "title": "Nuova versione di Minecraft",
+          "text": "Ottimizzazione e aggiornamento alla nuova versione di Minecraft per tutti gli script.",
+          "kicker": "Importante",
           "tags": [
-            "Lorem",
-            "Ipsum",
-            "Dolor"
+            "Minecraft",
+            "Aggiornamento"
           ]
         },
         {
-          "title": "Consectetur adipiscing elit",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Ipsum",
-          "image": "images/dungeon.svg",
-          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "caption": "Sed do eiusmod tempor incididunt ut labore et dolore.",
+          "title": "Ottimizzazioni generali",
+          "text": "Sono state effettuate ottimizzazioni generali al server.",
+          "kicker": "Prestazioni",
           "tags": [
-            "Lorem",
-            "Ipsum",
-            "Dolor"
+            "Prestazioni",
+            "Stabilità"
           ]
         }
       ]
     },
     {
-      "kind": "update",
-      "title": "Consectetur adipiscing",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "kind": "new",
+      "title": "Novità e implementazioni",
+      "description": "Nuove funzionalità e miglioramenti per i messaggi privati e la GUI del Profilo SMP.",
       "items": [
         {
-          "title": "Sed do eiusmod tempor",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Dolor",
-          "image": "images/economia.svg",
-          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "caption": "Ut enim ad minim veniam, quis nostrud exercitation.",
+          "title": "Messaggi privati con risposta rapida",
+          "text": "I messaggi privati hanno ora un cooldown di risposta di 3 minuti. Quando ricevi un messaggio, puoi usare /r <mittente> entro 3 minuti; trascorso il tempo devi riaprire la conversazione con /msg <mittente>.",
+          "kicker": "Comandi",
+          "commands": [
+            {
+              "command": "/msg <destinatario> <messaggio>",
+              "description": "Avvia una conversazione privata con un giocatore."
+            },
+            {
+              "command": "/r <mittente>",
+              "description": "Risponde rapidamente al giocatore con cui hai una conversazione aperta; disponibile per 3 minuti."
+            }
+          ],
           "tags": [
-            "Lorem",
-            "Ipsum",
-            "Dolor"
+            "Messaggi privati",
+            "/msg",
+            "/r"
           ]
         },
         {
-          "title": "Incididunt ut labore",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Sit amet",
-          "image": "images/nether.svg",
-          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "caption": "Duis aute irure dolor in reprehenderit in voluptate.",
+          "title": "GUI del Profilo SMP aggiornata",
+          "text": "Nel cestino ora puoi spostare l'intero inventario e viceversa; aggiornato anche il messaggio di Svuota cestino. Le Notifiche di servizio sono state rimosse: Impostazioni > Notifiche apre direttamente le Notifiche generali. Aggiornate le icone di Danni colpo critico e Blocchi piazzati e rinominati i relativi dati in Probab. colpo critico e Danni colpo critico.",
+          "kicker": "Interfaccia",
           "tags": [
-            "Lorem",
-            "Ipsum",
-            "Dolor"
+            "Profilo SMP",
+            "Cestino",
+            "Notifiche",
+            "Interfaccia"
           ]
         },
         {
-          "title": "Dolore magna aliqua",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Consectetur",
-          "image": "images/performance.svg",
-          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "title": "Profilo giocatori dinamico",
+          "text": "Con il click destro sul giocatore puoi aprire il suo profilo. La GUI si aggiorna in tempo reale quando il giocatore compie azioni che modificano i suoi dati.",
+          "kicker": "Profilo",
           "tags": [
-            "Lorem",
-            "Ipsum",
-            "Dolor"
-          ]
-        },
-        {
-          "title": "Ut enim ad minim",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Adipiscing",
-          "image": "images/claim.svg",
-          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "caption": "Sed do eiusmod tempor incididunt ut labore et dolore.",
-          "tags": [
-            "Lorem",
-            "Ipsum",
-            "Dolor"
+            "Profilo",
+            "GUI dinamica",
+            "Giocatori"
           ]
         }
       ]
     },
     {
       "kind": "fix",
-      "title": "Sed do eiusmod",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "title": "Bug risolti",
+      "description": "Correzioni ai problemi introdotti dagli aggiornamenti precedenti.",
       "items": [
         {
-          "title": "Quis nostrud exercitation",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Tempor",
-          "image": "images/fix.svg",
-          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "caption": "Ut enim ad minim veniam, quis nostrud exercitation.",
+          "title": "Nessuna perdita di oggetti dal Profilo SMP",
+          "text": "Risolto il bug che causava la perdita di un oggetto nell'inventario se richiamato con il click centrale del mouse su un blocco con l'oggetto del Profilo SMP nello slot 9.",
+          "kicker": "Inventario",
           "tags": [
-            "Lorem",
-            "Ipsum",
-            "Dolor"
-          ]
-        },
-        {
-          "title": "Ullamco laboris nisi",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Labore"
-        },
-        {
-          "title": "Aliquip ex ea commodo",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Magna aliqua"
-        },
-        {
-          "title": "Duis aute irure dolor",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Veniam"
-        },
-        {
-          "title": "In reprehenderit voluptate",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Lorem"
-        }
-      ]
-    },
-    {
-      "kind": "event",
-      "title": "Tempor incididunt",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "items": [
-        {
-          "title": "Velit esse cillum",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "kicker": "Ipsum",
-          "meta": "Lorem ipsum · Dolor sit amet",
-          "image": "images/evento.svg",
-          "imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "caption": "Duis aute irure dolor in reprehenderit in voluptate.",
-          "tags": [
-            "Lorem",
-            "Ipsum",
-            "Dolor"
+            "Bug fix",
+            "Inventario",
+            "Profilo SMP"
           ]
         }
       ]
     }
   ],
-  "signoff": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  "signoff": "Ci vediamo in gioco!"
 }

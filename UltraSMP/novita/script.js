@@ -1,4 +1,5 @@
 const MANIFEST_URL = "data/index.json";
+const LINKED_SECTIONS_KEY = "ultrasmp-novita-linked-sections";
 
 const PALETTE = new Set(["#facc15", "#fb923c", "#38bdf8", "#f87171"]);
 
@@ -26,10 +27,26 @@ const els = {
   eraList: document.getElementById("era-list")
 };
 
+function readLinkedSections() {
+  try {
+    return window.localStorage.getItem(LINKED_SECTIONS_KEY) !== "false";
+  } catch {
+    return true;
+  }
+}
+
+function saveLinkedSections(value) {
+  try {
+    window.localStorage.setItem(LINKED_SECTIONS_KEY, String(value));
+  } catch {
+  }
+}
+
 const state = {
   versions: [],
   latestId: "",
-  selectedId: ""
+  selectedId: "",
+  linkedSections: readLinkedSections()
 };
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -117,6 +134,14 @@ function normalizeVersion(raw, index) {
           caption: String(item?.caption ?? "").trim(),
           tags: Array.isArray(item?.tags)
             ? item.tags.map((tag) => String(tag).trim()).filter(Boolean)
+            : [],
+          commands: Array.isArray(item?.commands)
+            ? item.commands
+                .map((entry) => ({
+                  command: String(entry?.command ?? "").trim(),
+                  description: String(entry?.description ?? "").trim()
+                }))
+                .filter((entry) => entry.command || entry.description)
             : []
         }))
         .filter((item) => item.title || item.text);
@@ -297,6 +322,39 @@ function renderMedia(media, { cover = false, overlay = null } = {}) {
   `;
 }
 
+function renderCommandTokens(command) {
+  return String(command)
+    .trim()
+    .split(/\s+/)
+    .map((token) => {
+      const className = /^<[^>]+>$/.test(token) ? "command-placeholder" : "command-name";
+      return `<span class="${className}">${escapeHTML(token)}</span>`;
+    })
+    .join(" ");
+}
+
+function renderCommands(commands) {
+  if (!commands.length) {
+    return "";
+  }
+
+  return `
+    <div class="command-examples" aria-label="Esempi dei comandi">
+      <ul class="command-list">
+        ${commands
+          .map(
+            (entry) => `
+          <li class="command-item">
+            ${entry.command ? `<code class="command-code">${renderCommandTokens(entry.command)}</code>` : ""}
+            ${entry.description ? `<span class="command-description">${escapeHTML(entry.description)}</span>` : ""}
+          </li>`
+          )
+          .join("")}
+      </ul>
+    </div>
+  `;
+}
+
 function renderChange(item, kind) {
   const kicker = item.kicker
     ? `<span class="change-kicker">${escapeHTML(item.kicker)}</span>`
@@ -305,6 +363,7 @@ function renderChange(item, kind) {
     ? `<p class="change-text">${escapeHTML(item.text)}</p>`
     : "";
   const media = renderMedia(item);
+  const commands = renderCommands(item.commands);
   const meta = item.meta
     ? `<span class="change-meta">${escapeHTML(item.meta)}</span>`
     : "";
@@ -316,6 +375,7 @@ function renderChange(item, kind) {
         ${kicker}
       </div>
       ${text}
+      ${commands}
       ${media}
       ${meta}
       ${renderTags(item.tags)}
@@ -405,8 +465,12 @@ function renderAnnouncement(version) {
     ? `<div class="sections-toolbar">
         <p class="sections-label" id="sections-label">Sezioni</p>
         <div class="sections-actions" role="group" aria-labelledby="sections-label">
-          <button class="sections-action" type="button" data-collapse-sections aria-disabled="true">Comprimi tutte</button>
+          <button class="sections-action" type="button" data-collapse-sections hidden>Comprimi tutte</button>
           <button class="sections-action" type="button" data-expand-sections>Espandi tutte</button>
+          <button class="sections-action sections-link-toggle" type="button" data-link-sections aria-pressed="${state.linkedSections}" title="Apri una sezione alla volta">
+            <span class="sections-link-indicator" aria-hidden="true"></span>
+            Sezioni collegate
+          </button>
         </div>
       </div>`
     : "";
@@ -502,8 +566,8 @@ function syncSectionsControls() {
   }
 
   const expanded = toggles.filter((toggle) => toggle.getAttribute("aria-expanded") === "true").length;
-  collapseAll.setAttribute("aria-disabled", String(expanded === 0));
-  expandAll.setAttribute("aria-disabled", String(expanded === toggles.length));
+  collapseAll.hidden = expanded === 0;
+  expandAll.hidden = expanded === toggles.length;
 }
 
 function setSectionExpanded(section, expanded) {
@@ -809,24 +873,37 @@ function initEvents() {
     if (sectionToggle) {
       const section = sectionToggle.closest(".release-section");
       const expanded = sectionToggle.getAttribute("aria-expanded") !== "true";
+
+      if (expanded && state.linkedSections) {
+        els.announcement.querySelectorAll(".release-section").forEach((other) => {
+          if (other !== section) {
+            setSectionExpanded(other, false);
+          }
+        });
+      }
+
       setSectionExpanded(section, expanded);
       syncSectionsControls();
       return;
     }
 
+    const linkSections = event.target.closest("[data-link-sections]");
+    if (linkSections) {
+      state.linkedSections = !state.linkedSections;
+      saveLinkedSections(state.linkedSections);
+      linkSections.setAttribute("aria-pressed", String(state.linkedSections));
+      return;
+    }
+
     const collapseAll = event.target.closest("[data-collapse-sections]");
     if (collapseAll) {
-      if (collapseAll.getAttribute("aria-disabled") !== "true") {
-        setAllSectionsExpanded(false);
-      }
+      setAllSectionsExpanded(false);
       return;
     }
 
     const expandAll = event.target.closest("[data-expand-sections]");
     if (expandAll) {
-      if (expandAll.getAttribute("aria-disabled") !== "true") {
-        setAllSectionsExpanded(true);
-      }
+      setAllSectionsExpanded(true);
       return;
     }
 

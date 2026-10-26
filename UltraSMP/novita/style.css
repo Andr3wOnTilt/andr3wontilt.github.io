@@ -615,8 +615,36 @@ button {
   color: var(--text);
 }
 
-.sections-action:disabled,
-.sections-action[aria-disabled="true"] {
+.sections-link-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.sections-link-indicator {
+  width: 8px;
+  height: 8px;
+  border: 1px solid currentColor;
+  background: transparent;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.sections-link-toggle[aria-pressed="true"] {
+  border-color: rgba(250, 204, 21, 0.45);
+  background: rgba(250, 204, 21, 0.08);
+  color: var(--text);
+}
+
+.sections-link-toggle[aria-pressed="true"] .sections-link-indicator {
+  border-color: var(--yellow);
+  background: var(--yellow);
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.45);
+}
+
+.sections-action:disabled {
   cursor: default;
   opacity: 0.45;
   border-color: var(--border);
@@ -766,6 +794,57 @@ button {
   color: var(--text-soft);
   font-family: var(--font-mono);
   font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.command-examples {
+  max-width: 68ch;
+  margin-top: 14px;
+}
+
+.command-list {
+  display: grid;
+  gap: 7px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.command-item {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
+  gap: 6px 14px;
+  align-items: center;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cat, var(--accent));
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.command-code {
+  justify-self: start;
+  padding: 2px 7px;
+  border: 1px solid rgba(250, 204, 21, 0.14);
+  border-radius: 3px;
+  background: rgba(250, 204, 21, 0.07);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.command-name {
+  color: var(--yellow);
+}
+
+.command-placeholder {
+  color: var(--faint);
+}
+
+.command-description {
+  color: var(--muted);
+  font-size: 0.84rem;
   line-height: 1.55;
 }
 
@@ -1188,6 +1267,11 @@ button {
 
   .change-text {
     font-size: 0.93rem;
+  }
+
+  .command-item {
+    grid-template-columns: 1fr;
+    align-items: start;
   }
 
   .media-caption {
