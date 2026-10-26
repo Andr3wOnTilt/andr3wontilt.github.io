@@ -371,6 +371,11 @@ button {
   line-height: 1.4;
 }
 
+.meta-launch .release-date-label,
+.meta-launch .release-date {
+  color: var(--era-accent);
+}
+
 .release-status {
   display: inline-flex;
   align-items: center;
@@ -742,31 +747,35 @@ button {
 }
 
 .change-list {
+  display: grid;
+  gap: 8px;
   padding: 0;
-  margin: 20px 0 0;
+  margin: 16px 0 0;
   list-style: none;
 }
 
 .change {
-  padding: 22px 0;
-  border-top: 1px solid var(--border);
-}
-
-.change:first-child {
-  padding-top: 0;
-  border-top: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.6fr);
+  gap: 4px 20px;
+  align-items: start;
+  padding: 13px 16px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cat, var(--accent));
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.018);
 }
 
 .change-head {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
 }
 
 .change-title {
   margin: 0;
-  font-size: 1.04rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.45;
 }
@@ -781,16 +790,30 @@ button {
 }
 
 .change-text {
-  max-width: 68ch;
-  margin: 9px 0 0;
+  max-width: 72ch;
+  margin: 0;
   color: var(--muted);
-  font-size: 0.96rem;
-  line-height: 1.8;
+  font-size: 0.94rem;
+  line-height: 1.72;
+}
+
+.change .media,
+.change .command-examples,
+.change .tags {
+  grid-column: 1 / -1;
+}
+
+.change .media {
+  margin-top: 12px;
+}
+
+.change .command-examples {
+  margin-top: 4px;
 }
 
 .change-meta {
-  display: inline-block;
-  margin-top: 9px;
+  grid-column: 2;
+  margin-top: 2px;
   color: var(--text-soft);
   font-family: var(--font-mono);
   font-size: 0.74rem;

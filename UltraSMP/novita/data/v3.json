@@ -1,107 +1,104 @@
 {
   "version": "BETA-v3",
-  "name": "Un ritorno promettente",
-  "date": "2026-11-01",
+  "name": "Changelog di Ultra SMP (18 - 26 Ottobre)",
+  "date": "2026-10-26",
+  "launchDate": "2026-11-01",
   "accent": "#fb923c",
   "cover": "images/BETA-Era3.png",
   "coverAlt": "Benvenuto in BETA-v3",
-  "summary": "L'aggiornamento di ottobre porta UltraSMP alla nuova versione di Minecraft per tutti gli script, con ottimizzazioni generali e nuove funzioni per i messaggi privati e il Profilo SMP. Sono stati risolti anche diversi bug.",
-  "tags": [
-    "Aggiornamento",
-    "Novità",
-    "Bug fix"
-  ],
+  "summary": "Benvenuti nel riepilogo di tutte le novità, i miglioramenti e le correzioni implementate sul server in questo periodo.",
   "sections": [
     {
-      "kind": "update",
-      "title": "Aggiornamento e prestazioni",
-      "description": "Le novità principali per chi gioca su UltraSMP.",
+      "kind": "new",
+      "title": "Nuove Funzionalità e Gameplay",
       "items": [
         {
-          "title": "Nuova versione di Minecraft",
-          "text": "Ottimizzazione e aggiornamento alla nuova versione di Minecraft per tutti gli script.",
-          "kicker": "Importante",
-          "tags": [
-            "Minecraft",
-            "Aggiornamento"
-          ]
+          "title": "Telecinesi per i drop dei mob",
+          "text": "Gli oggetti rilasciati dai mostri sconfitti ora finiscono direttamente nel tuo inventario in modo automatico."
         },
         {
-          "title": "Ottimizzazioni generali",
-          "text": "Sono state effettuate ottimizzazioni generali al server.",
-          "kicker": "Prestazioni",
-          "tags": [
-            "Prestazioni",
-            "Stabilità"
-          ]
+          "title": "Oggetti droppati con effetto \"Glowing\"",
+          "text": "Gli oggetti lasciati a terra dai giocatori ora brillano con colori distintivi basati sulla loro rarità."
+        },
+        {
+          "title": "Gestione Esperienza (/bottle)",
+          "text": "Introdotto il nuovo sistema per conservare, prelevare e gestire la tua XP in bottiglie, con comodi suggerimenti rapidi nei comandi (/bottle until, store, ecc.)."
+        },
+        {
+          "title": "Nuove Ricette Personalizzate",
+          "text": "Aggiunte ricette artigianali per craftare oggetti speciali come il Totem dell'immortalità, la Mela d'oro incantata, il Sensore di sculk e altri blocchi rari."
+        },
+        {
+          "title": "Nuovo sistema di Nametag",
+          "text": "Le etichette sopra i giocatori sono state completamente rinnovate. Ora mostrano su 3 righe pulite e sfumate: reputazione/allineamento, nome e salute in tempo reale."
         }
       ]
     },
     {
-      "kind": "new",
-      "title": "Novità e implementazioni",
-      "description": "Nuove funzionalità e miglioramenti per i messaggi privati e la GUI del Profilo SMP.",
+      "kind": "update",
+      "title": "Teletrasporti, Viaggi e Warp",
       "items": [
         {
-          "title": "Messaggi privati con risposta rapida",
-          "text": "I messaggi privati hanno ora un cooldown di risposta di 3 minuti. Quando ricevi un messaggio, puoi usare /r <mittente> entro 3 minuti; trascorso il tempo devi riaprire la conversazione con /msg <mittente>.",
-          "kicker": "Comandi",
-          "commands": [
-            {
-              "command": "/msg <destinatario> <messaggio>",
-              "description": "Avvia una conversazione privata con un giocatore."
-            },
-            {
-              "command": "/r <mittente>",
-              "description": "Risponde rapidamente al giocatore con cui hai una conversazione aperta; disponibile per 3 minuti."
-            }
-          ],
-          "tags": [
-            "Messaggi privati",
-            "/msg",
-            "/r"
-          ]
+          "title": "Warp rapidi per le dimensioni",
+          "text": "Aggiunti i warp rapidi per Nether ed End per facilitare gli spostamenti."
         },
         {
-          "title": "GUI del Profilo SMP aggiornata",
-          "text": "Nel cestino ora puoi spostare l'intero inventario e viceversa; aggiornato anche il messaggio di Svuota cestino. Le Notifiche di servizio sono state rimosse: Impostazioni > Notifiche apre direttamente le Notifiche generali. Aggiornate le icone di Danni colpo critico e Blocchi piazzati e rinominati i relativi dati in Probab. colpo critico e Danni colpo critico.",
-          "kicker": "Interfaccia",
-          "tags": [
-            "Profilo SMP",
-            "Cestino",
-            "Notifiche",
-            "Interfaccia"
-          ]
+          "title": "Miglioramenti a Case e TPA",
+          "text": "Risolti diversi problemi con il comando /home (anche in assenza di un letto registrato) e rese molto più stabili le richieste di teletrasporto (/tpa)."
         },
         {
-          "title": "Profilo giocatori dinamico",
-          "text": "Con il click destro sul giocatore puoi aprire il suo profilo. La GUI si aggiorna in tempo reale quando il giocatore compie azioni che modificano i suoi dati.",
-          "kicker": "Profilo",
-          "tags": [
-            "Profilo",
-            "GUI dinamica",
-            "Giocatori"
-          ]
+          "title": "Comando /warpinfo aggiornato",
+          "text": "Ora mostra la posizione esatta con coordinate arrotondate e la data di creazione del warp."
+        },
+        {
+          "title": "Comando /playtime (/pt)",
+          "text": "Controlla in qualsiasi momento il tuo tempo di gioco sul server, sia per la sessione attuale che totale."
+        }
+      ]
+    },
+    {
+      "kind": "update",
+      "title": "Interfaccia, Menu e Statistiche",
+      "items": [
+        {
+          "title": "Fama e Incursioni",
+          "text": "Il sistema di Fama è stato ottimizzato e bilanciato. Ora è possibile guadagnare Fama anche completando con successo le Incursioni (/raid)."
+        },
+        {
+          "title": "Menu reputazioni (/rank list)",
+          "text": "Rinnovata l'interfaccia grafica per consultare i ranghi e la reputazione sul server."
+        },
+        {
+          "title": "Cestino migliorato",
+          "text": "La hotbar è ora esclusa dai pulsanti del cestino per evitare incidenti, ed è stato aggiunto un comodo pulsante di trasferimento rapido per riportare gli oggetti dall'inventario al cestino (e viceversa)."
+        },
+        {
+          "title": "Preferenze salvate",
+          "text": "Le scelte di personalizzazione del personaggio e le impostazioni della scoreboard non si resettano più a ogni accesso."
+        },
+        {
+          "title": "Scoreboard rinnovata",
+          "text": "Ottimizzate le prestazioni, introdotto il pratico contatore degli slot liberi dell'inventario, un promemoria periodico opzionale e il nuovo comando rapido /sbtoggle."
         }
       ]
     },
     {
       "kind": "fix",
-      "title": "Bug risolti",
-      "description": "Correzioni ai problemi introdotti dagli aggiornamenti precedenti.",
+      "title": "Correzioni e Ottimizzazioni Generali",
       "items": [
         {
-          "title": "Nessuna perdita di oggetti dal Profilo SMP",
-          "text": "Risolto il bug che causava la perdita di un oggetto nell'inventario se richiamato con il click centrale del mouse su un blocco con l'oggetto del Profilo SMP nello slot 9.",
-          "kicker": "Inventario",
-          "tags": [
-            "Bug fix",
-            "Inventario",
-            "Profilo SMP"
-          ]
+          "title": "Selezione del genere",
+          "text": "Risolti i problemi di interazione con i menu di scelta all'ingresso nel server."
+        },
+        {
+          "title": "Notifiche inventario pieno",
+          "text": "Il messaggio di avviso è stato reso più pulito e ora include un collegamento rapido per aprire direttamente il cestino."
+        },
+        {
+          "title": "Stabilità generale",
+          "text": "Risolti numerosi bug minori legati alla sincronizzazione dei mondi, alla fluidità delle animazioni e alla stabilità dei comandi amministrativi e di movimento."
         }
       ]
     }
-  ],
-  "signoff": "Ci vediamo in gioco!"
+  ]
 }

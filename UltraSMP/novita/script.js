@@ -115,6 +115,8 @@ function parseDate(value) {
 function normalizeVersion(raw, index) {
   const dateString = String(raw?.date ?? "").trim();
   const dateValue = parseDate(dateString);
+  const launchDateString = String(raw?.launchDate ?? "").trim();
+  const launchDateValue = parseDate(launchDateString);
   const rawSections = Array.isArray(raw?.sections) ? raw.sections : [];
 
   const sections = rawSections
@@ -172,6 +174,9 @@ function normalizeVersion(raw, index) {
     dateValue,
     dateISO: dateValue ? dateString : "",
     dateLabel: dateValue ? longDateFormatter.format(dateValue) : "Data non disponibile",
+    launchDateValue,
+    launchDateISO: launchDateValue ? launchDateString : "",
+    launchDateLabel: launchDateValue ? longDateFormatter.format(launchDateValue) : "",
     shortDate: dateValue ? shortDateFormatter.format(dateValue) : "—",
     sections
   };
@@ -259,7 +264,7 @@ function getDateState(version) {
     label: version.dateValue
       ? isFuture
         ? "Data prevista"
-        : "Data di uscita"
+        : "Data di pubblicazione"
       : "Data",
     status: version.dateValue
       ? isFuture
@@ -440,6 +445,12 @@ function renderAnnouncement(version) {
   const date = version.dateValue
     ? `<time class="release-date" datetime="${escapeHTML(version.dateISO)}">${escapeHTML(version.dateLabel)}</time>`
     : `<span class="release-date">${escapeHTML(version.dateLabel)}</span>`;
+  const launchDate = version.launchDateValue
+    ? `<span class="meta-date meta-launch">
+        <span class="release-date-label">Avvio del server</span>
+        <time class="release-date" datetime="${escapeHTML(version.launchDateISO)}">${escapeHTML(version.launchDateLabel)}</time>
+      </span>`
+    : "";
   const summary = version.summary
     ? `<p class="announcement-summary">${escapeHTML(version.summary)}</p>`
     : "";
@@ -483,6 +494,7 @@ function renderAnnouncement(version) {
           <span class="release-date-label">${dateState.label}</span>
           ${date}
         </span>
+        ${launchDate}
         <span class="release-status">${dateState.status}</span>
       </div>
       <h2 class="announcement-title">${escapeHTML(version.name)}</h2>
