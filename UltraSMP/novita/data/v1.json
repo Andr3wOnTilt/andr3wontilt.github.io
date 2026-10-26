@@ -1,9 +1,114 @@
 {
   "version": "BETA-v1",
-  "name": "Nessun dato",
+  "name": "Lancio Ufficiale",
   "accent": "#facc15",
-  "summary": "Non abbiamo nessun dato a riguardo.",
-  "cover": "images/errore-era1.svg",
-  "coverAlt": "Una cartella vuota con un simbolo di avviso e una sezione tratteggiata",
-  "sections": []
+  "cover": "images/hero-v1.svg",
+  "coverAlt": "Alba dorata su un paesaggio a blocchi con colline verdi, alberi e un grande spawn.",
+  "summary": "Il changelog di apertura di UltraSMP introduce il Rank Update 2.0, il collegamento tra gioco e Discord, aggiornamenti a Fama e GUI dei giocatori, e il primo evento: Gold Rush.",
+  "tags": [
+    "Lancio",
+    "Rank Update",
+    "Eventi"
+  ],
+  "sections": [
+    {
+      "kind": "update",
+      "title": "Rank Update 2.0",
+      "description": "Reputazioni rivisitate e una nuova reputazione dedicata ai giocatori più esperti.",
+      "items": [
+        {
+          "title": "Reputazioni rivisitate",
+          "text": "Le reputazioni sono state rivisitate e i messaggi di avanzamento di reputazione sono stati ottimizzati.",
+          "kicker": "Reputazioni",
+          "tags": [
+            "Reputazioni",
+            "Fama"
+          ]
+        },
+        {
+          "title": "Nuova reputazione: Nerd",
+          "text": "La reputazione Nerd richiede almeno 10.000.000 Fama per essere ottenuta e garantisce l'utilizzo illimitato dell'immortalità, attivabile con il comando /god.",
+          "kicker": "Nuovo rank",
+          "tags": [
+            "Nerd",
+            "Immortalità",
+            "/god"
+          ],
+          "commands": [
+            {
+              "command": "/god",
+              "description": "Attiva l'immortalità illimitata per chi ha ottenuto la reputazione Nerd."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "new",
+      "title": "Chat Update 1.0",
+      "description": "Comunicazione diretta tra il server Minecraft e Discord.",
+      "items": [
+        {
+          "title": "Collegamento con Discord",
+          "text": "Da adesso i giocatori nel server potranno comunicare con i membri nel server Discord e viceversa.",
+          "kicker": "Community",
+          "tags": [
+            "Discord",
+            "Chat"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "update",
+      "title": "Fame Update 2.0",
+      "description": "Più informazioni nell'actionbar e nuove regole per la perdita di Fama.",
+      "items": [
+        {
+          "title": "Nomi dei mob nell'actionbar",
+          "text": "Da adesso si potranno leggere i nomi dei mob uccisi nell'actionbar per il guadagno o perdita di Fama. Inoltre, il giocatore perderà Fama se ucciderà i pipistrelli e gli strider (prima di questo update questi mob non facevano perdere Fama se uccisi).",
+          "kicker": "Fama",
+          "tags": [
+            "Fama",
+            "Mob",
+            "Actionbar"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "update",
+      "title": "GUI delle Informazioni Giocatori aggiornata",
+      "description": "Confronto immediato delle statistiche tra due giocatori.",
+      "items": [
+        {
+          "title": "Confronto delle statistiche",
+          "text": "Quando si clicca con il tasto destro (a mano vuota) su un giocatore, se quest'ultimo consente di far visualizzare le sue statistiche tramite le impostazioni di Privacy > Profilo giocatori, accanto alle informazioni del giocatore cliccato compariranno quelle del giocatore che sta visualizzando il profilo. In questo modo è possibile confrontare i dati senza doverli ricordare tutti.",
+          "kicker": "Profilo",
+          "tags": [
+            "GUI",
+            "Statistiche",
+            "Privacy"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "event",
+      "title": "Eventi",
+      "description": "Il primo evento del server e i prossimi arrivi.",
+      "items": [
+        {
+          "title": "Gold Rush",
+          "text": "Introdotto il primo evento: Gold Rush, il quale consiste nel raccogliere più pepite d'oro colpendo i mob (giocatori esclusi) entro un tempo limite. Verranno introdotti ulteriori eventi nel corso dello sviluppo dell'SMP.",
+          "kicker": "Evento",
+          "tags": [
+            "Gold Rush",
+            "Eventi"
+          ]
+        }
+      ]
+    }
+  ],
+  "signoff": "Ci vediamo in gioco!"
 }
