@@ -24,10 +24,74 @@
   --accent: var(--yellow);
   --accent-2: var(--orange);
   --danger: var(--red);
+  --card-tint: rgba(255, 255, 255, 0.018);
+  --media-overlay-bg: rgba(9, 9, 9, 0.86);
+  --media-overlay-border: rgba(255, 255, 255, 0.14);
+  --accent-soft-border: rgba(250, 204, 21, 0.14);
+  --accent-soft-bg: rgba(250, 204, 21, 0.07);
   --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", "Liberation Mono", Menlo, Consolas, monospace;
   --radius: 6px;
   --page: 860px;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f5f2;
+  --surface: #ffffff;
+  --surface-raised: #ece9e3;
+  --border: #c9c3b8;
+  --border-strong: #8f887e;
+  --text: #11100e;
+  --text-soft: #26221d;
+  --muted: #49443d;
+  --faint: #575149;
+  --yellow: #713f12;
+  --orange: #7c2d12;
+  --blue: #0c4a6e;
+  --red: #991b1b;
+  --card-tint: rgba(0, 0, 0, 0.025);
+  --media-overlay-bg: rgba(246, 245, 242, 0.92);
+  --media-overlay-border: rgba(0, 0, 0, 0.14);
+  --accent-soft-border: rgba(113, 63, 18, 0.3);
+  --accent-soft-bg: rgba(113, 63, 18, 0.1);
+}
+
+.announcement,
+.era-item {
+  --era-accent-text: var(--era-accent);
+}
+
+.release-section {
+  --cat-text: var(--cat);
+}
+
+:root[data-theme="light"] .announcement,
+:root[data-theme="light"] .era-item {
+  --era-accent-text: color-mix(in srgb, var(--era-accent) 45%, #000000);
+}
+
+:root[data-theme="light"] .release-section {
+  --cat-text: color-mix(in srgb, var(--cat) 45%, #000000);
+}
+
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition-property: color, background-color, border-color, box-shadow, fill, stroke, outline-color;
+  transition-duration: 320ms;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 *,
@@ -204,7 +268,7 @@ button {
 }
 
 .header-separator {
-  color: var(--border-strong);
+  color: var(--faint);
 }
 
 .header-label {
@@ -341,7 +405,7 @@ button {
   padding: 4px 7px;
   border: 1px solid color-mix(in srgb, var(--era-accent) 48%, transparent);
   border-radius: 4px;
-  color: var(--era-accent);
+  color: var(--era-accent-text);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.02em;
@@ -373,7 +437,7 @@ button {
 
 .meta-launch .release-date-label,
 .meta-launch .release-date {
-  color: var(--era-accent);
+  color: var(--era-accent-text);
 }
 
 .release-status {
@@ -441,12 +505,12 @@ button {
   flex-direction: column;
   gap: 4px;
   padding: 15px 18px 17px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(9, 9, 9, 0.86);
+  border-top: 1px solid var(--media-overlay-border);
+  background: var(--media-overlay-bg);
 }
 
 .media-overlay-label {
-  color: var(--era-accent);
+  color: var(--era-accent-text);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
@@ -688,7 +752,7 @@ button {
 }
 
 .section-toggle:hover .section-title {
-  color: var(--cat);
+  color: var(--cat-text);
 }
 
 .section-toggle:hover .section-caret {
@@ -763,7 +827,7 @@ button {
   border: 1px solid var(--border);
   border-left: 3px solid var(--cat, var(--accent));
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.018);
+  background: var(--card-tint);
 }
 
 .change-head {
@@ -781,7 +845,7 @@ button {
 }
 
 .change-kicker {
-  color: var(--cat);
+  color: var(--cat-text);
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -842,15 +906,15 @@ button {
   border: 1px solid var(--border);
   border-left: 3px solid var(--cat, var(--accent));
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.018);
+  background: var(--card-tint);
 }
 
 .command-code {
   justify-self: start;
   padding: 2px 7px;
-  border: 1px solid rgba(250, 204, 21, 0.14);
+  border: 1px solid var(--accent-soft-border);
   border-radius: 3px;
-  background: rgba(250, 204, 21, 0.07);
+  background: var(--accent-soft-bg);
   font-family: var(--font-mono);
   font-size: 0.76rem;
   line-height: 1.5;
@@ -1025,11 +1089,19 @@ button {
   flex-wrap: wrap;
 }
 
+.footer-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-left: auto;
+}
+
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 16px;
-  margin-left: auto;
+  margin-left: 0;
 }
 
 .footer-nav a {
@@ -1038,6 +1110,44 @@ button {
 
 .footer-nav a:hover {
   text-decoration: underline;
+}
+
+.theme-switch {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.theme-button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+}
+
+.theme-button:hover {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.theme-button[aria-pressed="true"] {
+  border-color: var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.theme-button svg {
+  display: block;
+  width: 15px;
+  height: 15px;
 }
 
 .era-dialog {
@@ -1054,7 +1164,7 @@ button {
   border: 0;
   border-right: 1px solid var(--border-strong);
   border-radius: 0;
-  background: #0d0d0d;
+  background: var(--surface);
   color: var(--text);
 }
 
@@ -1125,7 +1235,7 @@ button {
 }
 
 .era-item:hover {
-  background: #121212;
+  background: var(--surface-raised);
 }
 
 .era-item[aria-current="true"] {
@@ -1149,7 +1259,7 @@ button {
 }
 
 .era-item-version {
-  color: var(--era-accent);
+  color: var(--era-accent-text);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.02em;
@@ -1167,7 +1277,7 @@ button {
 }
 
 .era-item-state {
-  color: var(--era-accent);
+  color: var(--era-accent-text);
   font-size: 0.65rem;
   font-weight: 650;
   letter-spacing: 0.08em;
@@ -1382,7 +1492,7 @@ button {
     margin-left: auto;
   }
 
-  .footer-nav {
+  .footer-tools {
     margin-left: 0;
   }
 }

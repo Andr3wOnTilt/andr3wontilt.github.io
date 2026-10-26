@@ -4,8 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#090909">
+  <script>
+    (() => {
+      const key = "ultrasmp-theme";
+      let theme = "dark";
+      try {
+        const saved = localStorage.getItem(key);
+        if (saved === "light" || saved === "dark") theme = saved;
+      } catch (error) {}
+      window.ULTRASMP_THEME = theme;
+      document.documentElement.dataset.theme = theme;
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", theme === "light" ? "#f6f5f2" : "#090909");
+    })();
+  </script>
   <meta name="description" content="Scarica il Texture Pack ufficiale di UltraSMP per Minecraft, con istruzioni di installazione.">
   <meta name="keywords" content="UltraSMP Texture Pack, texture pack Minecraft, resource pack, download, installazione">
   <meta name="author" content="OmegaDEV">
@@ -167,12 +181,27 @@
         <p class="footer-copyright">Copyright &copy; 2023–2026 UltraSMP · Sito creato da: <span class="credit-omega">OmegaDEV</span> · Sviluppatore del server MC: <span class="credit-xedo">_Xedo_</span></p>
       </div>
 
-      <nav class="footer-nav" aria-label="Collegamenti del sito">
-        <a href="../../">Home</a>
-        <a href="../../novita/">Novità</a>
-        <a href="../">Packs</a>
-        <a href="#" data-wiki-link>Wiki ↗</a>
-      </nav>
+      <div class="footer-tools">
+        <nav class="footer-nav" aria-label="Collegamenti del sito">
+          <a href="../../">Home</a>
+          <a href="../../novita/">Novità</a>
+          <a href="../">Packs</a>
+          <a href="#" data-wiki-link>Wiki ↗</a>
+        </nav>
+        <div class="theme-switch" role="group" aria-label="Tema del sito">
+          <button class="theme-button" type="button" data-theme-set="light" aria-label="Tema chiaro" title="Tema chiaro" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+          </button>
+          <button class="theme-button" type="button" data-theme-set="dark" aria-label="Tema scuro" title="Tema scuro" aria-pressed="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
 
 

@@ -24,10 +24,61 @@
   --orange: #fb923c;
   --purple: #a78bfa;
   --texture-credit: #aa00ff;
+  --button-primary-text: #190707;
   --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", "Liberation Mono", Menlo, Consolas, monospace;
   --radius: 8px;
   --page: 1120px;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f5f2;
+  --surface: #ffffff;
+  --surface-raised: #ece9e3;
+  --border: #c9c3b8;
+  --border-strong: #8f887e;
+  --text: #11100e;
+  --text-soft: #26221d;
+  --muted: #49443d;
+  --faint: #575149;
+  --red: #991b1b;
+  --red-soft: #7f1d1d;
+  --blue: #0c4a6e;
+  --yellow: #713f12;
+  --orange: #7c2d12;
+  --purple: #5b21b6;
+  --button-primary-text: #ffffff;
+}
+
+:root[data-theme="light"] .pack-requirement {
+  border-color: rgba(124, 45, 18, 0.32);
+  background: rgba(124, 45, 18, 0.06);
+}
+
+:root[data-theme="light"] .pack-warning,
+:root[data-theme="light"] .download-dialog-warning {
+  border-color: rgba(153, 27, 27, 0.32);
+  background: rgba(153, 27, 27, 0.06);
+}
+
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition-property: color, background-color, border-color, box-shadow, fill, stroke, outline-color;
+  transition-duration: 320ms;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 *,
@@ -290,7 +341,7 @@ main {
 .button-primary {
   border-color: var(--red);
   background: var(--red);
-  color: #190707;
+  color: var(--button-primary-text);
 }
 
 .button-primary:hover {
@@ -554,6 +605,14 @@ main {
   object-fit: contain;
 }
 
+.footer-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px 18px;
+}
+
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
@@ -570,6 +629,44 @@ main {
 
 .footer-nav a:hover {
   color: var(--text);
+}
+
+.theme-switch {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.theme-button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+}
+
+.theme-button:hover {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.theme-button[aria-pressed="true"] {
+  border-color: var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.theme-button svg {
+  display: block;
+  width: 15px;
+  height: 15px;
 }
 
 .footer-copyright {
@@ -636,7 +733,7 @@ main {
 }
 
 .breadcrumbs span[aria-hidden="true"] {
-  color: var(--border-strong);
+  color: var(--faint);
 }
 
 .pack-hero {
@@ -1312,6 +1409,10 @@ body:has(.download-dialog[open]) {
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 22px;
+  }
+
+  .footer-tools {
+    justify-content: flex-start;
   }
 
   .footer-nav {

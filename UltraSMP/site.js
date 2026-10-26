@@ -2,6 +2,56 @@
   const site = window.ULTRASMP_SITE || {};
   const wikiUrl = String(site.wikiUrl || "").trim();
 
+  const THEME_KEY = "ultrasmp-theme";
+  const THEME_TRANSITION_MS = 320;
+  const themeButtons = Array.from(document.querySelectorAll("[data-theme-set]"));
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  let themeTransitionTimer;
+
+  const applyTheme = (value, persist = true, animate = false) => {
+    const theme = value === "light" ? "light" : "dark";
+    const root = document.documentElement;
+    const changed = root.dataset.theme !== theme;
+
+    if (animate && changed) {
+      root.classList.add("theme-transition");
+      window.clearTimeout(themeTransitionTimer);
+      void root.offsetWidth;
+      themeTransitionTimer = window.setTimeout(() => {
+        root.classList.remove("theme-transition");
+      }, THEME_TRANSITION_MS + 80);
+    }
+
+    root.dataset.theme = theme;
+    window.ULTRASMP_THEME = theme;
+
+    if (themeMeta) {
+      themeMeta.setAttribute("content", theme === "light" ? "#f6f5f2" : "#090909");
+    }
+
+    themeButtons.forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.themeSet === theme));
+    });
+
+    if (persist) {
+      try {
+        window.localStorage.setItem(THEME_KEY, theme);
+      } catch (error) {}
+    }
+  };
+
+  applyTheme(window.ULTRASMP_THEME || document.documentElement.dataset.theme || "dark");
+
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => applyTheme(button.dataset.themeSet, true, true));
+  });
+
+  window.addEventListener("storage", (event) => {
+    if (event.key === THEME_KEY && event.newValue) {
+      applyTheme(event.newValue, false, true);
+    }
+  });
+
   document.querySelectorAll("[data-wiki-link]").forEach((link) => {
     if (wikiUrl) {
       link.href = wikiUrl;
