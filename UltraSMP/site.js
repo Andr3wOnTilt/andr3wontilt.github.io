@@ -475,7 +475,7 @@
       download.setAttribute("aria-disabled", "true");
       download.setAttribute("tabindex", "-1");
       download.classList.add("is-disabled");
-      download.textContent = "Solo admin può scaricare";
+      download.textContent = "Pack non disponibile";
       download.removeAttribute("href");
       download.removeAttribute("download");
       const block = function(event) { event.preventDefault(); event.stopImmediatePropagation(); event.stopPropagation(); return false; };
@@ -484,7 +484,7 @@
       if (download.addEventListener) { download.addEventListener("click", block, true); }
       const note = page.querySelector(".download-note");
       if (note) {
-        note.textContent = "Questo pack è riservato solo all'amministratore.";
+        note.textContent = "Pack non disponibile al momento.";
         note.hidden = false;
       }
       return;
