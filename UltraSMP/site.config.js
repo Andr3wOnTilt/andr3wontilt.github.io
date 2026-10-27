@@ -9,7 +9,7 @@ window.ULTRASMP_SITE = {
       format: "Resource Pack",
       file: "UltraSMP-Texture-Pack.zip",
       size: "—",
-      downloadUrl: "https://www.mediafire.com/file/4d6q82sd3ezwtga/UltraSMP-Texture-Pack.zip/file",
+      downloadUrl: "../../downloadable/UltraSMP-Texture-Pack.zip",
       downloadLabel: "Scarica il Texture Pack"
     },
     mod: {
