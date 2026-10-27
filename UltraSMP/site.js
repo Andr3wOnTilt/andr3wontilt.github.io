@@ -472,26 +472,49 @@
   const packPage = page.dataset.packPage;
 
   const setupDownload = (permissions) => {
-    let canDownload = true;
+    let canDownloadByUser = true;
     if (packPage === "texture") {
-      canDownload = permissions?.packs?.texture?.canUserDownload !== false;
+      canDownloadByUser = permissions?.packs?.texture?.canUserDownload !== false;
     } else if (packPage === "mod") {
-      canDownload = permissions?.packs?.mod?.canUserDownload !== false;
+      canDownloadByUser = permissions?.packs?.mod?.canUserDownload !== false;
     }
     
-    if (!canDownload && !isAdminLoggedIn()) {
+    const admin = isAdminLoggedIn();
+    
+    if (!canDownloadByUser && !admin) {
       download.setAttribute("aria-disabled", "true");
       download.setAttribute("tabindex", "-1");
       download.classList.add("is-disabled");
       download.textContent = "Solo admin può scaricare";
-      download.href = "#";
-      download.onclick = (event) => event.preventDefault();
+      download.removeAttribute("href");
+      download.removeAttribute("download");
+      download.onclick = (event) => { event.preventDefault(); event.stopPropagation(); return false; };
+      download.addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); }, { once: false });
       const note = page.querySelector(".download-note");
       if (note) {
         note.textContent = "Questo pack è riservato solo all'amministratore.";
         note.hidden = false;
       }
       return;
+    }
+
+    if (!canDownloadByUser && admin) {
+      const downloadUrl = String(pack.downloadUrl || "").trim();
+      if (downloadUrl) {
+        const downloadLabel = String(pack.downloadLabel || "").trim();
+        download.href = downloadUrl;
+        download.download = pack.file;
+        download.textContent = downloadLabel || (pack.version ? `Scarica ${pack.version}` : "Scarica");
+        download.classList.remove("is-disabled");
+        download.removeAttribute("aria-disabled");
+        download.removeAttribute("tabindex");
+        download.onclick = null;
+        const note = page.querySelector(".download-note");
+        if (note) {
+          note.hidden = true;
+        }
+        return;
+      }
     }
 
     const downloadUrl = String(pack.downloadUrl || "").trim();
@@ -516,7 +539,8 @@
     download.setAttribute("tabindex", "-1");
     download.classList.add("is-disabled");
     download.textContent = "Download in arrivo";
-    download.href = "#";
+    download.removeAttribute("href");
+    download.removeAttribute("download");
     download.onclick = (event) => event.preventDefault();
   };
 
