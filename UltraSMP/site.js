@@ -16,12 +16,15 @@
     }
   };
 
-  fetch("pack-permissions.json")
+  const permissionsPromise = fetch("pack-permissions.json")
     .then((res) => res.ok ? res.json() : null)
     .then((data) => {
       if (data) packPermissions = data;
+      return packPermissions;
     })
-    .catch(() => {});
+    .catch(() => {
+      return packPermissions;
+    });
 
   const isAdminLoggedIn = () => {
     try {
@@ -467,47 +470,56 @@
   }
 
   const packPage = page.dataset.packPage;
-  let canDownload = true;
-  if (packPage === "texture") {
-    canDownload = packPermissions?.packs?.texture?.canUserDownload !== false ? true : false;
-  } else if (packPage === "mod") {
-    canDownload = packPermissions?.packs?.mod?.canUserDownload !== false ? true : false;
-  }
-  
-  if (!canDownload && !isAdminLoggedIn()) {
+
+  const setupDownload = (permissions) => {
+    let canDownload = true;
+    if (packPage === "texture") {
+      canDownload = permissions?.packs?.texture?.canUserDownload !== false;
+    } else if (packPage === "mod") {
+      canDownload = permissions?.packs?.mod?.canUserDownload !== false;
+    }
+    
+    if (!canDownload && !isAdminLoggedIn()) {
+      download.setAttribute("aria-disabled", "true");
+      download.setAttribute("tabindex", "-1");
+      download.classList.add("is-disabled");
+      download.textContent = "Solo admin può scaricare";
+      download.href = "#";
+      download.onclick = (event) => event.preventDefault();
+      const note = page.querySelector(".download-note");
+      if (note) {
+        note.textContent = "Questo pack è riservato solo all'amministratore.";
+        note.hidden = false;
+      }
+      return;
+    }
+
+    const downloadUrl = String(pack.downloadUrl || "").trim();
+    if (downloadUrl) {
+      const downloadLabel = String(pack.downloadLabel || "").trim();
+      download.href = downloadUrl;
+      download.download = pack.file;
+      download.textContent = downloadLabel || (pack.version ? `Scarica ${pack.version}` : "Scarica");
+      download.classList.remove("is-disabled");
+      download.removeAttribute("aria-disabled");
+      download.removeAttribute("tabindex");
+      download.onclick = null;
+
+      const note = page.querySelector(".download-note");
+      if (note) {
+        note.hidden = true;
+      }
+      return;
+    }
+
     download.setAttribute("aria-disabled", "true");
     download.setAttribute("tabindex", "-1");
     download.classList.add("is-disabled");
-    download.textContent = "Solo admin può scaricare";
-    download.addEventListener("click", (event) => event.preventDefault());
-    const note = page.querySelector(".download-note");
-    if (note) {
-      note.textContent = "Questo pack è riservato solo all'amministratore.";
-      note.hidden = false;
-    }
-    return;
-  }
+    download.textContent = "Download in arrivo";
+    download.href = "#";
+    download.onclick = (event) => event.preventDefault();
+  };
 
-  const downloadUrl = String(pack.downloadUrl || "").trim();
-  if (downloadUrl) {
-    const downloadLabel = String(pack.downloadLabel || "").trim();
-    download.href = downloadUrl;
-    download.download = pack.file;
-    download.textContent = downloadLabel || (pack.version ? `Scarica ${pack.version}` : "Scarica");
-    download.classList.remove("is-disabled");
-    download.removeAttribute("aria-disabled");
-    download.removeAttribute("tabindex");
-
-    const note = page.querySelector(".download-note");
-    if (note) {
-      note.hidden = true;
-    }
-    return;
-  }
-
-  download.setAttribute("aria-disabled", "true");
-  download.setAttribute("tabindex", "-1");
-  download.classList.add("is-disabled");
-  download.textContent = "Download in arrivo";
-  download.addEventListener("click", (event) => event.preventDefault());
+  setupDownload(packPermissions);
+  permissionsPromise.then(setupDownload);
 })();
