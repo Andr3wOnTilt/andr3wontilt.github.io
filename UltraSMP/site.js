@@ -9,6 +9,31 @@
     password: "ultrasmpdeveloper"
   };
 
+  let packPermissions = {
+    packs: {
+      texture: { canUserDownload: true },
+      mod: { canUserDownload: true }
+    }
+  };
+
+  fetch("pack-permissions.json")
+    .then((res) => res.ok ? res.json() : null)
+    .then((data) => {
+      if (data) packPermissions = data;
+    })
+    .catch(() => {});
+
+  const isAdminLoggedIn = () => {
+    try {
+      const raw = localStorage.getItem(AUTH_KEY);
+      if (!raw) return false;
+      const state = JSON.parse(raw);
+      return state && state.loggedIn && state.username === "admin";
+    } catch (error) {
+      return false;
+    }
+  };
+
   const getAuthState = () => {
     try {
       const raw = localStorage.getItem(AUTH_KEY);
@@ -87,7 +112,7 @@
         logoutPopup.querySelector(".auth-logout-btn").addEventListener("click", () => {
           setAuthState(null);
           logoutPopup.classList.remove("is-open");
-          createAuthUI();
+          window.location.reload();
         });
       } else {
         // Show login button
@@ -154,7 +179,7 @@
             loginPopup.classList.remove("is-open");
             authForm.reset();
             authError.hidden = true;
-            createAuthUI();
+            window.location.reload();
           } else {
             authError.textContent = "Credenziali non valide";
             authError.hidden = false;
@@ -438,6 +463,28 @@
 
   const download = page.querySelector("[data-pack-download]");
   if (!download) {
+    return;
+  }
+
+  const packPage = page.dataset.packPage;
+  let canDownload = true;
+  if (packPage === "texture") {
+    canDownload = packPermissions?.packs?.texture?.canUserDownload !== false ? true : false;
+  } else if (packPage === "mod") {
+    canDownload = packPermissions?.packs?.mod?.canUserDownload !== false ? true : false;
+  }
+  
+  if (!canDownload && !isAdminLoggedIn()) {
+    download.setAttribute("aria-disabled", "true");
+    download.setAttribute("tabindex", "-1");
+    download.classList.add("is-disabled");
+    download.textContent = "Solo admin può scaricare";
+    download.addEventListener("click", (event) => event.preventDefault());
+    const note = page.querySelector(".download-note");
+    if (note) {
+      note.textContent = "Questo pack è riservato solo all'amministratore.";
+      note.hidden = false;
+    }
     return;
   }
 

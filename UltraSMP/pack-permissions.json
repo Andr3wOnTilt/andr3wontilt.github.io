@@ -1,0 +1,10 @@
+{
+  "packs": {
+    "texture": {
+      "canUserDownload": false
+    },
+    "mod": {
+      "canUserDownload": true
+    }
+  }
+}
