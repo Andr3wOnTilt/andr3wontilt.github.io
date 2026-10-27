@@ -2,6 +2,175 @@
   const site = window.ULTRASMP_SITE || {};
   const wikiUrl = String(site.wikiUrl || "").trim();
 
+  // Auth system
+  const AUTH_KEY = "ultrasmp-auth";
+  const AUTH_CREDENTIALS = {
+    username: "admin",
+    password: "ultrasmpdeveloper"
+  };
+
+  const getAuthState = () => {
+    try {
+      const raw = localStorage.getItem(AUTH_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const setAuthState = (state) => {
+    try {
+      if (state) {
+        localStorage.setItem(AUTH_KEY, JSON.stringify(state));
+      } else {
+        localStorage.removeItem(AUTH_KEY);
+      }
+    } catch (error) {}
+  };
+
+  const createAuthUI = () => {
+    const headerInners = document.querySelectorAll(".header-inner");
+    if (headerInners.length === 0) return;
+
+    // Add auth container to header if not exists
+    headerInners.forEach((headerInner) => {
+      if (headerInner.querySelector(".auth-container")) return;
+
+      const authContainer = document.createElement("div");
+      authContainer.className = "auth-container";
+      headerInner.appendChild(authContainer);
+
+      const authState = getAuthState();
+      if (authState && authState.loggedIn && authState.username === "admin") {
+        // Show admin avatar with logout option
+        const avatarBtn = document.createElement("button");
+        avatarBtn.className = "auth-avatar-btn";
+        avatarBtn.type = "button";
+        avatarBtn.setAttribute("aria-label", "Menu account");
+        avatarBtn.innerHTML = '<span class="auth-avatar">A</span>';
+
+        const logoutPopup = document.createElement("div");
+        logoutPopup.className = "auth-popup auth-logout-popup";
+        logoutPopup.innerHTML = `
+          <div class="auth-popup-backdrop"></div>
+          <div class="auth-popup-content">
+            <div class="auth-popup-header">
+              <span class="auth-popup-title">Account</span>
+              <button class="auth-popup-close" type="button" aria-label="Chiudi">×</button>
+            </div>
+            <div class="auth-popup-body">
+              <div class="auth-user-info">
+                <span class="auth-avatar-large">A</span>
+                <span class="auth-username">admin</span>
+              </div>
+              <button class="auth-logout-btn" type="button">Disconnetti</button>
+            </div>
+          </div>
+        `;
+
+        authContainer.appendChild(avatarBtn);
+        document.body.appendChild(logoutPopup);
+
+        avatarBtn.addEventListener("click", () => {
+          logoutPopup.classList.add("is-open");
+        });
+
+        logoutPopup.querySelector(".auth-popup-backdrop").addEventListener("click", () => {
+          logoutPopup.classList.remove("is-open");
+        });
+
+        logoutPopup.querySelector(".auth-popup-close").addEventListener("click", () => {
+          logoutPopup.classList.remove("is-open");
+        });
+
+        logoutPopup.querySelector(".auth-logout-btn").addEventListener("click", () => {
+          setAuthState(null);
+          logoutPopup.classList.remove("is-open");
+          createAuthUI();
+        });
+      } else {
+        // Show login button
+        const loginBtn = document.createElement("button");
+        loginBtn.className = "auth-login-btn";
+        loginBtn.type = "button";
+        loginBtn.textContent = "Accedi";
+
+        const loginPopup = document.createElement("div");
+        loginPopup.className = "auth-popup auth-login-popup";
+        loginPopup.innerHTML = `
+          <div class="auth-popup-backdrop"></div>
+          <div class="auth-popup-content">
+            <div class="auth-popup-header">
+              <span class="auth-popup-title">Accedi</span>
+              <button class="auth-popup-close" type="button" aria-label="Chiudi">×</button>
+            </div>
+            <div class="auth-popup-body">
+              <form class="auth-form" novalidate>
+                <div class="auth-field">
+                  <label class="auth-label" for="auth-username">Username</label>
+                  <input class="auth-input" id="auth-username" name="username" type="text" autocomplete="username" required>
+                </div>
+                <div class="auth-field">
+                  <label class="auth-label" for="auth-password">Password</label>
+                  <input class="auth-input" id="auth-password" name="password" type="password" autocomplete="current-password" required>
+                </div>
+                <div class="auth-error" hidden></div>
+                <button class="auth-submit-btn" type="submit">Accedi</button>
+              </form>
+            </div>
+          </div>
+        `;
+
+        authContainer.appendChild(loginBtn);
+        document.body.appendChild(loginPopup);
+
+        loginBtn.addEventListener("click", () => {
+          loginPopup.classList.add("is-open");
+          setTimeout(() => {
+            loginPopup.querySelector("#auth-username").focus();
+          }, 100);
+        });
+
+        loginPopup.querySelector(".auth-popup-backdrop").addEventListener("click", () => {
+          loginPopup.classList.remove("is-open");
+        });
+
+        loginPopup.querySelector(".auth-popup-close").addEventListener("click", () => {
+          loginPopup.classList.remove("is-open");
+        });
+
+        const authForm = loginPopup.querySelector(".auth-form");
+        const authError = loginPopup.querySelector(".auth-error");
+
+        authForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const formData = new FormData(authForm);
+          const username = formData.get("username");
+          const password = formData.get("password");
+
+          if (username === AUTH_CREDENTIALS.username && password === AUTH_CREDENTIALS.password) {
+            setAuthState({ loggedIn: true, username: username });
+            loginPopup.classList.remove("is-open");
+            authForm.reset();
+            authError.hidden = true;
+            createAuthUI();
+          } else {
+            authError.textContent = "Credenziali non valide";
+            authError.hidden = false;
+          }
+        });
+      }
+    });
+  };
+
+  // Initialize auth UI
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", createAuthUI);
+  } else {
+    createAuthUI();
+  }
+
   const THEME_KEY = "ultrasmp-theme";
   const THEME_TRANSITION_MS = 320;
   const themeButtons = Array.from(document.querySelectorAll("[data-theme-set]"));
