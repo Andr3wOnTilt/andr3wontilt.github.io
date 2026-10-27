@@ -9,22 +9,12 @@
     password: "ultrasmpdeveloper"
   };
 
-  let packPermissions = {
+  let packPermissions = window.ULTRASMP_PACK_PERMS || {
     packs: {
       texture: { canUserDownload: true },
       mod: { canUserDownload: true }
     }
   };
-
-  const permissionsPromise = fetch("pack-permissions.json")
-    .then((res) => res.ok ? res.json() : null)
-    .then((data) => {
-      if (data) packPermissions = data;
-      return packPermissions;
-    })
-    .catch(() => {
-      return packPermissions;
-    });
 
   const isAdminLoggedIn = () => {
     try {
@@ -472,24 +462,26 @@
   const packPage = page.dataset.packPage;
 
   const setupDownload = (permissions) => {
-    let canDownloadByUser = true;
+    let canDownloadByAll = true;
     if (packPage === "texture") {
-      canDownloadByUser = permissions?.packs?.texture?.canUserDownload !== false;
+      canDownloadByAll = permissions?.packs?.texture?.canUserDownload !== false;
     } else if (packPage === "mod") {
-      canDownloadByUser = permissions?.packs?.mod?.canUserDownload !== false;
+      canDownloadByAll = permissions?.packs?.mod?.canUserDownload !== false;
     }
     
     const admin = isAdminLoggedIn();
     
-    if (!canDownloadByUser && !admin) {
+    if (!canDownloadByAll && !admin) {
       download.setAttribute("aria-disabled", "true");
       download.setAttribute("tabindex", "-1");
       download.classList.add("is-disabled");
       download.textContent = "Solo admin può scaricare";
       download.removeAttribute("href");
       download.removeAttribute("download");
-      download.onclick = (event) => { event.preventDefault(); event.stopPropagation(); return false; };
-      download.addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); }, { once: false });
+      const block = function(event) { event.preventDefault(); event.stopImmediatePropagation(); event.stopPropagation(); return false; };
+      download.onclick = block;
+      download.setAttribute("onclick", "event.preventDefault();event.stopImmediatePropagation();return false;");
+      if (download.addEventListener) { download.addEventListener("click", block, true); }
       const note = page.querySelector(".download-note");
       if (note) {
         note.textContent = "Questo pack è riservato solo all'amministratore.";
@@ -498,7 +490,7 @@
       return;
     }
 
-    if (!canDownloadByUser && admin) {
+    if (!canDownloadByAll && admin) {
       const downloadUrl = String(pack.downloadUrl || "").trim();
       if (downloadUrl) {
         const downloadLabel = String(pack.downloadLabel || "").trim();
@@ -545,5 +537,4 @@
   };
 
   setupDownload(packPermissions);
-  permissionsPromise.then(setupDownload);
 })();
