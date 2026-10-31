@@ -1,7 +1,7 @@
 window.ULTRASMP_PACK_PERMS = {
   packs: {
     texture: {
-      canUserDownload: false
+      canUserDownload: true
     },
     mod: {
       canUserDownload: true
