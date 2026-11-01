@@ -1,5 +1,5 @@
 window.ULTRASMP_SITE = {
-  wikiUrl: "https://wiki.ultrasmp.org/",
+  wikiUrl: "https://ultrasmp.gitbook.io/wiki",
   packs: {
     texture: {
       name: "UltraSMP Texture Pack",

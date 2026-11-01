@@ -78,6 +78,150 @@ const escapeHTML = (value) =>
 const pluralize = (count, singular, plural) =>
   `${count} ${count === 1 ? singular : plural}`;
 
+function sanitizeHref(value) {
+  const href = String(value ?? "").trim();
+  if (!href) {
+    return "";
+  }
+  if (/^(https?:\/\/|mailto:)/i.test(href)) {
+    return href;
+  }
+  if (/^(\/|#|\.{1,2}\/)/.test(href)) {
+    return href;
+  }
+  if (/^[a-z0-9.-]+\.[a-z]{2,}(\/|$)/i.test(href)) {
+    return `https://${href}`;
+  }
+  return "";
+}
+
+function renderInline(value) {
+  const codeFragments = [];
+  let html = escapeHTML(value);
+
+  html = html.replace(/`([^`]+)`/g, (match, code) => {
+    codeFragments.push(`<code>${code}</code>`);
+    return `\u0000${codeFragments.length - 1}\u0000`;
+  });
+
+  html = html.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, label, href) => {
+    const safeHref = sanitizeHref(href);
+    return safeHref
+      ? `<a href="${safeHref}" target="_blank" rel="noopener noreferrer">${label}</a>`
+      : label;
+  });
+
+  html = html
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<em>$2</em>")
+    .replace(/\u0000(\d+)\u0000/g, (match, index) => codeFragments[Number(index)] ?? "")
+    .replace(/\n/g, "<br>");
+
+  return html;
+}
+
+function normalizeTags(raw) {
+  return Array.isArray(raw)
+    ? raw.map((tag) => String(tag ?? "").trim()).filter(Boolean)
+    : [];
+}
+
+function normalizeTextList(raw) {
+  return Array.isArray(raw)
+    ? raw.map((entry) => String(entry ?? "").trim()).filter(Boolean)
+    : [];
+}
+
+function normalizeCommands(raw) {
+  return Array.isArray(raw)
+    ? raw
+        .map((entry) => ({
+          command: String(entry?.command ?? "").trim(),
+          description: String(entry?.description ?? "").trim()
+        }))
+        .filter((entry) => entry.command || entry.description)
+    : [];
+}
+
+function normalizeImages(raw) {
+  return Array.isArray(raw)
+    ? raw
+        .map((entry) => ({
+          image: String(entry?.src ?? entry?.image ?? "").trim(),
+          imageAlt: String(entry?.alt ?? entry?.imageAlt ?? "").trim(),
+          caption: String(entry?.caption ?? "").trim()
+        }))
+        .filter((entry) => entry.image)
+    : [];
+}
+
+function normalizeNote(raw) {
+  if (!raw) {
+    return null;
+  }
+
+  if (typeof raw === "string") {
+    const text = raw.trim();
+    return text ? { title: "", text } : null;
+  }
+
+  const title = String(raw?.title ?? "").trim();
+  const text = String(raw?.text ?? "").trim();
+  return title || text ? { title, text } : null;
+}
+
+function normalizeTable(raw) {
+  if (!raw) {
+    return null;
+  }
+
+  const headers = normalizeTextList(raw?.headers);
+  const rows = (Array.isArray(raw?.rows) ? raw.rows : [])
+    .map((row) => {
+      const cells = Array.isArray(row) ? row : Array.isArray(row?.cells) ? row.cells : [];
+      return {
+        tone: Array.isArray(row) ? "" : String(row?.tone ?? "").trim(),
+        cells: cells.map((cell) => String(cell ?? "").trim())
+      };
+    })
+    .filter((row) => row.cells.length);
+
+  return headers.length || rows.length ? { headers, rows } : null;
+}
+
+function normalizeContent(raw) {
+  return {
+    text: String(raw?.text ?? "").trim(),
+    bullets: normalizeTextList(raw?.bullets),
+    footer: String(raw?.footer ?? "").trim(),
+    commands: normalizeCommands(raw?.commands),
+    tags: normalizeTags(raw?.tags),
+    note: normalizeNote(raw?.note),
+    table: normalizeTable(raw?.table),
+    images: normalizeImages(raw?.images),
+    image: String(raw?.image ?? "").trim(),
+    imageAlt: String(raw?.imageAlt ?? "").trim(),
+    video: String(raw?.video ?? "").trim(),
+    videoAlt: String(raw?.videoAlt ?? "").trim(),
+    poster: String(raw?.poster ?? "").trim(),
+    caption: String(raw?.caption ?? "").trim()
+  };
+}
+
+function hasContent(content) {
+  return Boolean(
+    content.text ||
+      content.bullets.length ||
+      content.footer ||
+      content.commands.length ||
+      content.note ||
+      content.table ||
+      content.images.length ||
+      content.image ||
+      content.video
+  );
+}
+
 function slugify(value) {
   return String(value ?? "")
     .toLowerCase()
@@ -123,30 +267,27 @@ function normalizeVersion(raw, index) {
     .map((section) => {
       const kind = KINDS[section?.kind] ? section.kind : "update";
       const items = (Array.isArray(section?.items) ? section.items : [])
-        .map((item) => ({
-          title: String(item?.title ?? "").trim(),
-          text: String(item?.text ?? "").trim(),
-          kicker: String(item?.kicker ?? "").trim(),
-          meta: String(item?.meta ?? "").trim(),
-          image: String(item?.image ?? "").trim(),
-          imageAlt: String(item?.imageAlt ?? "").trim(),
-          video: String(item?.video ?? "").trim(),
-          videoAlt: String(item?.videoAlt ?? "").trim(),
-          poster: String(item?.poster ?? "").trim(),
-          caption: String(item?.caption ?? "").trim(),
-          tags: Array.isArray(item?.tags)
-            ? item.tags.map((tag) => String(tag).trim()).filter(Boolean)
-            : [],
-          commands: Array.isArray(item?.commands)
-            ? item.commands
-                .map((entry) => ({
-                  command: String(entry?.command ?? "").trim(),
-                  description: String(entry?.description ?? "").trim()
-                }))
-                .filter((entry) => entry.command || entry.description)
-            : []
-        }))
-        .filter((item) => item.title || item.text);
+        .map((item) => {
+          const content = normalizeContent(item);
+          const blocks = (Array.isArray(item?.blocks) ? item.blocks : [])
+            .map((block) => {
+              const blockContent = normalizeContent(block);
+              return {
+                heading: String(block?.heading ?? "").trim(),
+                ...blockContent
+              };
+            })
+            .filter((block) => block.heading || hasContent(block));
+
+          return {
+            title: String(item?.title ?? "").trim(),
+            kicker: String(item?.kicker ?? "").trim(),
+            meta: String(item?.meta ?? "").trim(),
+            ...content,
+            blocks
+          };
+        })
+        .filter((item) => item.title || item.text || item.bullets.length || item.blocks.length);
 
       return {
         kind,
@@ -351,7 +492,7 @@ function renderCommands(commands) {
             (entry) => `
           <li class="command-item">
             ${entry.command ? `<code class="command-code">${renderCommandTokens(entry.command)}</code>` : ""}
-            ${entry.description ? `<span class="command-description">${escapeHTML(entry.description)}</span>` : ""}
+            ${entry.description ? `<span class="command-description">${renderInline(entry.description)}</span>` : ""}
           </li>`
           )
           .join("")}
@@ -360,18 +501,127 @@ function renderCommands(commands) {
   `;
 }
 
+function renderBullets(bullets) {
+  if (!bullets.length) {
+    return "";
+  }
+
+  return `
+    <ul class="change-bullets">
+      ${bullets.map((entry) => `<li>${renderInline(entry)}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function renderNote(note) {
+  if (!note) {
+    return "";
+  }
+
+  const title = note.title
+    ? `<span class="change-note-title">${renderInline(note.title)}</span>`
+    : "";
+
+  return `
+    <aside class="change-note">
+      <span class="change-note-icon" aria-hidden="true">i</span>
+      <div class="change-note-body">
+        ${title}
+        ${note.text ? `<p>${renderInline(note.text)}</p>` : ""}
+      </div>
+    </aside>
+  `;
+}
+
+function renderTable(table) {
+  if (!table) {
+    return "";
+  }
+
+  const head = table.headers.length
+    ? `<thead><tr>${table.headers
+        .map((header) => `<th scope="col">${renderInline(header)}</th>`)
+        .join("")}</tr></thead>`
+    : "";
+  const body = table.rows.length
+    ? `<tbody>${table.rows
+        .map(
+          (row) =>
+            `<tr${row.tone ? ` data-tone="${escapeHTML(row.tone)}"` : ""}>${row.cells
+              .map((cell) => `<td>${renderInline(cell)}</td>`)
+              .join("")}</tr>`
+        )
+        .join("")}</tbody>`
+    : "";
+
+  return `
+    <div class="change-table-wrap">
+      <table class="change-table">
+        ${head}
+        ${body}
+      </table>
+    </div>
+  `;
+}
+
+function renderGallery(images) {
+  if (!images.length) {
+    return "";
+  }
+
+  return `
+    <div class="change-gallery" data-count="${images.length}">
+      ${images
+        .map(
+          (entry) => `
+        <figure class="change-figure">
+          <img src="${escapeHTML(entry.image)}" alt="${escapeHTML(entry.imageAlt || entry.caption || "")}" loading="lazy" decoding="async">
+          ${entry.caption ? `<figcaption>${renderInline(entry.caption)}</figcaption>` : ""}
+        </figure>`
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderContent(content) {
+  const text = content.text
+    ? `<p class="change-text">${renderInline(content.text)}</p>`
+    : "";
+  const media = renderMedia(content);
+  const footer = content.footer
+    ? `<p class="change-footer">${renderInline(content.footer)}</p>`
+    : "";
+
+  return `
+    ${text}
+    ${renderBullets(content.bullets)}
+    ${renderCommands(content.commands)}
+    ${renderTable(content.table)}
+    ${renderNote(content.note)}
+    ${media}
+    ${footer}
+    ${renderGallery(content.images)}
+  `;
+}
+
+function renderBlock(block) {
+  return `
+    <div class="change-block">
+      ${block.heading ? `<h5 class="change-block-title">${escapeHTML(block.heading)}</h5>` : ""}
+      ${renderContent(block)}
+    </div>
+  `;
+}
+
 function renderChange(item, kind) {
   const kicker = item.kicker
     ? `<span class="change-kicker">${escapeHTML(item.kicker)}</span>`
     : "";
-  const text = item.text
-    ? `<p class="change-text">${escapeHTML(item.text)}</p>`
-    : "";
-  const media = renderMedia(item);
-  const commands = renderCommands(item.commands);
   const meta = item.meta
     ? `<span class="change-meta">${escapeHTML(item.meta)}</span>`
     : "";
+  const blocks = item.blocks.map(renderBlock).join("");
 
   return `
     <li class="change" data-kind="${kind}">
@@ -379,11 +629,10 @@ function renderChange(item, kind) {
         <h4 class="change-title">${escapeHTML(item.title)}</h4>
         ${kicker}
       </div>
-      ${text}
-      ${commands}
-      ${media}
+      ${renderContent(item)}
       ${meta}
       ${renderTags(item.tags)}
+      ${blocks}
     </li>
   `;
 }
@@ -393,7 +642,7 @@ function renderSection(section, index) {
   const titleId = `section-title-${index}`;
   const panelId = `section-panel-${index}`;
   const description = section.description
-    ? `<p class="section-description">${escapeHTML(section.description)}</p>`
+    ? `<p class="section-description">${renderInline(section.description)}</p>`
     : "";
 
   return `
@@ -452,7 +701,7 @@ function renderAnnouncement(version) {
       </span>`
     : "";
   const summary = version.summary
-    ? `<p class="announcement-summary">${escapeHTML(version.summary)}</p>`
+    ? `<p class="announcement-summary">${renderInline(version.summary)}</p>`
     : "";
   const cover = renderMedia(
     {
@@ -470,7 +719,7 @@ function renderAnnouncement(version) {
     }
   );
   const signoff = version.signoff
-    ? `<p class="signoff">${escapeHTML(version.signoff)}</p>`
+    ? `<p class="signoff">${renderInline(version.signoff)}</p>`
     : "";
   const sectionsToolbar = version.sections.length
     ? `<div class="sections-toolbar">

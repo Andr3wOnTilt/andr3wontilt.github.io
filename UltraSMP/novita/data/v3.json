@@ -1,102 +1,390 @@
 {
   "version": "BETA-v3",
-  "name": "Changelog di Ultra SMP (18 - 26 Ottobre)",
-  "date": "2026-10-26",
+  "name": "Ottobre 2026",
+  "date": "2026-10-31",
   "launchDate": "2026-11-01",
   "accent": "#fb923c",
   "cover": "images/BETA-Era3.png",
   "coverAlt": "Benvenuto in BETA-v3",
-  "summary": "Benvenuti nel riepilogo di tutte le novità, i miglioramenti e le correzioni implementate sul server in questo periodo.",
+  "summary": "C'è aria di roba nuova.",
+  "tags": [
+    "Ottobre 2026",
+    "Biomi",
+    "Profilo SMP",
+    "TPRandom"
+  ],
+  "signoff": "Ci vediamo in gioco!",
   "sections": [
     {
       "kind": "new",
-      "title": "Nuove Funzionalità e Gameplay",
+      "title": "Novità e Implementazioni",
+      "description": "Biomi, Profilo SMP, messaggi privati, TPRandom, Fama, oggetti luminescenti e molto altro.",
       "items": [
         {
-          "title": "Telecinesi per i drop dei mob",
-          "text": "Gli oggetti rilasciati dai mostri sconfitti ora finiscono direttamente nel tuo inventario in modo automatico."
+          "title": "Biomi e strutture",
+          "kicker": "Mondo",
+          "bullets": [
+            "Sono stati aggiunti oltre **95 nuovi biomi** e sono stati migliorati quasi tutti quelli vanilla, con nuovi tipi di terreno come canyon, isole fluttuanti e profonde fosse oceaniche. Si va da paesaggi realistici (Yellowstone, Scogliere di Yosemite, Oasi del Deserto) a biomi fantasy (Bosco al Chiaro di Luna, Foresta Pluviale di Ametista, Isole Miraggio), fino a caverne personalizzate come la Giungla Sotterranea e le Caverne di Fuoco e Gelo. Le nuove strutture, tra cui la Guglia, i Villaggi Fortificati e la Capanna Glaciale, completano l'esperienza. [Qui](https://modrinth.com/datapack/terralith) per maggiori dettagli a riguardo.",
+            "Se vuoi soddisfare la tua curiosità, non ti resta che entrare e cominciare l'esplorazione!"
+          ],
+          "images": [
+            {
+              "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FZ3G5uIX96ZFgAOQtMfNi%2F2026-10-30_13.11.22.png?alt=media&token=56e2a10a-5337-4577-a3fd-2c45267845e8"
+            },
+            {
+              "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2F3c8iPSLG5fnvbzQEc1tB%2F2026-10-30_13.12.10.png?alt=media&token=ffcb2aba-b0e4-4f4a-aea1-c067d01bcc92"
+            },
+            {
+              "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FeXpYuyFQOqRliByiX4ud%2F2026-10-30_14.04.13.png?alt=media&token=8063616d-ffee-445f-992a-055668fecd8d"
+            },
+            {
+              "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2F3DAQkebLmvQ2g9Vxkn1N%2F2026-11-01_04.04.02.png?alt=media&token=6c59a19f-0208-4d68-9138-83866913284e"
+            }
+          ]
         },
         {
-          "title": "Oggetti droppati con effetto \"Glowing\"",
-          "text": "Gli oggetti lasciati a terra dai giocatori ora brillano con colori distintivi basati sulla loro rarità."
+          "title": "Profilo SMP",
+          "kicker": "Profilo",
+          "text": "*Il Profilo SMP ha subito delle modifiche piuttosto interessanti: scopriamo quali.*",
+          "blocks": [
+            {
+              "heading": "Pulsanti spostati",
+              "text": "Il pulsante delle **Impostazioni** è stato spostato in basso per migliorarne l'accessibilità e l'usabilità.",
+              "images": [
+                {
+                  "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FMiJn09pgK2WCMP2QKT7P%2Fnew-profile.png?alt=media&token=47baf1a5-177c-40cc-b597-a3366685ce11"
+                }
+              ]
+            },
+            {
+              "heading": "Pagine dinamiche",
+              "bullets": [
+                "**Profilo SMP** e **Equipaggiamento e Statistiche** si aggiornano in tempo reale: se un dato all'interno di una delle due pagine viene modificato, il relativo valore viene aggiornato (quasi) istantaneamente."
+              ]
+            },
+            {
+              "heading": "Cestino potenziato",
+              "bullets": [
+                "Adesso si può spostare l'intero inventario (slot rapidi esclusi) direttamente nel cestino e viceversa. Modificato il messaggio del pulsante per svuotare il cestino e rinominato in \"*Svuota*\"."
+              ],
+              "images": [
+                {
+                  "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2F6ROVlGqWc8sDbs5Orrmh%2Ftrash-2.png?alt=media&token=1c7b6470-49a5-4faf-aec4-a70e9e037d34"
+                },
+                {
+                  "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2F8nbvfkr4Bi4aexZrh5Cw%2Ftrash-1.png?alt=media&token=912710fd-3436-4636-9605-7503c12597f5"
+                },
+                {
+                  "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FsMHcKJ7ubhOkkXbMtfo6%2Ftrash-3.png?alt=media&token=bf45e0fc-3b90-4cc5-874b-2c3952cd4b08"
+                }
+              ]
+            },
+            {
+              "heading": "Accessibilità Enderchest limitata",
+              "bullets": [
+                "Adesso l'Enderchest potrà essere utilizzata soltanto se il giocatore ne ha ottenuta (in qualsiasi modo: raccogliendola o craftandola) almeno una."
+              ]
+            },
+            {
+              "heading": "Impostazioni rivisitate",
+              "bullets": [
+                "Rimosse le sezioni delle **Notifiche generali** e **Notifiche di servizio**.",
+                "Aggiunte le **Impostazioni rapide**: impostazioni più comuni pronte ad essere personalizzate in modo rapido e veloce, senza dover recarsi nelle relative pagine.",
+                "Ridisposti i pulsanti nelle pagine **Personalizzazione**, **Notifiche** e **Privacy** con un design alla portata di tutti."
+              ],
+              "images": [
+                {
+                  "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FAOSQjammRZKHktcPBES4%2Fsettings-1.png?alt=media&token=ae33f353-4fd2-48cf-8bce-7222f6df15f8"
+                },
+                {
+                  "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FaKSzzJtWF3YQXyN0ue2l%2Fsettings-2.png?alt=media&token=f8da8f90-9b6c-432c-8dbd-08adb1c81493",
+                  "caption": "Le impostazioni illustrate qui sono quelle predefinite"
+                },
+                {
+                  "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FogSdcZ6zZbXrAHxokWsg%2Fsettings-3.png?alt=media&token=691c6a38-c35e-4d13-925c-02ab8be764dd",
+                  "caption": "Le impostazioni illustrate qui sono quelle predefinite"
+                },
+                {
+                  "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FjxHDnu1I1U6ubnfrse4z%2Fsettings-4.png?alt=media&token=4982cb59-9e9c-488f-9979-d0132538c7a3",
+                  "caption": "Le impostazioni illustrate qui sono quelle predefinite"
+                }
+              ]
+            },
+            {
+              "heading": "Equipaggiamento e Statistiche",
+              "bullets": [
+                "Rinominati **Resistenza** in **Tenacia**, **Probabilità Colpo Critico** in **Probab. critico** e **Danni Colpo Critico** in **Danni da critico**.",
+                "Modificate le icone di **Danni da critico** (Statistiche sanguinarie) e **Blocchi piazzati** (Statistiche di raccolta)."
+              ]
+            }
+          ]
         },
         {
-          "title": "Gestione Esperienza (/bottle)",
-          "text": "Introdotto il nuovo sistema per conservare, prelevare e gestire la tua XP in bottiglie, con comodi suggerimenti rapidi nei comandi (/bottle until, store, ecc.)."
+          "title": "Profilo giocatori (click destro sul giocatore)",
+          "kicker": "Profilo",
+          "bullets": [
+            "Tutte le modifiche effettuate nella sezione **Equipaggiamento e Statistiche** e implementata la GUI dinamica: adesso se il giocatore di cui si apre il profilo fa qualcosa che aggiorni i dati al suo interno, questi si aggiornano in tempo reale."
+          ]
         },
         {
-          "title": "Nuove Ricette Personalizzate",
-          "text": "Aggiunte ricette artigianali per craftare oggetti speciali come il Totem dell'immortalità, la Mela d'oro incantata, il Sensore di sculk e altri blocchi rari."
+          "title": "Messaggi privati",
+          "kicker": "Chat",
+          "text": "*Un po' di privacy, finalmente!*",
+          "blocks": [
+            {
+              "heading": "Cooldown",
+              "bullets": [
+                "Adesso i messaggi privati hanno un cooldown di risposta di **3 minuti**; quando un giocatore (mittente) invia un messaggio privato ad un altro giocatore (destinatario), quest'ultimo ha 3 minuti di tempo per utilizzare `/r <mittente>`, altrimenti il destinatario dovrà usare `/msg <mittente>` per riaprire la conversazione."
+              ]
+            },
+            {
+              "heading": "Guida ai comandi",
+              "commands": [
+                {
+                  "command": "/msg <destinatario> <messaggio>",
+                  "description": "Avvia una conversazione privata con un giocatore."
+                },
+                {
+                  "command": "/r <mittente>",
+                  "description": "Consente la risposta rapida al giocatore con cui si è avviata una conversazione."
+                }
+              ],
+              "note": "Cliccando sul nome del giocatore che ti ha inviato il messaggio privato si autocompilerà il comando per rispondere senza doverlo scrivere a mano!"
+            }
+          ]
         },
         {
-          "title": "Nuovo sistema di Nametag",
-          "text": "Le etichette sopra i giocatori sono state completamente rinnovate. Ora mostrano su 3 righe pulite e sfumate: reputazione/allineamento, nome e salute in tempo reale."
+          "title": "TPRandom",
+          "kicker": "Teletrasporti",
+          "text": "*Gli esploratori ringrazieranno!*",
+          "bullets": [
+            "Adesso è possibile eseguire `/tprandom` (o `/tpr`) per teletrasportarsi in un punto a caso nel mondo in cui ci si trova.",
+            "Di seguito la tabella con il range di blocchi entro la quale ci si può teletrasportare dalle coordinate **X: 0**, **Z: 0** del mondo/dimensione attuale con i relativi blocchi su cui teletrasportarsi:"
+          ],
+          "table": {
+            "headers": [
+              "Mondo / Dimensione",
+              "Blocco su cui è possibile teletrasportarsi",
+              "Entro il range di blocchi"
+            ],
+            "rows": [
+              [
+                "**Overworld**",
+                "*Terra, Terra brulla, Podzol, Micelio, Terra con radici, Fango, Sabbia, Sabbia rossa, Ghiaia, Arenaria, Arenaria rossa, Pietra, Blocco di neve e Terracotta*",
+                "**5.000**"
+              ],
+              [
+                "**Nether**",
+                "*Netherrack*",
+                "**1.500**"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Fama",
+          "kicker": "Reputazioni",
+          "bullets": [
+            "Aggiunti i valori di Fama persa/ottenuta per i mob introdotti con gli ultimi aggiornamenti di Minecraft:"
+          ],
+          "table": {
+            "headers": [
+              "Neutrali / Passivi",
+              "Ostili"
+            ],
+            "rows": [
+              [
+                "Ghast allegro",
+                "Brezza"
+              ],
+              [
+                "Golem di rame",
+                "Paludoso"
+              ],
+              [
+                "Nautilo",
+                "Scricchio"
+              ],
+              [
+                "Nautilo zombi",
+                "Ossecco"
+              ],
+              [
+                "Mummifario",
+                "—"
+              ],
+              [
+                "Cubo di zolfo",
+                "—"
+              ]
+            ]
+          },
+          "footer": "Per saperne di più sulla Fama e sulle Reputazioni, clicca [qui](https://ultrasmp.gitbook.io/wiki/il-server/fama-e-reputazioni)."
+        },
+        {
+          "title": "Oggetti droppati luminescenti",
+          "kicker": "Grafica",
+          "text": "*Anche l'occhio vuole la sua parte!*",
+          "bullets": [
+            "Reintrodotti con una funzionalità in più: la rarità degli oggetti*:"
+          ],
+          "table": {
+            "headers": [
+              "Rarità (colore) — dal più raro al meno raro",
+              "Oggetti"
+            ],
+            "rows": [
+              {
+                "tone": "orange",
+                "cells": [
+                  "**Leggendario** (Arancione)",
+                  "Mela d'oro incantata, Stella del Nether, Nucleo pesante, Uovo di drago, Mazza, Elitre, Cuore del mare, Ampolla d'esperienza, Testa di giocatore, Condotto, Totem dell'immortalità"
+                ]
+              },
+              {
+                "tone": "purple",
+                "cells": [
+                  "**Epico** (Viola)",
+                  "Set di armatura, armi e attrezzi in netherite, Schema di forgiatura: miglioramento di netherite, tutti i libri incantati, Faro, Cristallo dell'End, Respiro di drago, Testa di drago, Teschio di scheletro Wither, Tridente"
+                ]
+              },
+              {
+                "tone": "cyan",
+                "cells": [
+                  "**Raro** (Azzurro)",
+                  "Set di armatura, armi e attrezzi in diamante, Chiave della sfida infausta"
+                ]
+              },
+              {
+                "tone": "yellow",
+                "cells": [
+                  "**Non comune** (Giallo)",
+                  "Mela d'oro, tutti i dischi musicali, Testa di zombi, Testa di creeper, Testa di piglin, Teschio di scheletro, Chiave della sfida"
+                ]
+              },
+              {
+                "cells": [
+                  "Comune (Bianco)",
+                  "Tutti gli oggetti non elencati nelle precedenti rarità"
+                ]
+              }
+            ]
+          },
+          "footer": "* Le liste delle rarità possono subire **aggiunte**, **modifiche** o **rimozioni** in qualunque momento.",
+          "images": [
+            {
+              "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FYmPod9P5yCKbrMCzl3P4%2Fglowing-items.png?alt=media&token=f011f50f-99e9-4bb7-9e3f-42ee3237aef2",
+              "caption": "Gli oggetti droppati a terra, dal più raro al meno raro"
+            }
+          ]
+        },
+        {
+          "title": "Barra del nome giocatore",
+          "kicker": "Nametag",
+          "text": "*Meno informazioni, più utilità.*",
+          "bullets": [
+            "Adesso la **Reputazione** non sarà più visibile: mostrati soltanto nome del giocatore e la sua Vita. Sarà comunque possibile consultare la Reputazione di un giocatore attraverso TAB, la chat o sul suo profilo giocatore (se abilitato)."
+          ],
+          "images": [
+            {
+              "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2F0S4BMPvjt2ELTkDzBEvX%2Fnametag-old.png?alt=media&token=22a22519-e5ba-40c9-8a2f-069c4a05116b",
+              "caption": "Vecchia barra del nome: in alto la Reputazione, al centro il Nome e in basso la Vita"
+            },
+            {
+              "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FGwFQfr6cuPm2OZzf3Axw%2Fnametag-new.png?alt=media&token=f158def2-ff89-4be8-9f5d-d61a884cefd1",
+              "caption": "Nuova barra del nome: in alto il Nome e in basso la Vita"
+            }
+          ]
+        },
+        {
+          "title": "Extra",
+          "kicker": "Varie",
+          "bullets": [
+            "Rimosso temporaneamente l'evento **GoldRush** per future ottimizzazioni e miglioramenti.",
+            "Aggiunte barche, armature, armi e attrezzi degli ultimi aggiornamenti di Minecraft al sistema di rimborso materiali.",
+            "Reintrodotti i crafting personalizzati di **Totem dell'immortalità**, **Mela d'oro incantata**, **Fiore sporifero**, **Azalea fiorita** e **Sensore di sculk**. Rimosso il crafting della **Spugna**.",
+            "Reintrodotte le meccaniche personalizzate di **Blocchi di pietrisco muschioso in pietrisco normale**, **Ossidiana piangente in ossidiana normale** e **Schegge di risonanza dal blocco di sculk**.",
+            "Migliorati i messaggi di promemoria di **Inventario pieno** e **Promemoria scoreboard**, delle **Impostazioni di Notifica**.",
+            "Modificato il nome del brand del server in \"Ultra SMP\" nelle informazioni di debug (F3)."
+          ]
         }
       ]
     },
     {
       "kind": "update",
-      "title": "Teletrasporti, Viaggi e Warp",
+      "title": "Ottimizzazioni e Aggiornamenti",
+      "description": "Per i più curiosi.",
       "items": [
         {
-          "title": "Warp rapidi per le dimensioni",
-          "text": "Aggiunti i warp rapidi per Nether ed End per facilitare gli spostamenti."
+          "title": "Modpack e Texture",
+          "kicker": "Download",
+          "bullets": [
+            "Aggiunto il supporto alle mod usando il loader di Fabric, scaricabile da [qui](https://pack.ultrasmp.online/UltraSMP/Packs/mod-pack/).",
+            "Aggiunto il supporto al pacchetto texture che garantisce piacevoli aggiunte che rendono il gameplay ancora più interessante. Puoi scaricare l'ultima versione del pacchetto da [qui](https://pack.ultrasmp.online/UltraSMP/Packs/texture-pack/)."
+          ],
+          "images": [
+            {
+              "src": "https://752447217-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FY7TKm7Y9cFV9Nl1Wsudt%2Fuploads%2FUvnUGgquAt8QueDoD4YG%2Fprofile-with-texturepack.png?alt=media&token=5de133de-4691-4149-8229-f84b38506411",
+              "caption": "Il Profilo SMP con la Ultra SMP Pack attiva"
+            }
+          ]
         },
         {
-          "title": "Miglioramenti a Case e TPA",
-          "text": "Risolti diversi problemi con il comando /home (anche in assenza di un letto registrato) e rese molto più stabili le richieste di teletrasporto (/tpa)."
+          "title": "Versioni",
+          "kicker": "Aggiornamenti",
+          "bullets": [
+            "Ottimizzazione e aggiornamento alla versione **26.3** di Minecraft per tutti gli script e i plugin.",
+            "Aggiornata la versione del server alla **BETA v0.3**."
+          ]
         },
         {
-          "title": "Comando /warpinfo aggiornato",
-          "text": "Ora mostra la posizione esatta con coordinate arrotondate e la data di creazione del warp."
+          "title": "Gestione di dati e variabili di sistema",
+          "kicker": "Backend",
+          "bullets": [
+            "Ottimizzato e alleggerito il database delle variabili: adesso quelle statiche e d'informazione (ad esempio, quella del nome del server, quella dei nomi delle dimensioni o quelle delle informazioni presenti sulla Scoreboard) non vengono salvate nel database ma si eliminano non appena il server viene spento o riavviato. I dati dei giocatori continueranno a essere salvati in sicurezza.",
+            "TAB e Scoreboard sono stati ottimizzati con meno carico e più fluidità."
+          ]
         },
         {
-          "title": "Comando /playtime (/pt)",
-          "text": "Controlla in qualsiasi momento il tuo tempo di gioco sul server, sia per la sessione attuale che totale."
-        }
-      ]
-    },
-    {
-      "kind": "update",
-      "title": "Interfaccia, Menu e Statistiche",
-      "items": [
-        {
-          "title": "Fama e Incursioni",
-          "text": "Il sistema di Fama è stato ottimizzato e bilanciato. Ora è possibile guadagnare Fama anche completando con successo le Incursioni (/raid)."
-        },
-        {
-          "title": "Menu reputazioni (/rank list)",
-          "text": "Rinnovata l'interfaccia grafica per consultare i ranghi e la reputazione sul server."
-        },
-        {
-          "title": "Cestino migliorato",
-          "text": "La hotbar è ora esclusa dai pulsanti del cestino per evitare incidenti, ed è stato aggiunto un comodo pulsante di trasferimento rapido per riportare gli oggetti dall'inventario al cestino (e viceversa)."
-        },
-        {
-          "title": "Preferenze salvate",
-          "text": "Le scelte di personalizzazione del personaggio e le impostazioni della scoreboard non si resettano più a ogni accesso."
-        },
-        {
-          "title": "Scoreboard rinnovata",
-          "text": "Ottimizzate le prestazioni, introdotto il pratico contatore degli slot liberi dell'inventario, un promemoria periodico opzionale e il nuovo comando rapido /sbtoggle."
+          "title": "Organizzazione interna dei file",
+          "kicker": "Backend",
+          "bullets": [
+            "Rivisto il sistema di archiviazione dei dati dei giocatori e ottimizzati diversi script importanti.",
+            "Ridisposizione di file e cartelle di tutti gli script del server ed eliminazione di file con all'interno codice (il quale è stato riallocato in file più adatti al proprio contesto).",
+            "Ripristinato il sistema principale di archivio dati: adesso tutti i dati verranno gestiti solo dalle variabili di Skript e non ci sono più riferimenti a stringhe di skript-yaml."
+          ]
         }
       ]
     },
     {
       "kind": "fix",
-      "title": "Correzioni e Ottimizzazioni Generali",
+      "title": "Risoluzione dei bug dagli scorsi Update",
+      "description": "Le correzioni emerse nelle BETA precedenti.",
       "items": [
         {
-          "title": "Selezione del genere",
-          "text": "Risolti i problemi di interazione con i menu di scelta all'ingresso nel server."
+          "title": "Oggetto perso dal Profilo SMP",
+          "kicker": "Profilo",
+          "text": "Risolto il bug che faceva perdere un oggetto dal proprio inventario se, mirato e cliccato, richiamato col click della rotella tenendo l'oggetto del Profilo SMP in mano (slot 9)."
         },
         {
-          "title": "Notifiche inventario pieno",
-          "text": "Il messaggio di avviso è stato reso più pulito e ora include un collegamento rapido per aprire direttamente il cestino."
+          "title": "Piazzamento con il Profilo SMP aperto",
+          "kicker": "Profilo",
+          "text": "Risolto il bug che permetteva di piazzare o usare l'oggetto della seconda mano quando si apriva il Profilo SMP."
         },
         {
-          "title": "Stabilità generale",
-          "text": "Risolti numerosi bug minori legati alla sincronizzazione dei mondi, alla fluidità delle animazioni e alla stabilità dei comandi amministrativi e di movimento."
+          "title": "Apertura del Profilo SMP sui blocchi interattivi",
+          "kicker": "Profilo",
+          "text": "Risolto il bug che permetteva l'apertura del Profilo SMP interagendo con i blocchi che modificano il loro stato (ad esempio porte e botole)."
+        },
+        {
+          "title": "Aggiornamento della Reputazione",
+          "kicker": "Fama",
+          "text": "A volte non veniva aggiornata la Reputazione di un giocatore all'ottenimento o alla perdita di Fama da parte di quest'ultimo. Adesso il controllo dovrebbe essere più accurato."
+        },
+        {
+          "title": "Stati di /fly e /god",
+          "kicker": "Comandi",
+          "text": "Gli stati di `/fly` e `/god` potevano restare attivi nonostante fossero stati disattivati."
         }
       ]
     }
