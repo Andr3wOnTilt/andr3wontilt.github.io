@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#090909">
+  <script>
+    (() => {
+      const key = "ultrasmp-theme";
+      let theme = "dark";
+      try {
+        const saved = localStorage.getItem(key);
+        if (saved === "light" || saved === "dark") theme = saved;
+      } catch (error) {}
+      window.ULTRASMP_THEME = theme;
+      document.documentElement.dataset.theme = theme;
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", theme === "light" ? "#f6f5f2" : "#090909");
+    })();
+  </script>
+  <meta name="description" content="Pannello admin di UltraSMP: tutti i download del sito in un unico posto.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="OmegaDEV">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="application-name" content="UltraSMP">
+  <meta name="apple-mobile-web-app-title" content="UltraSMP">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-TileColor" content="#090909">
+  <meta name="msapplication-TileImage" content="https://pack.ultrasmp.online/UltraSMP/images/lp-icon.png">
+  <title>Pannello admin — UltraSMP</title>
+  <link rel="canonical" href="https://pack.ultrasmp.online/UltraSMP/admin/">
+  <link rel="icon" type="image/png" sizes="64x64" href="../images/lp-icon.png">
+  <link rel="apple-touch-icon" sizes="64x64" href="../images/lp-icon.png">
+  <link rel="stylesheet" href="../style.css">
+  <script src="../loader.js?v=3"></script>
+  <script src="../site.config.js"></script>
+  <script src="../site.js" defer></script>
+  <script src="admin.js" defer></script>
+  <script>
+    (() => {
+      try {
+        const raw = localStorage.getItem("ultrasmp-auth");
+        const state = raw ? JSON.parse(raw) : null;
+        if (!state || !state.loggedIn || state.username !== "admin") {
+          window.location.replace("../");
+        }
+      } catch (error) {
+        window.location.replace("../");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="page header-inner">
+      <a class="brand" href="../" aria-label="UltraSMP — Sito ufficiale — Home">
+        <img class="brand-logo" src="../images/lp-icon.png" alt="" width="32" height="32">
+        <span class="wordmark">UltraSMP</span>
+        <span class="brand-tag">Sito ufficiale</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navigazione principale">
+        <a class="nav-link" href="../">Home</a>
+        <a class="nav-link" href="../novita/">Novità</a>
+        <a class="nav-link" href="../Packs/">Packs</a>
+        <a class="nav-link" href="https://ultrasmp.gitbook.io/wiki" target="_blank" rel="noopener noreferrer" data-wiki-link>
+          Wiki <span class="external-mark" aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page">
+      <nav class="breadcrumbs" aria-label="Percorso">
+        <a href="../">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>Pannello admin</span>
+      </nav>
+
+      <section class="pack-hero admin-hero" aria-labelledby="admin-title">
+        <p class="eyebrow">Admin</p>
+        <h1 id="admin-title">Pannello admin.</h1>
+        <p>Una dashboard unica per gestire pacchetti e download di UltraSMP. Tutto a portata di mano, senza passaggi inutili.</p>
+        <p class="admin-status"><span class="admin-status-dot" aria-hidden="true"></span>Sessione admin attiva</p>
+      </section>
+
+      <section class="admin-dashboard" aria-label="Dashboard admin">
+        <article class="admin-tile admin-tile-actions">
+          <div class="admin-tile-head">
+            <span class="admin-tile-kicker">Azioni rapide</span>
+            <h2>Comandi</h2>
+          </div>
+
+          <div class="admin-actions">
+            <button class="admin-action" type="button" data-admin-download-open>
+              <span class="admin-action-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3v12"></path>
+                  <path d="m7 10 5 5 5-5"></path>
+                  <path d="M5 21h14"></path>
+                </svg>
+              </span>
+              <span class="admin-action-body">
+                <span class="admin-action-title">Download</span>
+                <span class="admin-action-text">Apri tutti i file disponibili in un pannello a tutto schermo.</span>
+              </span>
+              <span class="admin-action-arrow" aria-hidden="true">→</span>
+            </button>
+
+            <button class="admin-action admin-action-muted" type="button" data-coming-soon>
+              <span class="admin-action-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7v5l3 2"></path>
+                </svg>
+              </span>
+              <span class="admin-action-body">
+                <span class="admin-action-title">Coming Soon</span>
+                <span class="admin-action-text">Anteprima riservata. Si sblocca solo dopo una sequenza precisa di click.</span>
+              </span>
+              <span class="admin-action-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <dialog class="admin-fullscreen-dialog" id="admin-download-dialog" aria-labelledby="admin-download-title">
+        <div class="admin-fullscreen-inner">
+          <div class="download-dialog-head">
+            <div>
+              <p class="eyebrow">Admin</p>
+              <h2 id="admin-download-title">Tutti i download</h2>
+            </div>
+            <form method="dialog">
+              <button class="download-dialog-close" type="submit" aria-label="Chiudi">Chiudi</button>
+            </form>
+          </div>
+          <p class="download-dialog-text">Scegli il pacchetto e scarica direttamente il file che ti serve.</p>
+
+          <section class="admin-downloads" aria-label="Download disponibili">
+            <article class="download-card admin-download-group">
+              <div class="download-pack-head">
+                <img class="pack-icon" src="../images/lp-icon.png" alt="" width="58" height="58">
+                <div>
+                  <h2>Texture Pack</h2>
+                  <p class="pack-kicker">Resource Pack · Minecraft 1.21.x</p>
+                </div>
+              </div>
+
+              <div class="download-options">
+                <a class="download-option" href="../downloadable/UltraSMP-Texture-Pack.zip" download="UltraSMP-Texture-Pack.zip">
+                  <span class="download-option-kicker">Release</span>
+                  <span class="download-option-title">Texture Pack — Release</span>
+                  <span class="download-option-text">Scarica <code>UltraSMP-Texture-Pack.zip</code> dalla cartella principale.</span>
+                </a>
+                <a class="download-option" href="../downloadable/dev/UltraSMP-Texture-Pack.zip" download="UltraSMP-Texture-Pack.zip">
+                  <span class="download-option-kicker">Development</span>
+                  <span class="download-option-title">Texture Pack — Development</span>
+                  <span class="download-option-text">Scarica <code>UltraSMP-Texture-Pack.zip</code> dalla cartella <code>dev</code>.</span>
+                </a>
+              </div>
+
+              <p class="download-hint"><a href="../Packs/texture-pack/">Apri la pagina del Texture Pack →</a></p>
+            </article>
+
+            <article class="download-card admin-download-group">
+              <div class="download-pack-head">
+                <img class="pack-icon" src="../images/lp-icon.png" alt="" width="58" height="58">
+                <div>
+                  <h2>Mod Pack</h2>
+                  <p class="pack-kicker">Fabric · Minecraft 26.3</p>
+                </div>
+              </div>
+
+              <div class="admin-variant">
+                <h3>Base</h3>
+                <div class="download-options">
+                  <a class="download-option" href="../downloadable/UltraSMP-Import.zip" download="UltraSMP-Import.zip">
+                    <span class="download-option-kicker">CurseForge</span>
+                    <span class="download-option-title">Import — Base</span>
+                    <span class="download-option-text">Scarica <code>UltraSMP-Import.zip</code> e importalo in CurseForge.</span>
+                  </a>
+                  <a class="download-option" href="../downloadable/UltraSMP-Mods.zip" download="UltraSMP-Mods.zip">
+                    <span class="download-option-kicker">File .jar</span>
+                    <span class="download-option-title">Mod — Base</span>
+                    <span class="download-option-text">Scarica <code>UltraSMP-Mods.zip</code> con i file per la cartella <code>mods</code>.</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="admin-variant">
+                <h3>Plus</h3>
+                <div class="download-options">
+                  <a class="download-option" href="../downloadable/UltraSMP-Plus-Import.zip" download="UltraSMP-Plus-Import.zip">
+                    <span class="download-option-kicker">CurseForge</span>
+                    <span class="download-option-title">Import — Plus</span>
+                    <span class="download-option-text">Scarica <code>UltraSMP-Plus-Import.zip</code> e importalo in CurseForge.</span>
+                  </a>
+                  <a class="download-option" href="../downloadable/UltraSMP-Plus-Mods.zip" download="UltraSMP-Plus-Mods.zip">
+                    <span class="download-option-kicker">File .jar</span>
+                    <span class="download-option-title">Mod — Plus</span>
+                    <span class="download-option-text">Scarica <code>UltraSMP-Plus-Mods.zip</code> con i file per la cartella <code>mods</code>.</span>
+                  </a>
+                </div>
+              </div>
+
+              <p class="download-hint"><a href="../Packs/mod-pack/">Apri la pagina del Mod Pack →</a></p>
+            </article>
+          </section>
+        </div>
+      </dialog>
+
+      <dialog class="admin-video-dialog" id="admin-video-dialog" aria-label="Coming Soon">
+        <video class="admin-video" id="admin-video" src="../assets/Rick.mp4" loop playsinline preload="auto" disablepictureinpicture></video>
+        <button class="admin-video-close" type="button" data-video-close>Chiudi</button>
+      </dialog>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-head">
+          <img class="footer-brand-logo" src="../images/lp-icon.png" alt="Logo LP" width="32" height="32" loading="lazy">
+          <strong>UltraSMP</strong>
+        </div>
+        <p class="footer-copyright">Copyright &copy; 2023–2026 UltraSMP · Sito creato da: <span class="credit-omega">OmegaDEV</span> · Sviluppatore del server MC: <span class="credit-xedo">_Xedo_</span></p>
+      </div>
+
+      <div class="footer-tools">
+        <nav class="footer-nav" aria-label="Collegamenti del sito">
+          <a href="../">Home</a>
+          <a href="../novita/">Novità</a>
+          <a href="../Packs/">Packs</a>
+          <a href="https://ultrasmp.gitbook.io/wiki" target="_blank" rel="noopener noreferrer" data-wiki-link>Wiki ↗</a>
+        </nav>
+        <div class="theme-switch" role="group" aria-label="Tema del sito">
+          <button class="theme-button" type="button" data-theme-set="light" aria-label="Tema chiaro" title="Tema chiaro" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+          </button>
+          <button class="theme-button" type="button" data-theme-set="dark" aria-label="Tema scuro" title="Tema scuro" aria-pressed="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="page texture-credit">
+      <p class="footer-heading">Crediti e attribuzioni</p>
+      <p>Il pacchetto texture è curato e mantenuto da <span class="credit-texture">Andr3wOnTilt</span>. Alcuni asset grafici provengono da texture pack di terze parti e sono utilizzati esclusivamente per uso personale, come integrazioni visive per UltraSMP e non come opere originali. La titolarità dei singoli asset resta ai rispettivi autori.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -40,6 +40,16 @@
     } catch (error) {}
   };
 
+  const getAdminPanelUrl = () => {
+    try {
+      const configScript = document.querySelector('script[src$="site.config.js"]');
+      const base = configScript ? new URL(".", configScript.src) : new URL("./", window.location.href);
+      return new URL("admin/", base).href;
+    } catch (error) {
+      return "admin/";
+    }
+  };
+
   const createAuthUI = () => {
     const headerInners = document.querySelectorAll(".header-inner");
     if (headerInners.length === 0) return;
@@ -75,6 +85,7 @@
                 <span class="auth-avatar-large">A</span>
                 <span class="auth-username">admin</span>
               </div>
+              <a class="auth-admin-link" href="#" data-admin-panel-link>Pannello admin</a>
               <button class="auth-logout-btn" type="button">Disconnetti</button>
             </div>
           </div>
@@ -82,6 +93,11 @@
 
         authContainer.appendChild(avatarBtn);
         document.body.appendChild(logoutPopup);
+
+        const adminPanelLink = logoutPopup.querySelector("[data-admin-panel-link]");
+        if (adminPanelLink) {
+          adminPanelLink.href = getAdminPanelUrl();
+        }
 
         avatarBtn.addEventListener("click", () => {
           logoutPopup.classList.add("is-open");
