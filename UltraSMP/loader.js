@@ -4,7 +4,6 @@
   const logoUrl = new URL("images/lp-icon.png", base).href;
   const siteRootUrl = new URL("./", base).href;
   const root = document.documentElement;
-  const SESSION_KEY = "ultrasmp-intro-shown";
   const TRANSITION_KEY = "ultrasmp-page-transition";
   const isAdminPanel = /\/admin(?:\/|$)/.test(window.location.pathname);
 
@@ -42,43 +41,6 @@
       sessionStorage.removeItem(TRANSITION_KEY);
     } catch (error) {}
   }
-
-  const navigationType = (() => {
-    try {
-      const entry = performance.getEntriesByType("navigation")[0];
-      return entry ? entry.type : "";
-    } catch (error) {
-      return "";
-    }
-  })();
-
-  const sameOriginReferrer = (() => {
-    const referrer = document.referrer || "";
-    if (!referrer) {
-      return false;
-    }
-    try {
-      return new URL(referrer).origin === window.location.origin;
-    } catch (error) {
-      return false;
-    }
-  })();
-
-  const flagSet = (() => {
-    try {
-      return sessionStorage.getItem(SESSION_KEY) === "1";
-    } catch (error) {
-      return false;
-    }
-  })();
-
-  const isFirstSiteEntry =
-    !flagSet ||
-    (!sameOriginReferrer && navigationType !== "reload" && navigationType !== "back_forward");
-
-  try {
-    sessionStorage.setItem(SESSION_KEY, "1");
-  } catch (error) {}
 
   const ensureStyles = () => {
     if (document.getElementById("site-loader-styles")) {
@@ -207,20 +169,14 @@
     window.setTimeout(() => reveal.remove(), revealDuration + 600);
   };
 
-  if (hasTransition && !isAdminPanel) {
-    showReveal();
-    return;
-  }
-
-  if (isAdminPanel) {
-    showLoader("Bentornato Admin", { variant: "intro" });
-  } else if (isFirstSiteEntry) {
-    showLoader("", { variant: "intro" });
-  }
-
   if (!isAdminPanel) {
+    if (hasTransition) {
+      showReveal();
+    }
     return;
   }
+
+  showLoader("Bentornato Admin", { variant: "intro" });
 
   let leaving = false;
 
