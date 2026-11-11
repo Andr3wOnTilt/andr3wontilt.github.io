@@ -10,7 +10,18 @@ window.ULTRASMP_SITE = {
       file: "UltraSMP-Texture-Pack.zip",
       size: "—",
       downloadUrl: "../../downloadable/UltraSMP-Texture-Pack.zip",
-      downloadLabel: "Scarica il Texture Pack"
+      downloadLabel: "Scarica il Texture Pack",
+      defaultVariant: "release",
+      variants: {
+        release: {
+          label: "Release",
+          file: "UltraSMP-Texture-Pack.zip"
+        },
+        development: {
+          label: "Development",
+          file: "dev/UltraSMP-Texture-Pack.zip"
+        }
+      }
     },
     mod: {
       name: "UltraSMP Mod Pack",

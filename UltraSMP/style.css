@@ -1527,6 +1527,10 @@ main {
   margin-top: 16px;
 }
 
+.download-options.is-single {
+  grid-template-columns: 1fr;
+}
+
 .download-option {
   display: flex;
   flex-direction: column;

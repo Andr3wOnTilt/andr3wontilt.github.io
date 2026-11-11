@@ -61,7 +61,6 @@
   <link rel="apple-touch-icon" sizes="64x64" href="../../images/lp-icon.png">
   <link rel="stylesheet" href="../../style.css">
   <script src="../../site.config.js"></script>
-  <script src="../../pack-permissions.js"></script>
   <script src="../../site.js" defer></script>
   <script type="application/ld+json">
     {
@@ -155,7 +154,7 @@
             </div>
           </dl>
 
-          <a class="button button-primary download-button" href="../../downloadable/UltraSMP-Texture-Pack.zip" data-pack-download>Scarica il Texture Pack</a>
+          <a class="button button-primary download-button" href="../../downloadable/UltraSMP-Texture-Pack.zip" data-pack-download data-download-choice>Scarica il Texture Pack</a>
         </section>
 
         <aside class="download-aside" aria-labelledby="install-title">
@@ -169,6 +168,52 @@
           <p class="aside-credit">Pacchetto curato e mantenuto da <span class="credit-texture">Andr3wOnTilt</span>. Alcuni asset provengono da texture pack di terze parti e sono destinati esclusivamente a uso personale; la titolarità resta ai rispettivi autori.</p>
         </aside>
       </div>
+
+      <dialog class="download-dialog" id="download-dialog" aria-labelledby="download-dialog-title">
+        <div class="download-dialog-inner">
+          <div class="download-dialog-head">
+            <div>
+              <p class="eyebrow">Download</p>
+              <h2 id="download-dialog-title">Scegli la versione</h2>
+            </div>
+            <form method="dialog">
+              <button class="download-dialog-close" type="submit" aria-label="Chiudi">Chiudi</button>
+            </form>
+          </div>
+          <p class="download-dialog-text">Scegli la versione Release o Development del Texture Pack.</p>
+          <p class="download-dialog-warning"><strong>Mod Pack obbligatorio:</strong> per usare il Texture Pack devi installare il Mod Pack.</p>
+          <div class="download-variant">
+            <span class="download-variant-label" id="download-variant-label">Versione del pacchetto</span>
+            <div class="variant-picker" data-variant-picker>
+              <button class="variant-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="download-variant-label variant-trigger-value" data-variant-trigger>
+                <span class="variant-trigger-value" id="variant-trigger-value" data-variant-value>Release</span>
+                <span class="variant-trigger-icon" aria-hidden="true"></span>
+              </button>
+              <ul class="variant-menu" role="listbox" aria-labelledby="download-variant-label" data-variant-menu hidden>
+                <li class="variant-option" role="option" tabindex="-1" aria-selected="true" data-variant-option="release">
+                  <span class="variant-option-text">
+                    <span class="variant-option-label" data-variant-option-label>Release</span>
+                    <span class="variant-option-note">(Versione stabile)</span>
+                  </span>
+                </li>
+                <li class="variant-option" role="option" tabindex="-1" aria-selected="false" data-variant-option="development">
+                  <span class="variant-option-text">
+                    <span class="variant-option-label" data-variant-option-label>Development</span>
+                    <span class="variant-option-note">(Versione in sviluppo)</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="download-options is-single">
+            <a class="download-option" href="../../downloadable/UltraSMP-Texture-Pack.zip" download="UltraSMP-Texture-Pack.zip" data-download-option="texture">
+              <span class="download-option-kicker">Texture Pack · <span data-download-variant-label>Release</span></span>
+              <span class="download-option-title">Scarica il Texture Pack</span>
+              <span class="download-option-text">Scarica <code data-download-file>UltraSMP-Texture-Pack.zip</code> e installalo nella cartella <code>resourcepacks</code>.</span>
+            </a>
+          </div>
+        </div>
+      </dialog>
     </div>
   </main>
 

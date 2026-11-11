@@ -9,13 +9,6 @@
     password: "ultrasmpdeveloper"
   };
 
-  let packPermissions = window.ULTRASMP_PACK_PERMS || {
-    packs: {
-      texture: { canUserDownload: true },
-      mod: { canUserDownload: true }
-    }
-  };
-
   const isAdminLoggedIn = () => {
     try {
       const raw = localStorage.getItem(AUTH_KEY);
@@ -270,6 +263,9 @@
     return;
   }
 
+  const packPage = page.dataset.packPage;
+  const admin = isAdminLoggedIn();
+
   const fields = {
     name: pack.name,
     version: pack.version,
@@ -292,7 +288,14 @@
 
   const choiceButton = page.querySelector("[data-download-choice]");
   const choiceDialog = page.querySelector("#download-dialog");
-  if (choiceButton && choiceDialog) {
+  const useChoiceDialog = Boolean(choiceButton && choiceDialog && (packPage !== "texture" || admin));
+
+  if (useChoiceDialog) {
+    if (packPage === "texture") {
+      choiceButton.setAttribute("aria-haspopup", "dialog");
+      choiceButton.setAttribute("aria-controls", choiceDialog.id);
+    }
+
     const supportsDialog = typeof choiceDialog.showModal === "function";
 
     choiceButton.addEventListener("click", (event) => {
@@ -323,6 +326,9 @@
       const variantMenu = variantPicker.querySelector("[data-variant-menu]");
       const variantValue = variantPicker.querySelector("[data-variant-value]");
       const variantOptions = Array.from(variantPicker.querySelectorAll("[data-variant-option]"));
+      const downloadOptionBaseHrefs = new Map(
+        Array.from(page.querySelectorAll("[data-download-option]")).map((option) => [option, option.href])
+      );
       let closeTimer = 0;
 
       const setMenuOpen = (open, focusTarget) => {
@@ -366,7 +372,8 @@
 
         [
           ["import", variant.importFile],
-          ["jars", variant.modsFile]
+          ["jars", variant.modsFile],
+          ["texture", variant.file]
         ].forEach(([choice, file]) => {
           const option = page.querySelector(`[data-download-option="${choice}"]`);
           const fileName = String(file || "").trim();
@@ -374,12 +381,14 @@
             return;
           }
 
-          option.href = new URL(fileName, option.href).href;
-          option.download = fileName;
+          const baseHref = downloadOptionBaseHrefs.get(option) || option.href;
+          const downloadName = fileName.split("/").pop() || fileName;
+          option.href = new URL(fileName, baseHref).href;
+          option.download = downloadName;
 
           const fileLabel = option.querySelector("[data-download-file]");
           if (fileLabel) {
-            fileLabel.textContent = fileName;
+            fileLabel.textContent = downloadName;
           }
         });
       };
@@ -459,82 +468,27 @@
     return;
   }
 
-  const packPage = page.dataset.packPage;
+  const downloadUrl = String(pack.downloadUrl || "").trim();
+  if (downloadUrl) {
+    const downloadLabel = String(pack.downloadLabel || "").trim();
+    download.href = downloadUrl;
+    download.download = pack.file;
+    download.textContent = downloadLabel || (pack.version ? `Scarica ${pack.version}` : "Scarica");
+    download.classList.remove("is-disabled");
+    download.removeAttribute("aria-disabled");
+    download.removeAttribute("tabindex");
 
-  const setupDownload = (permissions) => {
-    let canDownloadByAll = true;
-    if (packPage === "texture") {
-      canDownloadByAll = permissions?.packs?.texture?.canUserDownload !== false;
-    } else if (packPage === "mod") {
-      canDownloadByAll = permissions?.packs?.mod?.canUserDownload !== false;
+    const note = page.querySelector(".download-note");
+    if (note) {
+      note.hidden = true;
     }
-    
-    const admin = isAdminLoggedIn();
-    
-    if (!canDownloadByAll && !admin) {
-      download.setAttribute("aria-disabled", "true");
-      download.setAttribute("tabindex", "-1");
-      download.classList.add("is-disabled");
-      download.textContent = "Pack non disponibile";
-      download.removeAttribute("href");
-      download.removeAttribute("download");
-      const block = function(event) { event.preventDefault(); event.stopImmediatePropagation(); event.stopPropagation(); return false; };
-      download.onclick = block;
-      download.setAttribute("onclick", "event.preventDefault();event.stopImmediatePropagation();return false;");
-      if (download.addEventListener) { download.addEventListener("click", block, true); }
-      const note = page.querySelector(".download-note");
-      if (note) {
-        note.textContent = "Pack non disponibile al momento.";
-        note.hidden = false;
-      }
-      return;
-    }
-
-    if (!canDownloadByAll && admin) {
-      const downloadUrl = String(pack.downloadUrl || "").trim();
-      if (downloadUrl) {
-        const downloadLabel = String(pack.downloadLabel || "").trim();
-        download.href = downloadUrl;
-        download.download = pack.file;
-        download.textContent = downloadLabel || (pack.version ? `Scarica ${pack.version}` : "Scarica");
-        download.classList.remove("is-disabled");
-        download.removeAttribute("aria-disabled");
-        download.removeAttribute("tabindex");
-        download.onclick = null;
-        const note = page.querySelector(".download-note");
-        if (note) {
-          note.hidden = true;
-        }
-        return;
-      }
-    }
-
-    const downloadUrl = String(pack.downloadUrl || "").trim();
-    if (downloadUrl) {
-      const downloadLabel = String(pack.downloadLabel || "").trim();
-      download.href = downloadUrl;
-      download.download = pack.file;
-      download.textContent = downloadLabel || (pack.version ? `Scarica ${pack.version}` : "Scarica");
-      download.classList.remove("is-disabled");
-      download.removeAttribute("aria-disabled");
-      download.removeAttribute("tabindex");
-      download.onclick = null;
-
-      const note = page.querySelector(".download-note");
-      if (note) {
-        note.hidden = true;
-      }
-      return;
-    }
-
+  } else {
     download.setAttribute("aria-disabled", "true");
     download.setAttribute("tabindex", "-1");
     download.classList.add("is-disabled");
     download.textContent = "Download in arrivo";
     download.removeAttribute("href");
     download.removeAttribute("download");
-    download.onclick = (event) => event.preventDefault();
-  };
-
-  setupDownload(packPermissions);
+    download.addEventListener("click", (event) => event.preventDefault());
+  }
 })();
